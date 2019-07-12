@@ -23,7 +23,7 @@ export const AppContext = createContext(
 
 export default function App() {
 	let [ ready, setReady ] = useState(false);
-	let [ theme, setTheme ] = useState('light');
+	let [ theme, setTheme ] = useState('dark');
 	let [ page, setPage ] = useState(Page.LOAD);
 
 	if (!ready) {
