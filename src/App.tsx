@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import { Instance } from './internal/Client';
 
 export enum Page {
+	NONE,
 	LOAD,
 	LOGIN,
 	APP
@@ -13,8 +14,8 @@ export enum Page {
 
 export const AppContext = createContext(
 	{
-		theme: 'light',
-		page: Page.LOGIN,
+		theme: '??',
+		page: Page.NONE,
 		setTheme: (theme: string) => undefined,
 		setPage: (page: Page) => undefined
 	}
