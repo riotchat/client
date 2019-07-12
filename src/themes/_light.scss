@@ -1,0 +1,27 @@
+.theme-light {
+	--icon: #5A5A5A;
+	--unread: #9B9B9B;
+	
+	--main: #FBFBFB;
+	--sub: #F0F0F0;
+	--profile: #E8E8E8;
+	--main-text: #464646;
+	--body-text: #000000;
+	
+	--username: #464646;
+	
+	--home: #BCBCBC;
+	--home-active: lighten(#BCBCBC, 10%);
+	--divider: lighten(#707070, 50%);
+	
+	--button-hover: lighten(#E8E8E8; 10%);
+	--button-active: #E8E8E8;
+	
+	--button-call: #BCBCBC;
+	
+	--messagebox: #ECECEC;
+	--action-button: #BEBFC1;
+	
+	--scrollbar: #E5E5E5;
+	--scrollbar-thumb: rgba(127, 127, 127, 0.2);
+}
