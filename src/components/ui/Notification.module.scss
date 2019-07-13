@@ -1,11 +1,10 @@
-@keyframes epictime {
-    from { transform: translateY(-50px); }
-    to   { transform: translateY(0); }
+@keyframes slide {
+    from {transform: translateY(-50px);}
+    to   {transform: translateY(0);}
 }
 
 .banner {
-	animation: epictime .4s ease;
-
+	animation: slide .5s ease;
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -37,8 +36,8 @@
     }
 
     .text {
-        flex: 1 1 auto;
-    }
+		flex: 1 1 auto;
+	}
 
     .dismiss {
         margin: 0 10px;
