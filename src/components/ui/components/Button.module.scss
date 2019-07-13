@@ -8,12 +8,17 @@
     font-size: 1rem;
     border-radius: 4px;
     cursor: pointer;
-    background: grey;
-    font-weight: 600;
+    //background: grey;
 
-	&.accept {background: var(--accent-color); margin-right: 20px;}
+	&.confirm {background: var(--accent-color); margin-left: 20px;}
 	&.cancel {background: #4f545c;} 
     &.warning {background: var(--red);}
+}
+
+.link {
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--link);
 }
 
 .disabled {

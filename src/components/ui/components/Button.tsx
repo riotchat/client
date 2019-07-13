@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 
 interface ButtonProps {
 	children: ReactNode[] | ReactNode
-	type?: 'accept' | 'cancel' | 'warning'
+	type?: 'confirm' | 'cancel' | 'warning'
 };
 
 export function Button(props: ButtonProps) {

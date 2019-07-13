@@ -1,0 +1,9 @@
+.link {
+	color: #2B8FF3;
+    text-decoration: none;
+    font-size: .875rem;
+	
+	&:hover {text-decoration: underline;}
+	&.default {color: #2B8FF3;}
+	&.grey {color: grey;}
+}

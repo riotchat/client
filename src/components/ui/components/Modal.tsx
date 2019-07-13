@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import styles from './Modal.module.scss';
 import { Button } from './Button';
+import Link from '../elements/Link';
 
 interface ModalProps {
 	title: string
@@ -39,10 +40,11 @@ export default function Modal(props: ModalProps) {
 				<div className={styles.container}>
 					<span className={styles.title}>{props.title}</span>
 					<p>blah blah blah<br/>this may do a thing that you dotn want, word wrap pls as well ok thank</p>
+                    <Link href='#'>Learn more</Link>
 				</div>
 				<div className={styles.footer}>
-					<Button type='accept'>test</Button>
-                    <Button type='cancel'>cancel</Button>
+                    <Button type='warning'>Delete Channel</Button>
+                    <Button>Cancel</Button>
 				</div>
 			</div>
 		</div>
