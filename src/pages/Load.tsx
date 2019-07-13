@@ -19,7 +19,7 @@ export default function Load(props: { waitForClient: boolean }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.preloader}>
-				<img className={styles.image} src={Logo} />
+				<img alt="RIOT" className={styles.image} src={Logo} />
 				<div className={styles.spinner}>
 					<div className={styles.bounce1}></div>
 					<div className={styles.bounce2}></div>

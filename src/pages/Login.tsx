@@ -42,9 +42,10 @@ export default function Login() {
 					<div className={styles.login}>
 						<div className={styles.overlay} />
 						<div className={styles.left}>
-							<img className={styles.logo} src={logo} draggable={false}/>
+							<img alt="RIOT" className={styles.logo} src={logo} draggable={false}/>
 						</div>
 						<div className={styles.right}>
+							{ error.type !== ErrorType.NONE && 'ERROR!' }
 							<form className={styles.form} onSubmit={ev => submitForm(ev, app.setPage)}>
 								<div className={styles.welcome}>Welcome back!</div>
 
