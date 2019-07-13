@@ -1,5 +1,7 @@
 ---
 image: timbru31/node-alpine-git
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
 stages:
   - build
 before_script:
