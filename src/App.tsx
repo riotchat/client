@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import Helmet from 'react-helmet';
 import styles from './App.module.scss';
 
 import Load from './pages/Load';
@@ -46,6 +47,9 @@ export default function App() {
 
 	return (
 		<div className={`theme-${theme} ${styles.app}`}>
+			<Helmet>
+				<meta name="theme-color" content="#7B68EE" />
+			</Helmet>
 			<AppContext.Provider value={states}>
 				{ page === Page.LOAD && <Load waitForClient={ready} /> }
 				{ page === Page.LOGIN && <Login /> }

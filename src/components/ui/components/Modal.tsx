@@ -1,4 +1,5 @@
 import React, { useState, ReactNode } from 'react';
+import Helmet from 'react-helmet'
 import classNames from 'classnames';
 import styles from './Modal.module.scss';
 import { Button, ButtonType } from './Button';
@@ -57,6 +58,9 @@ export default function Modal(props: ModalProps) {
 
 	return (
 		<div className={modalClasses} onClick={handleClose}>
+			<Helmet>
+				<meta name="theme-color" content='#00000' />
+			</Helmet>
 			<div className={classes}>
 				<div className={styles.container}>
 					<span className={styles.title}>{props.title}</span>
