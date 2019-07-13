@@ -7,7 +7,6 @@ import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
 import Notification from '../components/ui/elements/Notification';
 import Modal from '../components/ui/components/Modal';
-import { Button } from '../components/ui/components/Button';
 
 enum ErrorType {
 	NONE,
