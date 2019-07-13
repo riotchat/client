@@ -59,7 +59,7 @@ export default function Modal(props: ModalProps) {
 	return (
 		<div className={modalClasses} onClick={handleClose}>
 			<Helmet>
-				<meta name="theme-color" content='#00000' />
+				<meta name="theme-color" content='#1D1D1E'/>
 			</Helmet>
 			<div className={classes}>
 				<div className={styles.container}>
