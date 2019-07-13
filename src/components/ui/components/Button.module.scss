@@ -1,0 +1,21 @@
+.button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    background: grey;
+    font-weight: 600;
+
+	&.accept {background: var(--accent-color); margin-right: 20px;}
+	&.cancel {background: #4f545c;} 
+    &.warning {background: var(--red);}
+}
+
+.disabled {
+	cursor: not-allowed;
+}

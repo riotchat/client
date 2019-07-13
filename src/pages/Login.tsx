@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+//import Helmet from 'react-helmet';
 import { AppContext, Page } from '../App';
 import { Instance } from '../internal/Client';
 
 import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
-import Notification from '../components/ui/Notification';
+import Notification from '../components/ui/elements/Notification';
+import Modal from '../components/ui/components/Modal';
 
 enum ErrorType {
 	NONE,
@@ -38,11 +40,14 @@ export default function Login() {
 		});
 	}
 
+	let [ temp, setTemp ] = useState(true);
+
 	return (
 		<AppContext.Consumer>
 			{ app => 
 				<div>
 					<div className={styles.login}>
+						{ temp && <Modal title='2FA required' dismiss={() => setTemp(false)} /> }
 						<div className={styles.overlay}>
 							{ error.type !== 0 && <Notification title='Failed to login' text={error.reason} /> }
 						</div>
