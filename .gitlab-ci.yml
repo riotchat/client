@@ -5,8 +5,14 @@ variables:
 stages:
   - build
 before_script:
+  - apk update
+  - apk add rsync
   - yarn install
 build:
   stage: build
   script:
     - yarn build
+    - echo "${SSH_PRIVATE_KEY}" > id_rsa
+    - chmod 700 id_rsa
+    - mkdir "${HOME}/.ssh"
+    - rsync -hrvz --delete --exclude=_ -e 'ssh -oStrictHostKeyChecking=no -p 16767 -i id_rsa' out/ pi@insrt.uk:/var/www/bruh.beta.riotchat.gq/
