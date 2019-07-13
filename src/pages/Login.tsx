@@ -4,10 +4,12 @@ import { Instance } from '../internal/Client';
 
 import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
+import Notification from '../components/ui/Notification';
 
 enum ErrorType {
 	NONE,
-	INVALID_DETAILS,
+	INVALID_EMAIL,
+	INAVLID_PASSWORD,
 	SERVER_ERROR
 };
 
@@ -29,7 +31,8 @@ export default function Login() {
 			setPage(Page.LOAD);
 		}).catch(err => {
 			setError({
-				type: (''+err).includes('403') ? ErrorType.INVALID_DETAILS : ErrorType.SERVER_ERROR,
+				// ! BAD CODE FIX ASAP
+				type: (''+err).includes('403') ? ErrorType.INVALID_EMAIL : ErrorType.SERVER_ERROR,
 				reason: ''+err
 			});
 		});
@@ -40,12 +43,13 @@ export default function Login() {
 			{ app => 
 				<div>
 					<div className={styles.login}>
-						<div className={styles.overlay} />
+						<div className={styles.overlay}>
+							{ error.type !== 0 && <Notification title='Failed to login' text={error.reason} /> }
+						</div>
 						<div className={styles.left}>
-							<img alt="RIOT" className={styles.logo} src={logo} draggable={false}/>
+							<img alt="Riot" className={styles.logo} src={logo} draggable={false}/>
 						</div>
 						<div className={styles.right}>
-							{ error.type !== ErrorType.NONE && 'ERROR!' }
 							<form className={styles.form} onSubmit={ev => submitForm(ev, app.setPage)}>
 								<div className={styles.welcome}>Welcome back!</div>
 
@@ -54,7 +58,7 @@ export default function Login() {
 								<span className={styles.title}>Password</span>
 								<input type="password" value={password} onChange={e => setPassword(e.target.value)} />
 
-								<a className={styles.link} href="x">Forgot your password?</a>
+								<a className={styles.link} href="/forgotidk">Forgot your password?</a>
 								<input type="submit" value="Log in"/>
 
 								<span className={styles.signin}>Need an account? <a className={styles.link} href="x">Sign up</a></span>

@@ -1,0 +1,47 @@
+@keyframes epictime {
+    from { transform: translateY(-50px); }
+    to   { transform: translateY(0); }
+}
+
+.banner {
+	animation: epictime .4s ease;
+
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    min-height: 50px;
+    background: var(--red);
+    color: white;
+    font-size: .8125rem;
+
+    &.notice {background: var(--default-accent-color);}
+    &.error {background: var(--red);}
+
+    .title {
+        font-weight: bold;
+        flex: 0 0 auto;
+        text-transform: uppercase;
+    }
+
+    .divider {
+        flex: 0 0 auto;
+        display: block;
+        height: 26px;
+        width: 1px;
+        margin: 0 10px;
+        background: #FFFFFF;
+        border-radius: 60px;
+        opacity: .5;
+    }
+
+    .text {
+        flex: 1 1 auto;
+    }
+
+    .dismiss {
+        margin: 0 10px;
+        cursor: pointer;
+    }
+}
