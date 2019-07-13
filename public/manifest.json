@@ -1,6 +1,6 @@
 {
-  "short_name": "RIOT",
-  "name": "RIOT chat for epic gamers",
+  "short_name": "Riot",
+  "name": "Riot",
   "icons": [
     {
       "src": "favicon.png",
@@ -10,6 +10,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#7B68EE",
+  "background_color": "#7B68EE"
 }
