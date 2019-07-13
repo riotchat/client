@@ -40,14 +40,25 @@ export default function Login() {
 		});
 	}
 
-	let [ temp, setTemp ] = useState(true);
+	let [ tfa, setTFA ] = useState(true);
 
 	return (
 		<AppContext.Consumer>
 			{ app => 
 				<div>
 					<div className={styles.login}>
-						{ temp && <Modal title='2FA required' dismiss={() => setTemp(false)} /> }
+						{ tfa &&
+							<Modal title='2FA required'
+								allowClose={true}
+								dismiss={() => setTFA(false)}
+								buttons={[
+									{ type: 'confirm', value: 'Continue' },
+									{ value: 'Cancel', close: true }
+								]}>
+								This is where the fancy input will be yes
+							</Modal>
+						}
+
 						<div className={styles.overlay}>
 							{ error.type !== 0 && <Notification title='Failed to login' text={error.reason} /> }
 						</div>

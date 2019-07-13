@@ -2,15 +2,18 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
 
+export type ButtonType = 'confirm' | 'cancel' | 'warning';
+
 interface ButtonProps {
 	children: ReactNode[] | ReactNode
-	type?: 'confirm' | 'cancel' | 'warning'
+	type?: ButtonType
+	click?: () => void
 };
 
 export function Button(props: ButtonProps) {
 	let classes: any = {
 		[styles.button]: true,
-		[styles.disabled]: true
+		[styles.disabled]: false
 	};
 
 	if (props.type) {
@@ -18,7 +21,7 @@ export function Button(props: ButtonProps) {
 	}
 
 	return (
-		<div className={classNames(classes)}>
+		<div className={classNames(classes)} onClick={props.click}>
 			{props.children}
 		</div>
 	);

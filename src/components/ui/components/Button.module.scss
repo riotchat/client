@@ -1,24 +1,16 @@
 .button {
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    //background: grey;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: .875rem;
+	border-radius: 4px;
+	cursor: pointer;
 
 	&.confirm {background: var(--accent-color); margin-left: 20px;}
 	&.cancel {background: #4f545c;} 
-    &.warning {background: var(--red);}
-}
-
-.link {
-    font-size: 14px;
-    cursor: pointer;
-    color: var(--link);
+	&.warning {background: var(--red);}
 }
 
 .disabled {
