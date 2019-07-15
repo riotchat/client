@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styles from './Notification.module.scss';
+import { useAnimator, Animation } from '../../../scss/animations';
 
 interface NotificationProps {
 	title: string,
@@ -9,8 +10,10 @@ interface NotificationProps {
 };
 
 export default function Notification(props: NotificationProps) {
+	let [ slideAnimation ] = useAnimator(Animation.SLIDE_IN, 250);
+
 	return (
-		<div className={styles.banner}>
+		<div className={styles.banner} style={slideAnimation.styles}>
 			<Helmet>
 				<meta name="theme-color" content='#D14F4F' />
 			</Helmet>

@@ -1,8 +1,9 @@
-import React, { useState, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import Helmet from 'react-helmet'
 import classNames from 'classnames';
 import styles from './Modal.module.scss';
 import { Button, ButtonType } from './Button';
+import { useAnimator, Animation } from '../../../scss/animations';
 
 interface ModalProps {
 	title: string
@@ -19,30 +20,17 @@ interface ModalProps {
 };
 
 export default function Modal(props: ModalProps) {
-	let [ closing, setClosing ] = useState(false);
+	let [ fadeAnimation, playFade ] = useAnimator(Animation.FADE_IN, 250);
+	let [ scaleAnimation, playScale ] = useAnimator(Animation.SCALE_IN, 250);
 
 	function handleClose(e?: React.MouseEvent) {
 		if (e && (e.target !== e.currentTarget)) return;
 		if (!props.allowClose) return;
 
-		setClosing(true);
-		setTimeout(() => {
-			if (props.dismiss)
-				props.dismiss();
-		}, 250);
+		playScale(Animation.SCALE_OUT, 250);
+		playFade(Animation.FADE_OUT, 250)
+			.then(() => props.dismiss && props.dismiss());
 	}
-
-	// ? REDO LATER
-	let modalClasses = classNames(styles.modal, {
-		[styles.animInB]: !closing,
-		[styles.animOutB]: closing
-	});
-
-	// ? ALSO RE-DO
-	let classes = classNames(styles.root, {
-		[styles.animateIn]: !closing,
-		[styles.animateOut]: closing
-	});
 
 	let buttons: ReactNode[] = props.buttons
 		.map(btn => <Button type={btn.type}
@@ -57,11 +45,11 @@ export default function Modal(props: ModalProps) {
 			</Button>);
 
 	return (
-		<div className={modalClasses} onClick={handleClose}>
+		<div className={styles.modal} onClick={handleClose} style={fadeAnimation.styles}>
 			<Helmet>
 				<meta name="theme-color" content='#1D1D1E'/>
 			</Helmet>
-			<div className={classes}>
+			<div className={styles.root} style={scaleAnimation.styles}>
 				<div className={styles.container}>
 					<span className={styles.title}>{props.title}</span>
 					<p>{props.children}</p>
