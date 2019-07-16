@@ -4,7 +4,7 @@ import { Instance } from '../internal/Client';
 
 import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
-import Notification from '../components/ui/elements/Notification';
+import Notification from '../components/ui/components/Notification';
 import Modal from '../components/ui/components/Modal';
 import { useAnimator, Animation } from '../scss/animations';
 

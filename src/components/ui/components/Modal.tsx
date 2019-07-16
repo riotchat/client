@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Helmet from 'react-helmet'
 import styles from './Modal.module.scss';
-import { Button, ButtonType } from './Button';
+import { Button, ButtonType } from '../elements/Button';
 import { useAnimator, Animation } from '../../../scss/animations';
 
 interface ModalProps {
