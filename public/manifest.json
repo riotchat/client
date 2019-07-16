@@ -1,16 +1,36 @@
 {
   "short_name": "Riot",
   "name": "Riot",
+  "description": "The perfect voice & chat system for gamers.",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "/icon/144x144.png",
       "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
   "start_url": "/",
   "display": "standalone",
+  "orientation": "any",
   "theme_color": "#7B68EE",
   "background_color": "#333234"
 }
