@@ -1,19 +1,22 @@
 .button {
+	border: 0;
 	display: flex;
 	color: white;
-	padding: 2px 16px;
-	text-align: center;
-	text-decoration: none;
-	height: 38px;
-	justify-content: center; //remove this if this has no effect
+	padding: 10px 16px;
 	align-items: center;
+	font-family: "Open Sans", sans-serif;
 	font-size: .875rem;
 	border-radius: 4px;
 	cursor: pointer;
+	background: rgba(0, 0, 0, 0);
+	justify-content: center;
+	outline: 0;
 
-	&.confirm {background: var(--accent-color); margin-left: 20px;}
-	&.cancel {background: #4f545c;} 
-	&.warning {background: var(--red);}
+	&.confirm { background: var(--accent-color);}
+	&.cancel { background: #4f545c; } 
+	&.warning { background: var(--red); }
+
+	&.fullwidth { width: 100%; }
 }
 
 .disabled {

@@ -1,7 +1,18 @@
 @import 'themes/index';
 
-html,
-body {
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility !important;
+	//::-moz-selection {color: var(--accent-color-text, white); background: rgba(var(--accent-color-rgb), .8);}
+	//::selection {color: var(--accent-color-text, white); background: rgba(var(--accent-color-rgb), .8);}
+}
+
+html, body {
 	margin: 0;
 	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+	user-select: none;
+	overscroll-behavior: contain;
+	-webkit-tap-highlight-color: transparent;
 }

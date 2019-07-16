@@ -8,6 +8,7 @@ import Notification from '../components/ui/components/Notification';
 import Modal from '../components/ui/components/Modal';
 import { useAnimator, Animation } from '../scss/animations';
 import { Input, Checkbox } from '../components/ui/elements/Input';
+import { Button } from '../components/ui/elements/Button';
 
 enum ErrorType {
 	NONE,
@@ -29,6 +30,7 @@ export default function Login() {
 
 	function submitForm(e: React.FormEvent, setPage: (page: Page) => void) {
 		e.preventDefault();
+		setTFA(true);
 		
 		Instance.client.login(email, password).then((tfa) => {
 			if (tfa) {
@@ -93,7 +95,7 @@ export default function Login() {
 										<Checkbox required>
 											I agree to Riot's <a href="/somewhere/idk" className={styles.link}>Terms of Service</a> and <a href="/test" className={styles.link}>Community Guidelines</a>
 										</Checkbox>
-										<Input type="submit" value="Sign up"/>
+										<Button theme="confirm" type="submit" value="Sign up" fullWidth={true} />
 
 										<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(e)}>Sign in</a></span>
 									</div>
@@ -105,7 +107,7 @@ export default function Login() {
 										<span className={styles.title}>Password</span>
 										<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
 										<a className={styles.link} href="/forgotidk">Forgot your password?</a>
-										<Input type="submit" value="Log in"/>
+										<Button theme="confirm" type="submit" value="Log in" fullWidth={true} />
 
 										<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(e)}>Sign up</a></span>
 									</div>

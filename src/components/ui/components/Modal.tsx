@@ -32,8 +32,8 @@ export default function Modal(props: ModalProps) {
 	}
 
 	let buttons: ReactNode[] = props.buttons
-		.map(btn => <Button type={btn.type}
-			click={() => {
+		.map(btn => <Button theme={btn.type}
+			onClick={() => {
 				if (btn.close) {
 					handleClose();
 				} else if (btn.handler) {

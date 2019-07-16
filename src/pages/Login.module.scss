@@ -28,7 +28,6 @@
 	.form {
 		max-width: 450px;
 		border-radius: 10px;
-    	//background: #333234;
         padding: 25px;
 		box-sizing: border-box;
 		box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
@@ -59,6 +58,10 @@
 			color: #aaaaaa;
 			font-size: .875rem;
 		}
+
+		button {
+			margin: 8px 0;
+		}
 	}
     
     @media screen and (max-width: 900px) {
@@ -81,7 +84,6 @@
             top: 50%;
 			transform: translateY(-50%);
 			margin: 0 auto;
-            //max-width: 100%;
         }
     }
 
