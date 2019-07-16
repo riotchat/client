@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { AppContext, Page } from '../App';
-import { Instance } from '../internal/Client';
 
 import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
@@ -25,7 +24,7 @@ enum LoginState {
 };
 
 export default function Login() {
-	let [ error, setError ] = useState({ type: ErrorType.NONE, reason: '' });
+	let [ error ] = useState({ type: ErrorType.NONE, reason: '' });
 	let [ state, setState ] = useState(LoginState.Login);
 
 	let [ email, setEmail ] = useState('');
