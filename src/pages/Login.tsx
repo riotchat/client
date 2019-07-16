@@ -91,7 +91,7 @@ export default function Login() {
 										<span className={styles.title}>Password</span>
 										<Input type="password" required value={password} onChange={e => setPassword(e.target.value)} />
 										<Checkbox required>
-											I agree to Riot's <a className={styles.link}>Terms of Service</a> and <a className={styles.link}>Community Guidelines</a>
+											I agree to Riot's <a href="/somewhere/idk" className={styles.link}>Terms of Service</a> and <a href="/test" className={styles.link}>Community Guidelines</a>
 										</Checkbox>
 										<Input type="submit" value="Sign up"/>
 
