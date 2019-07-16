@@ -1,66 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" role="application">
-  <head>
-    <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-    <!--Icons-->
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icon/apple-touch.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icon/favicon-16x16.png">
-    <link rel="mask-icon" href="%PUBLIC_URL%/icon/safari-pinned-tab.svg" color="#7b68ee">
+		<title>Riot</title>
 
-    <!--Windows Tiles-->
-    <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml">
-    <meta name="msapplication-TileColor" content="#7B68EE">
+		<!--Windows Tiles-->
+		<meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml">
+		<meta name="msapplication-TileColor" content="#7B68EE">
 
-    <!--PWA-->
-    <meta name="viewport" content="width=device-width, initial-scale=0.9">
-    <meta name="application-name" content="Riot">
-    <meta name="description" content="The perfect voice & chat system for gamers.">
-    <meta name="mobile-web-app-capable" content="yes">
+		<!--PWA-->
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+		<meta name="viewport" content="width=device-width, initial-scale=0.9">
+		<meta name="application-name" content="Riot">
+		<meta name="description" content="The perfect voice & chat system for gamers.">
+		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-    <!--Apple Splash Screens-->
-    <link href="splash/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
-    <link href="splash/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
-    <link href="splash/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"/>
-    <link href="splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"/>
-    <link href="splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
-    <link href="splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"/>
-    <link href="splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
-    <link href="splash/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
-    <link href="splash/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+		<!--Icons-->
+		<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+		<link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icon/apple-touch.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icon/favicon-16x16.png">
+		<link rel="mask-icon" href="%PUBLIC_URL%/icon/safari-pinned-tab.svg" color="#7b68ee">
+
+		<!--Apple Splash Screens-->
+		<link href="splash/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+		<link href="splash/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+		<link href="splash/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"/>
+		<link href="splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"/>
+		<link href="splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+		<link href="splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image"/>
+		<link href="splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+		<link href="splash/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+		<link href="splash/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
     <link href="splash/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <style>
+		  noscript {
+			  background: #333234;
+			  color: white;
+			  font-family: "Open Sans", sans-serif;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      noscript > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+    </style>
+	</head>
+	<body>
+		<noscript>
+      <div>
+        <h1>Well, this is really awkward...</h1>
+        <p>Seems like your JavaScript is disabled.</p>
+        <p>You'll need to enable JavaScript to run this app.</p>
+      </div>
+		</noscript>
+		<div id="root"></div>
+		<!--
+			This HTML file is a template.
+			If you open it directly in the browser, you will see an empty page.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Riot</title> <!--This title will be used to display other things than just the app name-->
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+			You can add webfonts, meta tags, or analytics to this file.
+			The build step will place the bundled scripts into the <body> tag.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+			To begin the development, run `npm start` or `yarn start`.
+			To create a production bundle, use `npm run build` or `yarn build`.
+		-->
+	</body>
 </html>
