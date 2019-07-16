@@ -11,7 +11,6 @@ interface NotificationProps {
 
 export default function Notification(props: NotificationProps) {
 	let [ slideAnimation ] = useAnimator(Animation.SLIDE_IN, 250);
-
 	return (
 		<div className={styles.banner} style={slideAnimation.styles}>
 			<Helmet>

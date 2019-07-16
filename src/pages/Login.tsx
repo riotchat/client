@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import Helmet from 'react-helmet';
 import { AppContext, Page } from '../App';
 import { Instance } from '../internal/Client';
 
@@ -7,6 +6,7 @@ import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
 import Notification from '../components/ui/elements/Notification';
 import Modal from '../components/ui/components/Modal';
+import { useAnimator, Animation } from '../scss/animations';
 
 enum ErrorType {
 	NONE,
@@ -16,19 +16,21 @@ enum ErrorType {
 };
 
 export default function Login() {
-	let [ doRegister, setRegister ] = useState(false);
 	let [ error, setError ] = useState({ type: ErrorType.NONE, reason: '' });
+	let [ doRegister, setRegister ] = useState(false);
+	let [ tfaModal, setTFA ] = useState(false);
 
-	// Form Inputs
 	let [ email, setEmail ] = useState('');
 	let [ password, setPassword ] = useState('');
 
+	let [ animation, playAnimation ] = useAnimator(Animation.BOUNCE_IN, 250);
+
 	function submitForm(e: React.FormEvent, setPage: (page: Page) => void) {
 		e.preventDefault();
+		
 		Instance.client.login(email, password).then((tfa) => {
 			if (tfa) {
-				// ? DO 2FA
-
+				setTFA(true);
 				return;
 			}
 
@@ -43,19 +45,21 @@ export default function Login() {
 		});
 	}
 
-	function toggle(e: React.MouseEvent, target: boolean) {
+	function toggle(e: React.MouseEvent) {
 		e.preventDefault();
-		setRegister(target);
+		playAnimation(Animation.SCALE_OUT, 200)
+			.then(() => {
+				playAnimation(Animation.BOUNCE_IN, 200);
+				setRegister(!doRegister)	
+			});
 	}
-
-	let [ tfa, setTFA ] = useState(true);
 
 	return (
 		<AppContext.Consumer>
 			{ app => 
 				<div>
 					<div className={styles.login}>
-						{ tfa &&
+						{ tfaModal &&
 							<Modal title='2FA required'
 								allowClose={true}
 								dismiss={() => setTFA(false)}
@@ -73,7 +77,7 @@ export default function Login() {
 						<div className={styles.left}>
 							<img alt="Riot" className={styles.logo} src={logo} draggable={false}/>
 						</div>
-						<div className={styles.right}>
+						<div className={styles.right} style={animation.styles}>
 							<form className={styles.form} onSubmit={ev => submitForm(ev, app.setPage)}>
 								{ doRegister ?
 									<div>
@@ -89,7 +93,7 @@ export default function Login() {
 										<span className={styles.description}>I agree to Riot's Terms of Service and its Community Guidelines.</span>
 										<input type="submit" value="Sign up"/>
 
-										<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(e, false)}>Sign in</a></span>
+										<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(e)}>Sign in</a></span>
 									</div>
 								  : <div>
 										<div className={styles.welcome}>Welcome back!</div>
@@ -102,7 +106,7 @@ export default function Login() {
 										<a className={styles.link} href="/forgotidk">Forgot your password?</a>
 										<input type="submit" value="Log in"/>
 
-										<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(e, true)}>Sign up</a></span>
+										<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(e)}>Sign up</a></span>
 									</div>
 								}
 							</form>

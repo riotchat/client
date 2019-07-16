@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import Helmet from 'react-helmet'
-import classNames from 'classnames';
 import styles from './Modal.module.scss';
 import { Button, ButtonType } from './Button';
 import { useAnimator, Animation } from '../../../scss/animations';

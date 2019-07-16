@@ -7,7 +7,8 @@ export enum Animation {
 	FADE_IN,
 	FADE_OUT,
 	SCALE_IN,
-	SCALE_OUT
+	SCALE_OUT,
+	BOUNCE_IN
 };
 
 export interface Animatable {
@@ -23,15 +24,16 @@ const ANIMATIONS: {
 	[Animation.FADE_IN]: [styles.fadeIn, true],
 	[Animation.FADE_OUT]: [styles.fadeOut, false],
 	[Animation.SCALE_IN]: [styles.scaleIn, true],
-	[Animation.SCALE_OUT]: [styles.scaleOut, false]
+	[Animation.SCALE_OUT]: [styles.scaleOut, false],
+	[Animation.BOUNCE_IN]: [styles.bounceIn, true]
 };
 
 function createAnimator(animation?: string | Animation, duration?: number): Animatable {
-	if (animation) {
+	if (typeof animation !== 'undefined') {
 		return {
 			running: true,
 			styles: {
-				animationName: typeof animation === 'string' ? animation : ANIMATIONS[animation][0],
+				animationName: typeof animation === 'number' ? ANIMATIONS[animation][0] : animation,
 				animationDuration: duration + 'ms',
 			}
 		}
