@@ -7,6 +7,7 @@ import styles from './Login.module.scss';
 import Notification from '../components/ui/components/Notification';
 import Modal from '../components/ui/components/Modal';
 import { useAnimator, Animation } from '../scss/animations';
+import { Input, Checkbox } from '../components/ui/elements/Input';
 
 enum ErrorType {
 	NONE,
@@ -21,6 +22,7 @@ export default function Login() {
 	let [ tfaModal, setTFA ] = useState(false);
 
 	let [ email, setEmail ] = useState('');
+	let [ username, setUsername ] = useState('');
 	let [ password, setPassword ] = useState('');
 
 	let [ animation, playAnimation ] = useAnimator(Animation.BOUNCE_IN, 250);
@@ -83,15 +85,15 @@ export default function Login() {
 									<div>
 										<div className={styles.welcome}>Create an account</div>
 										<span className={styles.title}>Email</span>
-										<input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+										<Input type="email" required value={email} onChange={e => setEmail(e.target.value)} />
 										<span className={styles.title}>Desired Username</span>
-										<input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+										<Input type="text" required value={username} onChange={e => setUsername(e.target.value)} />
 										<span className={styles.title}>Password</span>
-										<input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-
-										<input type="checkbox" value='true'/>
-										<span className={styles.description}>I agree to Riot's Terms of Service and its Community Guidelines.</span>
-										<input type="submit" value="Sign up"/>
+										<Input type="password" required value={password} onChange={e => setPassword(e.target.value)} />
+										<Checkbox required>
+											I agree to Riot's <a className={styles.link}>Terms of Service</a> and <a className={styles.link}>Community Guidelines</a>
+										</Checkbox>
+										<Input type="submit" value="Sign up"/>
 
 										<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(e)}>Sign in</a></span>
 									</div>
@@ -99,12 +101,11 @@ export default function Login() {
 										<div className={styles.welcome}>Welcome back!</div>
 
 										<span className={styles.title}>Email</span>
-										<input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+										<Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
 										<span className={styles.title}>Password</span>
-										<input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-
+										<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
 										<a className={styles.link} href="/forgotidk">Forgot your password?</a>
-										<input type="submit" value="Log in"/>
+										<Input type="submit" value="Log in"/>
 
 										<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(e)}>Sign up</a></span>
 									</div>

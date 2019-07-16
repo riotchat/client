@@ -1,0 +1,103 @@
+.input[type=text],
+.input[type=email],
+.input[type=password] {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    height: 40px;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #222428;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #303339;
+    transition: border .3s;
+    user-select: none;
+    outline: 0;
+
+    &:focus {
+        border: 1px solid mediumslateblue;
+    }
+}
+
+.input[type=number] {
+    display: flex;
+}
+
+.input[type=submit] {
+    display: block;
+    width: 100%;
+    color: white;
+    padding: 12px 32px;
+    margin: 10px 0 10px 0;
+    font-size: 1rem;
+    background-color: mediumslateblue;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    //transition: background-color .3s ease;
+    outline: 0;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid transparent;
+
+    &:focus {
+        border: 1px solid mediumslateblue;
+    }
+}
+
+//checkbox code from our form
+.checkbox {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-size: .8125rem;
+    color: grey;
+
+    input[type=checkbox] {
+        display: none;
+        opacity: 0;
+    }
+    
+    $checkboxSize: 28px;
+    .label {
+        margin-right: 12px;
+        display: inline-block;
+        position: relative;
+        width: $checkboxSize;
+        height: $checkboxSize;
+        background-color: #464646;
+        border: 1px solid #656565;
+        border-radius: 4px;
+        transition: background-color .3s;
+        cursor: pointer;
+
+        .error { border: 1px solid red; }
+
+        &::after {
+            $checkSize: 15px;
+            $border: 3px;
+
+            content: "";
+            position: absolute;
+            opacity: 0;
+            transition: 0.3s opacity;
+            left: ($checkboxSize - ($checkSize / 2) - 2px) / 2;
+            top: ($checkboxSize - $checkSize - 5px) / 2;
+            width: ($checkSize / 2) - $border;
+            height: $checkSize - $border;
+            border: solid #FFFFFF;
+            border-width: 0px $border $border 0px;
+            transform: rotate(45deg);
+        }
+    }
+
+    input[type="checkbox"]:checked ~ .label {
+        background-color: mediumslateblue;
+
+        &::after {
+            opacity: 1;
+        }
+    }
+}
