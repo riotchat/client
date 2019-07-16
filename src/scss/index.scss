@@ -16,3 +16,7 @@ html, body {
 	overscroll-behavior: contain;
 	-webkit-tap-highlight-color: transparent;
 }
+
+iframe {
+	display: none;
+}

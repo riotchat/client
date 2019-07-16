@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AppContext, Page } from '../App';
 import { Instance } from '../internal/Client';
 
@@ -25,6 +25,7 @@ export default function Login() {
 	let [ email, setEmail ] = useState('');
 	let [ username, setUsername ] = useState('');
 	let [ password, setPassword ] = useState('');
+	let [ acceptTOS, setTOS ] = useState('');
 
 	let [ animation, playAnimation ] = useAnimator(Animation.BOUNCE_IN, 250);
 
@@ -58,65 +59,62 @@ export default function Login() {
 			});
 	}
 
+	let app = useContext(AppContext);
 	return (
-		<AppContext.Consumer>
-			{ app => 
-				<div>
-					<div className={styles.login}>
-						{ tfaModal &&
-							<Modal title='2FA required'
-								allowClose={true}
-								dismiss={() => setTFA(false)}
-								buttons={[
-									{ type: 'confirm', value: 'Continue' },
-									{ value: 'Cancel', close: true }
-								]}>
-								This is where the fancy input will be yes
-							</Modal>
-						}
+		<div className={styles.wrapper}>
+			<div className={styles.overlay}>
+				{ error.type !== 0 && <Notification title='Failed to login' text={error.reason} /> }
+			</div>
+			<div className={styles.login}>
+				{ tfaModal &&
+					<Modal title='2FA required'
+						allowClose={true}
+						dismiss={() => setTFA(false)}
+						buttons={[
+							{ type: 'confirm', value: 'Continue' },
+							{ value: 'Cancel', close: true }
+						]}>
+						This is where the fancy input will be yes
+					</Modal>
+				}
 
-						<div className={styles.overlay}>
-							{ error.type !== 0 && <Notification title='Failed to login' text={error.reason} /> }
-						</div>
-						<div className={styles.left}>
-							<img alt="Riot" className={styles.logo} src={logo} draggable={false}/>
-						</div>
-						<div className={styles.right} style={animation.styles}>
-							<form className={styles.form} onSubmit={ev => submitForm(ev, app.setPage)}>
-								{ doRegister ?
-									<div>
-										<div className={styles.welcome}>Create an account</div>
-										<span className={styles.title}>Email</span>
-										<Input type="email" required value={email} onChange={e => setEmail(e.target.value)} />
-										<span className={styles.title}>Desired Username</span>
-										<Input type="text" required value={username} onChange={e => setUsername(e.target.value)} />
-										<span className={styles.title}>Password</span>
-										<Input type="password" required value={password} onChange={e => setPassword(e.target.value)} />
-										<Checkbox required>
-											I agree to Riot's <a href="/somewhere/idk" className={styles.link}>Terms of Service</a> and <a href="/test" className={styles.link}>Community Guidelines</a>
-										</Checkbox>
-										<Button theme="confirm" type="submit" value="Sign up" fullWidth={true} />
-
-										<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(e)}>Sign in</a></span>
-									</div>
-								  : <div>
-										<div className={styles.welcome}>Welcome back!</div>
-
-										<span className={styles.title}>Email</span>
-										<Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-										<span className={styles.title}>Password</span>
-										<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-										<a className={styles.link} href="/forgotidk">Forgot your password?</a>
-										<Button theme="confirm" type="submit" value="Log in" fullWidth={true} />
-
-										<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(e)}>Sign up</a></span>
-									</div>
-								}
-							</form>
-						</div>
-					</div>
+				<div className={styles.left}>
+					<img alt="Riot" className={styles.logo} src={logo} draggable={false}/>
 				</div>
-			}
-		</AppContext.Consumer>
+				<div className={styles.right} style={animation.styles}>
+					<form className={styles.form} onSubmit={ev => submitForm(ev, app.setPage)}>
+						{ doRegister ?
+							<div>
+								<div className={styles.welcome}>Create an account</div>
+								<span className={styles.title}>Email</span>
+								<Input type="email" required value={email} onChange={e => setEmail(e.target.value)} />
+								<span className={styles.title}>Username</span>
+								<Input type="text" required value={username} onChange={e => setUsername(e.target.value)} />
+								<span className={styles.title}>Password</span>
+								<Input type="password" required value={password} onChange={e => setPassword(e.target.value)} />
+								<Checkbox required value={acceptTOS} onChange={e => setTOS(e.target.value)}>
+									I agree to Riot's <a href="/somewhere/idk" className={styles.link}>Terms of Service</a> and <a href="/test" className={styles.link}>Community Guidelines</a>
+								</Checkbox>
+								<Button theme="confirm" type="submit" value="Sign up" fullWidth={true} />
+
+								<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(e)}>Sign in</a></span>
+							</div>
+							: <div>
+								<div className={styles.welcome}>Welcome back!</div>
+
+								<span className={styles.title}>Email</span>
+								<Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+								<span className={styles.title}>Password</span>
+								<Input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+								<a className={styles.link} href="/forgotidk">Forgot your password?</a>
+								<Button theme="confirm" type="submit" value="Log in" fullWidth={true} />
+
+								<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(e)}>Sign up</a></span>
+							</div>
+						}
+					</form>
+				</div>
+			</div>
+		</div>
 	);
 }
