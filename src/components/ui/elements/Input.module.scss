@@ -1,3 +1,7 @@
+input {
+    color: white;
+}
+
 .input[type=text],
 .input[type=email],
 .input[type=password] {
@@ -29,7 +33,6 @@
 .input[type=submit] {
     display: block;
     width: 100%;
-    color: white;
     padding: 12px 32px;
     margin: 10px 0 10px 0;
     font-size: 1rem;
@@ -72,6 +75,7 @@
         border-radius: 4px;
         transition: background-color .3s;
         cursor: pointer;
+        flex-shrink: 0;
 
         .error { border: 1px solid red; }
 
@@ -100,4 +104,32 @@
             opacity: 1;
         }
     }
+}
+
+.numberGroup {
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    height: 45px;
+    max-width: 45px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #222428;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #303339;
+    transition: border .3s;
+    user-select: none;
+    outline: 0;
+    text-align: center;
+
+    &.error {border: 1px solid var(--red);}
+    &::-webkit-inner-spin-button, ::-webkit-outer-spin-button
+        {-webkit-appearance: none; margin: 0;}
+
 }

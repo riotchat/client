@@ -8,14 +8,14 @@ export type ButtonType = 'confirm' | 'cancel' | 'warning';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children?: ReactNode[] | ReactNode
 	theme?: ButtonType
-	fullWidth?: boolean
+	fullwidth?: boolean
 };
 
 export function Button(props: ButtonProps) {
 	let classes: any = {
 		[styles.button]: true,
 		[styles.disabled]: props.disabled,
-		[styles.fullwidth]: props.fullWidth
+		[styles.fullwidth]: props.fullwidth
 	};
 
 	if (props.theme) {

@@ -1,4 +1,6 @@
 .banner {
+    position: absolute;
+    width: 100%;
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -9,7 +11,7 @@
     color: white;
     font-size: .8125rem;
 
-    &.notice {background: var(--default-accent-color);}
+    &.notice {justify-content: center; background: var(--default-accent-color);}
     &.error {background: var(--red);}
 
     .title {
