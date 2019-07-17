@@ -1,0 +1,36 @@
+.icon {
+	margin: 8px 0;
+	height: 50px;
+	width: 50px;
+	border-radius: 6px;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	transition: .3s;
+	background-color: grey;
+	background-size: cover;
+	background-position: center;
+    opacity: 0.99;
+    flex-shrink: 0;
+	border: 2px solid transparent;
+
+	&:hover {
+		border: 2px solid white;
+	}
+
+	&.active {
+		border: 2px solid red;
+	}
+
+	&.active::before { // Selected server
+		display: block;
+		width: 8px;
+		background: white;
+		height: 40px;
+	}
+
+	&.pinged::before {
+		
+	}
+}

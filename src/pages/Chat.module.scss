@@ -1,0 +1,89 @@
+.chat {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+
+	.sidebar {
+		display: flex;
+		flex-shrink: 1;
+
+		.browse {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+			width: 80px;
+			background: var(--secondary);
+
+			:nth-last-child(2) {
+				margin-bottom: 60px;
+            }
+            
+            .home {
+                margin: 8px 15px;
+                height: 50px;
+                width: 50px;
+                display: flex;
+                align-items: center;
+                border-radius: 6px;
+                justify-content: center;
+                overflow: hidden;
+                position: relative;
+                border: 2px solid transparent;
+                background: #4D4D4D;
+                cursor: pointer;
+                transition: .3s;
+                flex-shrink: 0;
+    
+                span {
+                    $icon-size: 26px;
+                    margin: (54px - $icon-size) / 2;
+                    width: $icon-size;
+                    height: $icon-size;
+                    svg {
+                        width: $icon-size;
+                        height: $icon-size;
+                    }
+                }
+
+                background: var(--home);
+                //&:hover { background: themed('home'); }
+                &.active {background: var(--home-active); }
+                
+            }
+
+            .add {
+                flex-shrink: 1;
+                width: 80px;
+                z-index: 1;
+                position: fixed;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(transparent, var(--secondary));
+    
+                svg { cursor: pointer; }
+    
+                span, svg {
+                    position: relative;
+                    display: block;
+                    width: 80px - (10px * 4);
+                    height: 80px - (10px * 4);
+                    margin: 10px;
+                    fill: var(--accent-color, var(--default-accent-color));
+                }
+            }
+		}
+
+		.conversation {
+			width: 240px;
+			background: var(--primary);
+        }
+	}
+	
+	.main {
+		flex-grow: 1;
+		background: var(--tertiary);
+	}
+}

@@ -5,6 +5,7 @@ import styles from './App.module.scss';
 import Load from './pages/Load';
 import Login from './pages/Login';
 import { Instance } from './internal/Client';
+import Chat from './pages/Chat';
 
 export enum Page {
 	NONE,
@@ -25,7 +26,7 @@ export const AppContext = createContext(
 export default function App() {
 	let [ ready, setReady ] = useState(false);
 	let [ theme, setTheme ] = useState('dark');
-	let [ page, setPage ] = useState(Page.LOAD);
+	let [ page, setPage ] = useState(Page.APP);
 
 	if (!ready) {
 		let token = localStorage.getItem('accessToken');
@@ -35,7 +36,7 @@ export default function App() {
 				.catch(() => setPage(Page.LOGIN))
 				.finally(() => setReady(true));
 		} else {
-			setPage(Page.LOGIN);
+			//setPage(Page.LOGIN);
 			setReady(true);
 		}
 	}
@@ -53,6 +54,7 @@ export default function App() {
 			<AppContext.Provider value={states}>
 				{ page === Page.LOAD && <Load waitForClient={ready} /> }
 				{ page === Page.LOGIN && <Login /> }
+				{ page === Page.APP && <Chat /> }
 			</AppContext.Provider>
 		</div>
 	);

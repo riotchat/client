@@ -4,19 +4,22 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility !important;
-	//::-moz-selection {color: var(--accent-color-text, white); background: rgba(var(--accent-color-rgb), .8);}
-	//::selection {color: var(--accent-color-text, white); background: rgba(var(--accent-color-rgb), .8);}
+	//::-moz-selection {color: var(--accent-color-text, white); background: rgba(var(--accent-color-rgb), .8);} //Add later
+	//::selection {color: var(--accent-color-text, white); background: rgba(var(--accent-color-rgb), .8);} //Add later
 }
 
 html, body {
 	margin: 0;
 	padding: 0;
+	background: var(--main);
 	font-family: 'Open Sans', sans-serif;
 	user-select: none;
 	overscroll-behavior: contain;
 	-webkit-tap-highlight-color: transparent;
 }
 
+// causes issues on Firefox, outta here
+// as I said, remove when in production mode. This iFrame shows compilation errors.
 iframe {
-	display: none; //REMOVE FROM PROD
+	display: none;
 }
