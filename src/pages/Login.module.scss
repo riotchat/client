@@ -38,7 +38,7 @@
 			overflow: hidden;
 	
 			.welcome {
-				font-size: 24px;
+				font-size: 1.375rem;
 				margin-bottom: 8px;
 			}
 	
@@ -50,12 +50,21 @@
 				margin-bottom: 4px;
 				letter-spacing: .7px;
 			}
+
+			.text {
+				margin: 10px 0;
+				color: var(--main-text);
+				font-size: 1rem;
+
+				&:last-child { margin: 10px 0 0; }
+			}
 	
 			.link {
 				color: mediumslateblue;
 				margin: 12px 0;
 				font-weight: 600;
 				text-decoration: none;
+				font-size: 14px;
 			}
 	
 			.signin {

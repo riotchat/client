@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes, useState, ReactNode, ChangeEvent } from 'react';
+import React, { InputHTMLAttributes, useState, ReactNode, ChangeEvent, KeyboardEvent } from 'react';
+import nanoid from 'nanoid';
 import styles from './Input.module.scss';
 import { killChildren } from '../../util/Children';
 
@@ -7,7 +8,7 @@ export function Input(props: InputHTMLAttributes<HTMLInputElement>) {
 }
 
 export function Checkbox(props: InputHTMLAttributes<HTMLInputElement>) {
-	let [ id ] = useState('aaa');
+	let [ id ] = useState(nanoid());
 
 	return (
 		<div className={styles.checkbox}>
@@ -19,43 +20,53 @@ export function Checkbox(props: InputHTMLAttributes<HTMLInputElement>) {
 }
 
 interface NumberGroupProps extends InputHTMLAttributes<HTMLInputElement> {
-	digits: number
+	digits: number,
+	separator?: number
 };
 
 export function NumberGroup(props: NumberGroupProps) {
-	let def = new Array(props.digits);
-	def.fill('');
-
-	let [ value, setValue ] = useState(def);
+	let [ value, setValue ] = useState(' '.repeat(props.digits));
 	let inputs: ReactNode[] = [];
-	let el: (HTMLInputElement | null)[] = new Array(props.digits);
+	let el: (HTMLInputElement | null)[] = Array(props.digits);
 
 	function updateValue(e: ChangeEvent<HTMLInputElement>, i: number) {
-		let val = parseInt(e.target.value);
+		let val = e.target.value;
 		
-		if (val.toString().length > 0) {
+		if (val.length > 0) {
 			let next = el[i + 1];
 			if (next) {
 				next.focus();
 			}
 		}
 
-		if (val.toString().length > 2) {
-			val = parseInt(val.toString().substr(0, 1));
+		let temp = value.substr(0, i) + (val.substr(0, 1) || ' ') + value.substr(i + 1);
+		while (temp.length < props.digits) {
+			temp += ' ';
 		}
+		setValue(temp);
+	}
 
-		value[i] = val;
-        setValue(value);
+	function keyPress(e: KeyboardEvent<HTMLInputElement>, i: number) {
+		if (e.keyCode === 8) {
+			if (!value[i].trim()) {
+				let prev = el[i - 1];
+				if (prev) {
+					prev.focus();
+				}
+			}
+		}
 	}
 
 	for (let i=0;i<props.digits;i++) {
-		inputs.push(<input value={value[i]} onChange={e => updateValue(e, i)} ref={self => el[i] = self} min={0} max={9} key={i.toString()} type="number" {...props} />);
+		if (props.separator && i !== 0 && i % props.separator === 0) {
+			inputs.push(<div className={styles.separator}>—</div>);
+		}
+		inputs.push(<input className={styles.input} type="number" value={value[i]} onChange={e => updateValue(e, i)} ref={self => el[i] = self} onKeyDown={e => keyPress(e, i)} key={i.toString()} {...props} />);
 	}
 
 	return (
 		<div className={styles.numberGroup}>
 			{inputs}
-			{value[0]}
 		</div>
 	);
 }

@@ -3,22 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/classnames": "^2.2.9",
     "@types/jest": "24.0.15",
+    "@types/nanoid": "^2.0.0",
     "@types/node": "12.6.2",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
-    "@types/classnames": "^2.2.9",
     "@types/react-helmet": "^5.0.8",
     "classnames": "^2.2.6",
+    "nanoid": "^2.0.3",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-scripts": "3.0.1",
     "riotchat.js": "^0.1.7",
-    "typescript": "3.5.3",
     "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0"
+    "stylelint-config-standard": "^18.3.0",
+    "typescript": "3.5.3"
   },
   "scripts": {
     "start": "react-scripts start",
