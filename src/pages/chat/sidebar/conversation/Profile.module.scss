@@ -1,0 +1,81 @@
+.profile {
+	display: flex;
+	margin: 12px;
+	height: 38px;
+	//width: 262px - (12px * 2);
+	align-items: center;
+	user-select: text;
+
+	.picture {
+		$size: 34px;
+		height: $size;
+		width: $size;
+		border-radius: 50%;
+		background-color: #434343;
+		justify-content: center;
+		position: relative;
+		cursor: pointer;
+		margin-right: 8px;
+		background-size: cover;
+		background-position: center;
+
+		.indicator {
+			position: absolute;
+			height: $size / 3;
+			width: $size / 3;
+			right: -3px;
+			bottom: -3px;
+			border-radius: 50%;
+			background-color: grey;
+			transition: .2s;
+			border: 2px solid var(--secondary);
+			
+			&.online { background-color: var(--green); }
+			&.streaming { background-color: var(--streaming); }
+			&.away { background-color: var(--yellow); }
+			&.busy { background-color: var(--red); }
+
+			&.colorblind {
+				&.streaming { background-image: var(--streaming); }
+				&.away { background-image:  var(--yellow); }
+				&.busy { background-image: var(--red); }
+			}
+		}
+	}
+
+	.username {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-weight: 600;
+		font-size: .875rem;
+		flex-grow: 1;
+	
+		.status {
+			display: flex;
+			max-width: 150px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			align-items: center;
+			color: #848484;
+			font-size: 12px;
+			user-select: none;
+
+			.icon {
+				fill: #aaaaaa;
+				height: 15px;
+				width: 15px;
+				margin-left: 4px;
+			}
+		}
+	}
+	
+	.settings {
+		height: 20px;
+		width: 20px;
+		cursor: pointer;
+		fill: #E8E8E8;
+	}
+	
+}
