@@ -9425,10 +9425,10 @@ rimraf@2, rimraf@2.6.3, rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6
   dependencies:
     glob "^7.1.3"
 
-riotchat.js@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/riotchat.js/-/riotchat.js-0.1.7.tgz#b90396783009f3d5598dcfbfd0983863ccec82d7"
-  integrity sha512-OIEyuqECIkKYav+JIL1aoGio/H/jhPzevsBQXOO8O7I1MzWOWWyOGeFE1u7kAdnzXtbjqc8t+YHS8fmSxDSWRA==
+riotchat.js@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/riotchat.js/-/riotchat.js-0.1.8.tgz#f0d764aaeefe99116fd8838c5e6b16315a21611b"
+  integrity sha512-dKIOXvp7BCJGUoAIMH5xoS9QssSnP/M+msTqGSp+mKTPX+Arcq7Qk5SZkvk6YY1KyHB3iCBRj8D+8F9gvJkokw==
   dependencies:
     "@elderapo/typed-event-emitter" "^1.5.1"
     axios "^0.19.0"

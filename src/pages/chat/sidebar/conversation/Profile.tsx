@@ -10,12 +10,12 @@ export function Profile() {
 	let user = Instance.client.user;
 
 	return (
-		<div style={{ flex: "0 0 auto" }}>
+		<div className={styles.profile}>
 			{/*this.state.statusMenuOpen && <StatusMenu onSet={(status: "online" | "away" | "busy" | "offline") => {
 				RiotClient.user.setStatus(status);
 				this.setStatusMenu(false);
 			}}/>*/}
-			<div className={styles.profile}>
+			<div className={styles.info}>
 				<div className={styles.picture} style={{ backgroundImage: `url("${user.avatarURL}")` }}>
 					<div className={`${styles.indicator} ${styles[user.status]}`}
 						aria-label={user.status}

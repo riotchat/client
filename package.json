@@ -18,7 +18,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-scripts": "3.0.1",
-    "riotchat.js": "^0.1.7",
+    "riotchat.js": "0.1.8",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
     "typescript": "3.5.3"

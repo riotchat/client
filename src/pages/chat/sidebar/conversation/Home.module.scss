@@ -54,8 +54,11 @@
 			opacity: 1;
 		}
 
-		&.collapsed {
-			transform: rotate(-90deg);
+		.dropdown {
+			&.collapsed {
+				fill: white;
+				transform: rotate(-90deg);
+			}
 		}
 	}
 	
