@@ -7,7 +7,6 @@
 	.sidebar {
 		display: flex;
 		flex-shrink: 1;
-		height: 100vh; //fix for mobile devices
 
 		.conversation {
 			display: flex;
@@ -16,12 +15,17 @@
 			color: var(--main-text);
 			background: var(--secondary);
 			border-radius: 10px 0 0 10px;
+			height: 100vh;
 
 			> :first-child {
 				flex-grow: 1;
 			}
 			
-			> :last-child {
+			/*> :last-child {
+				flex-shrink: 1;
+			}*/
+
+			.profile {
 				flex-shrink: 1;
 			}
 		}

@@ -36,7 +36,7 @@ export const HomeSidebar = memo(() => {
 		return (
 			<Fragment>
 				<div className={styles.category}>
-                    <Icon icon="dropdown" className={classNames({[styles.collapsed]: collapsed})} />
+                    <Icon icon="chevronDownRegular" className={classNames({[styles.collapsed]: collapsed})} />
 					<span className={styles.title} onClick={toggle}>{props.title}</span>
 					<Icon icon={props.icon} />
 				</div>
@@ -53,9 +53,9 @@ export const HomeSidebar = memo(() => {
 			<div className={styles.tabs}>
 				<div className={styles.tab}><Icon icon="homeSolid"/>Feed</div>
 				<div className={styles.tab}><Icon icon="newsSolid"/>News</div>
-				<div className={styles.tab}><Icon icon="userdetailSolid"/>Friends</div>
+				<div className={styles.tab}><Icon icon="userDetailSolid"/>Friends</div>
 			</div>
-			<Section title="Direct Messages" icon="userplusSolid" type={DMChannel} />
+			<Section title="Direct Messages" icon="userPlusSolid" type={DMChannel} />
 			<Section title="Group Messages" icon="plusRegular" type={GroupChannel} />
 		</div>
 	);

@@ -44,7 +44,7 @@ export const ChannelEntry = memo((props: ChannelProps) => {
             <div className={styles.username}>
                 <div className={styles.usernameInline}>
                     <span>{name}</span>
-                    <span className={styles.mobile}><Icon icon="mobile"/></span>
+                    <span className={styles.mobile}><Icon icon="mobileRegular"/></span>
                     {/*this.props.mobile && <div className={styles.mobile}><Icon icon="mobile"/></div>*/}
                 </div>
                 {
