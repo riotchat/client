@@ -34,7 +34,7 @@
 			padding: 25px;
 			box-sizing: border-box;
 			box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-			background: var(--main);
+			background: var(--primary);
 			overflow: hidden;
 	
 			.welcome {
@@ -49,6 +49,12 @@
 				font-weight: bold;
 				text-transform: uppercase;
 				letter-spacing: .7px;
+
+				&.error {
+					color: red;
+					font-style: italic;
+					text-transform: capitalize;
+				}
 			}
 
 			.text {

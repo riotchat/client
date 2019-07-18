@@ -24,6 +24,10 @@ input {
 	&:focus {
 		border: 1px solid mediumslateblue;
 	}
+
+	&.error {
+		border: 1px solid var(--red);
+	}
 }
 
 .input[type=number] {

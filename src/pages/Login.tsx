@@ -1,19 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { AppContext, Page } from '../App';
 
+import { ErrorObject, APIError } from 'riotchat.js';
+
 import logo from '../assets/downloads/branding/logo-white-full.svg';
 import styles from './Login.module.scss';
 import Notification from '../components/ui/components/Notification';
 import { useAnimator, Animation } from '../scss/animations';
 import { Input, Checkbox, NumberGroup } from '../components/ui/elements/Input';
 import { Button } from '../components/ui/elements/Button';
-
-enum ErrorType {
-	NONE,
-	INVALID_EMAIL,
-	INAVLID_PASSWORD,
-	SERVER_ERROR
-};
+import { Instance } from '../internal/Client';
 
 enum LoginState {
 	Login,
@@ -24,7 +20,7 @@ enum LoginState {
 };
 
 export default function Login() {
-	let [ error ] = useState({ type: ErrorType.NONE, reason: '' });
+	let [ error, setError ] = useState<ErrorObject>({ error: APIError.NO_CLIENT_ERROR, reason: '' });
 	let [ state, setState ] = useState(LoginState.Login);
 
 	let [ email, setEmail ] = useState('');
@@ -36,9 +32,7 @@ export default function Login() {
 
 	function submitForm(e: React.FormEvent, setPage: (page: Page) => void) {
 		e.preventDefault();
-		toggle(LoginState.Disabled);
 		
-		/*
 		Instance.client.login(email, password).then((tfa) => {
 			if (tfa) {
 				return;
@@ -46,13 +40,7 @@ export default function Login() {
 
 			localStorage.setItem('accessToken', Instance.client.accessToken as string);
 			setPage(Page.LOAD);
-		}).catch(err => {
-			setError({
-				// ! BAD CODE FIX ASAP
-				type: (''+err).includes('403') ? ErrorType.INVALID_EMAIL : ErrorType.SERVER_ERROR,
-				reason: ''+err
-			});
-		});*/
+		}).catch((err: ErrorObject) => {console.log(err);setError(err)});
 	}
 
 	function toggle(target: LoginState, e?: React.MouseEvent) {
@@ -70,9 +58,13 @@ export default function Login() {
 			form = <div>
 					<div className={styles.welcome}>Welcome back!</div>
 
-					<span className={styles.title}>E-Mail</span>
+					<span className={styles.title}>E-Mail
+						{ error.error === APIError.INVALID_EMAIL && <span className={styles.error}> - {error.reason}</span> }
+					</span>
 					<Input type="email" aria-label="E-Mail" value={email} onChange={e => setEmail(e.target.value)} />
-					<span className={styles.title}>Password</span>
+					<span className={styles.title}>Password
+						{ error.error === APIError.INVALID_PASSWORD && <span className={styles.error}> - {error.reason}</span> }
+					</span>
 					<Input type="password" aria-label="Password" value={password} onChange={e => setPassword(e.target.value)} />
 					<a className={styles.link} href="/forgot" onClick={e => toggle(LoginState.ResetPassword, e)}>Forgot your password?</a>
 					<Button theme="confirm" type="submit" value="Log in" fullwidth={true} />
@@ -129,7 +121,10 @@ export default function Login() {
 	let app = useContext(AppContext);
 	return (
 		<div className={styles.wrapper}>
-			{ error.type !== 0 && <Notification title='Failed to login' text={error.reason} /> }
+			{ error.error === APIError.CONNECTION_FAILED &&
+				<Notification title='Failed to login'
+					text={error.reason} />
+			}
 			<div className={styles.overlay} />
 			<div className={styles.login}>
 				<div className={styles.left}>

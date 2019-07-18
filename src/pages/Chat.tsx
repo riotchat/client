@@ -6,6 +6,7 @@ import { hiddenScrollbar } from '../components/util/Scrollbar';
 import { Guild } from './chat/sidebar/Guild';
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
+import Browser from './chat/sidebar/Browser';
 
 export const ChatContext = createContext({});
 
@@ -17,20 +18,13 @@ export enum Page {
 };
 
 export default function Chat() {
-	let [ page, setPage ] = useState<string | Page>(Page.FRIENDS);
+	let [ page ] = useState<string | Page>(Page.FRIENDS);
 
 	return (
 		<ChatContext.Provider value={{}}>
 			<div className={styles.chat}>
 				<div className={styles.sidebar}>
-					<div className={`${styles.browse} ${hiddenScrollbar}`}	>
-						<div className={styles.home}><Icon icon="homeSolid"/></div>
-						<div className={styles.divider}/>
-						{Array(50).fill(<Guild id="a" name="meme" icon="" />)}
-						<div className={styles.add}>
-							<Icon icon="plusRegular"/>
-						</div>
-					</div>
+					<Browser />
 					<div className={styles.conversation}>
 						{ page ? <HomeSidebar /> : <GuildSidebar /> }
 					</div>

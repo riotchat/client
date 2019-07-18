@@ -26,7 +26,7 @@ export const AppContext = createContext(
 export default function App() {
 	let [ ready, setReady ] = useState(false);
 	let [ theme, setTheme ] = useState('dark');
-	let [ page, setPage ] = useState(Page.APP);
+	let [ page, setPage ] = useState(Page.LOAD);
 
 	if (!ready) {
 		let token = localStorage.getItem('accessToken');
@@ -36,7 +36,7 @@ export default function App() {
 				.catch(() => setPage(Page.LOGIN))
 				.finally(() => setReady(true));
 		} else {
-			//setPage(Page.LOGIN);
+			setPage(Page.LOGIN);
 			setReady(true);
 		}
 	}
