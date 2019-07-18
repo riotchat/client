@@ -49,16 +49,15 @@
 		cursor: pointer;
 		opacity: .7;
 		transition: .3s;
+		fill: white; //redo later, conflicts with category icons
 		
 		&:hover {
 			opacity: 1;
 		}
 
-		.dropdown {
-			&.collapsed {
-				fill: white;
-				transform: rotate(-90deg);
-			}
+		&.collapsed {
+			fill: white;
+			transform: rotate(-90deg);
 		}
 	}
 	
@@ -82,4 +81,11 @@
 
 .directMessages {
 	margin: 10px;
+}
+
+.show {
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 12px;
+	margin-left: 10px;
 }

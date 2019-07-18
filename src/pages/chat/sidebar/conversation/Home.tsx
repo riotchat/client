@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment, memo } from 'react';
 import styles from './Home.module.scss';
 
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import { Instance } from '../../../../internal/Client';
 import { DMChannel, GroupChannel, Channel } from 'riotchat.js/dist/internal/Channel';
 import { ChannelEntry } from './home/Channel';
 
-export function HomeSidebar() {
+export const HomeSidebar = memo(() => {
 	function Channels(props: { array: Channel[], collapse: boolean }) {
 		return (
 			<div className={styles.directMessages}>
@@ -31,20 +31,20 @@ export function HomeSidebar() {
 			.filter(x => x instanceof props.type);
 
 		// make array longer
-		array = array.concat(array, array, array, array);
+		// array = array.concat(array, array, array, array, array, array, array);
 
 		return (
-			<div>
+			<Fragment>
 				<div className={styles.category}>
                     <Icon icon="dropdown" className={classNames({[styles.collapsed]: collapsed})} />
 					<span className={styles.title} onClick={toggle}>{props.title}</span>
 					<Icon icon={props.icon} />
 				</div>
 				<Channels array={array} collapse={collapsed} />
-				{ collapsed && array.length > 5 &&
-					<div onClick={toggle}>Some channels are hidden, click to show more.</div>
+				{ (collapsed && array.length > 5) &&
+					<div className={styles.show} onClick={toggle}>Show all</div>
 				}
-			</div>
+			</Fragment>
 		);
 	}
 
@@ -59,4 +59,4 @@ export function HomeSidebar() {
 			<Section title="Group Messages" icon="plusRegular" type={GroupChannel} />
 		</div>
 	);
-}
+});

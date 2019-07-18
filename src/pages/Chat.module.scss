@@ -7,6 +7,7 @@
 	.sidebar {
 		display: flex;
 		flex-shrink: 1;
+		height: 100vh; //fix for mobile devices
 
 		.conversation {
 			display: flex;
@@ -14,7 +15,7 @@
 			width: 240px;
 			color: var(--main-text);
 			background: var(--secondary);
-			border-top-left-radius: 15px;
+			border-radius: 10px 0 0 10px;
 
 			> :first-child {
 				flex-grow: 1;

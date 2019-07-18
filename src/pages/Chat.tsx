@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, memo } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
@@ -8,13 +8,13 @@ import Browser from './chat/sidebar/Browser';
 import { Profile } from './chat/sidebar/conversation/Profile';
 
 export enum Page {
-	GUILD, // switches to guild specific sidebar
-	GROUP,
+	GUILD = 0x1, // switches to guild specific sidebar
+	GROUP = 0x1 << 1,
 	// ^^ both enable member sidebar
-	DM,
-	HOME,
-	FEED,
-	FRIENDS
+	DM = 0x1 << 2,
+	HOME = 0x1 << 3,
+	FEED = 0x1 << 4,
+	FRIENDS = 0x1 << 5
 };
 
 export const ChatContext = createContext<{
@@ -28,7 +28,7 @@ export const ChatContext = createContext<{
 	setChannel: () => {}
 });
 
-export default function Chat() {
+const Chat = memo(() => {
 	let [ page, setPage ] = useState<Page>(Page.FRIENDS);
 	let [ channel, setChannel ] = useState<string>();
 
@@ -36,6 +36,15 @@ export default function Chat() {
 		page, setPage,
 		channel, setChannel
 	} as any;
+
+	let body;
+	if (page & 0x7) {
+		// display a channel
+		body = <div>i am stuff</div>;
+	} else {
+		// other things
+		body = <div>other things yes</div>;
+	}
 
 	return (
 		<ChatContext.Provider value={states}>
@@ -51,9 +60,11 @@ export default function Chat() {
 					</div>
 				</div>
 				<div className={styles.main}>
-					yeet
+					{ body }
 				</div>
 			</div>
 		</ChatContext.Provider>
 	);
-}
+});
+
+export default Chat;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './Guild.module.scss';
 
 interface GuildProps {
@@ -7,8 +7,8 @@ interface GuildProps {
 	icon: string
 };
 
-export function Guild(props: GuildProps) {
+export const Guild = memo((props: GuildProps) => {
     return (
         <div className={`${styles.icon}`} draggable={true} style={{ backgroundImage: `url("${props.icon}")` }}/>
     );
-}
+});

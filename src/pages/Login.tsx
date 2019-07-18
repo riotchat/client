@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import Helmet from 'react-helmet';
 import { AppContext, Page } from '../App';
 
 import { ErrorObject, APIError } from 'riotchat.js';
@@ -121,6 +122,9 @@ export default function Login() {
 	let app = useContext(AppContext);
 	return (
 		<div className={styles.wrapper}>
+			<Helmet>
+				<meta name="theme-color" content="#7B68EE"/>
+			</Helmet>
 			{ error.error === APIError.CONNECTION_FAILED &&
 				<Notification title='Failed to login'
 					text={error.reason} />
