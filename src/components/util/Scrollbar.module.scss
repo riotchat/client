@@ -19,7 +19,7 @@
 }
 
 .hidden {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow: -moz-scrollbars-none;
 	-ms-overflow-style: none;
 	scrollbar-width: none;

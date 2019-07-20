@@ -20,6 +20,7 @@ input {
 	transition: border .3s;
 	user-select: none;
 	outline: 0;
+	user-select: text;
 
 	&:focus {
 		border: 1px solid mediumslateblue;
