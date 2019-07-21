@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import logo from '../../assets/downloads/branding/logo-white-full.svg';
 
 import { Icons, Icon } from '../../components/ui/elements/Icon';
-import { SettingsContext, Page } from '../Settings';
+import { SettingsContext, Page, PageTitles } from '../Settings';
 import { Instance } from '../../internal/Client';
 import { scrollable } from '../../components/util/Scrollbar';
 import { VERSION } from '../../release';
@@ -27,19 +27,20 @@ export const SettingsSidebar = memo(() => {
 		return <span className={classes}>{ props.type }</span>;
 	}
 
-	function Tab(props: { icon: Icons, for?: Page, name?: string, children?: ReactNode[] | ReactNode, beta?: boolean, classes?: any }) {
+	function Tab(props: { icon: Icons, for?: Page, custom?: boolean, children?: ReactNode[] | ReactNode, beta?: boolean, classes?: any }) {
 		let classes = classNames(props.classes, {
 			[styles.tab]: true,
 			[styles.canHide]: props.for === Page.ACCOUNT
 		});
 
+		let name = typeof props.for === 'undefined' ? undefined : PageTitles[props.for];
 		return (
-			<div className={classes} aria-label={props.name} onClick={() => {
+			<div className={classes} aria-label={name} onClick={() => {
 				settings.setShown(true);
-				props.for && settings.setTab(props.for);
+				typeof props.for !== 'undefined' && settings.setTab(props.for);
 			}}>
 				<Icon icon={props.icon} />
-				{props.name || props.children}
+				{props.custom ? props.children : name}
 				{props.beta && <Label type='beta' />}
 			</div>
 		);
@@ -66,32 +67,34 @@ export const SettingsSidebar = memo(() => {
 					</div>
 				</div>
 				<Section title="User Settings">
-					<Tab icon="idCardSolid" name="My Account" for={Page.ACCOUNT} />
-					<Tab icon="shieldSolid" name="Authorized Apps" />
-					<Tab icon="extensionSolid" name="Integrations" beta/>
+					<Tab icon="idCardSolid" for={Page.ACCOUNT} />
+					<Tab icon="shieldSolid" for={Page.APPS} />
+					<Tab icon="extensionSolid" for={Page.INTEGRATIONS} beta/>
 				</Section>
                 <Section title="Riot PRO">
-					<Tab icon="idCardSolid" classes={styles.pro}>
+					<Tab icon="idCardSolid" classes={styles.pro} for={Page.PRO} custom>
 						RIOT IMAGE HERE
 						<Label type='pro' />
 					</Tab>
-					<Tab icon="cardSolid" name="Billing" />
+					<Tab icon="cardSolid" for={Page.BILLING} />
 				</Section>
                 <Section title="Client Settings">
-					<Tab icon="microphoneSolid" name="Voice & Video" />
-					<Tab icon="brushSolid" name="Appearance" />
-                    <Tab icon="bodyRegular" name="Accessibility" />
-                    <Tab icon="slideshowSolid" name="Streamer Mode" beta/>
-                    <Tab icon="globeRegular" name="Language" />
-					<Tab icon="wrenchSolid" name="Developer Mode" />
+					<Tab icon="microphoneSolid" for={Page.VOICE} />
+					<Tab icon="brushSolid" for={Page.APPEARANCE} />
+                    <Tab icon="bodyRegular" for={Page.ACCESSIBILITY} />
+                    <Tab icon="slideshowSolid" for={Page.STREAMER} beta/>
+                    <Tab icon="globeRegular" for={Page.LANGUAGE} />
+					<Tab icon="wrenchSolid" for={Page.DEVELOPER} />
 				</Section>
 				<Section title="About">
-					<Tab icon="infoCircleSolid" name="About" />
-                    <Tab icon="fileRegular" name="Changelog" />
-                    <Tab icon="helpCircleSolid" name="Support" />
-					<Tab icon="megaphoneSolid" name="Feedback" />
+					<Tab icon="infoCircleSolid" for={Page.ABOUT} />
+                    <Tab icon="fileRegular" for={Page.CHANGELOG} />
+                    <Tab icon="helpCircleSolid" for={Page.SUPPORT} />
+					<Tab icon="megaphoneSolid" for={Page.FEEDBACK} />
 				</Section>
-				<Tab icon="logoutRegular" name="Log Out" classes={styles.logoutButton}/>
+				<Tab icon="logoutRegular" classes={styles.logoutButton} custom>
+					Logout
+				</Tab>
 				<div className={styles.branding}>
 					<img src={logo} alt='Riot' draggable={false}/>
 					<span>Version {VERSION}</span>

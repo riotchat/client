@@ -18,10 +18,28 @@
 
 		.content {
 			flex: 7;
+			display: flex;
+			padding: 80px 40px 40px;
 		
 			@media screen and (max-width: 900px) {
+				padding: 20px 12px;
 				&:not(.shown) {
 					display: none;
+				}
+			}
+
+			.primary {
+				color: var(--body-text);
+				flex-grow: 1;
+
+				.title {
+					display: none;
+					@media screen and (min-width: 901px) {
+						display: block;
+						font-size: 20px;
+						font-weight: 600;
+						margin-bottom: 15px;
+					}
 				}
 			}
 		}
@@ -47,11 +65,27 @@
 			flex: 1 1 auto;
 		}
 	
-		.close {
+		.x {
 			height: 30px;
 			width: 30px;
             margin-right: 10px;
             fill: var(--icon); //a different className overwrites className icon, needs fix
 		}
+	}
+}
+
+.close {
+	display: none;
+	@media screen and (min-width: 901px) {
+		right: 100px;
+		position: absolute;
+		display: flex;
+		cursor: pointer;
+		justify-content: center;
+		height: 40px;
+		width: 40px;
+		fill: white;
+		border: 1px solid grey;
+		border-radius: 50%;
 	}
 }

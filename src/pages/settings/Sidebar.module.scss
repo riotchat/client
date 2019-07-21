@@ -6,8 +6,7 @@
 	padding: 0 10px;
 
 	@media screen and (min-width: 901px) {
-		//padding: 60px 6px 0 20px;
-		padding: 0 6px 0 20px;
+		padding: 60px 6px 0 20px;
 		max-height: 100%;
 		background: var(--secondary);
 	}
@@ -29,8 +28,8 @@
 		}
 
         .section {
-			//&:first-child {padding: 100px 0 0 0;}
 			padding: 20px 0 0 0;
+
 			.name {
 				font-size: 12px;
             	font-weight: 600;
