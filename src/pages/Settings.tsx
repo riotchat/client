@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext } from 'react';
+import Helmet from 'react-helmet';
 import styles from './Settings.module.scss';
 import classNames from 'classnames';
 import { SettingsSidebar } from './settings/sidebar';
@@ -52,9 +53,12 @@ export function Settings() {
 
 	return (
 		<SettingsContext.Provider value={states}>
+			<Helmet>
+				<meta name="theme-color" content="#212121"/> {/*Change content to the same color as theme*/}
+			</Helmet>
 			<div className={styles.settings}>
 				<div className={styles.header}>
-					{ showContent ? <Icon className={styles.close} icon="arrowBackRegular" onClick={doClose} />
+					{ showContent ? <Icon className={styles.close} icon="leftArrowAltRegular" onClick={doClose} />
 					: <Icon className={styles.close} icon="xRegular" onClick={doClose} /> }
 					<span className={styles.title}>{showContent ? PageTitles[tab] : 'Settings'}</span>
 					<Icon icon="logoutRegular" onClick={() => alert('no leaving this place')}/>

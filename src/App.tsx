@@ -28,8 +28,23 @@ export const AppContext = createContext(
 
 export default function App() {
 	let [ ready, setReady ] = useState(false);
-	let [ theme, setTheme ] = useState('dark');
+	let [ theme, setThemeState ] = useState('dark');
 	let [ page, setPage ] = useState(Page.LOAD);
+
+	function setTheme(toTheme: string) {
+		let cL = document.body.classList;
+		cL.forEach(x => {
+			if (x.startsWith('theme-')) {
+				cL.remove(x);
+			}
+		});
+		cL.add('theme-' + toTheme);
+
+		if (theme !== toTheme) {
+			setThemeState(toTheme);
+		}
+	}
+	setTheme(theme);
 
 	// riotchat.js re-render hook
 	let [ dummyValue, doRender ] = useState(false);

@@ -21,6 +21,7 @@ input {
 	user-select: none;
 	outline: 0;
 	user-select: text;
+	-webkit-appearance: none;
 
 	&:focus {
 		border: 1px solid mediumslateblue;

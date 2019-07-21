@@ -15,8 +15,8 @@ export const SettingsSidebar = memo(() => {
 
 	function Section(props: { title: string, children: ReactNode[] }) {
 		return (
-			<div className={styles.section}>
-				<span className={styles.name}>{props.title}</span>
+			<div className={styles.section} aria-label={props.title}>
+				<div className={styles.name}>{props.title}</div>
 				{props.children}
 			</div>
 		);
@@ -34,7 +34,7 @@ export const SettingsSidebar = memo(() => {
 		});
 
 		return (
-			<div className={classes} onClick={() => {
+			<div className={classes} aria-label={props.name} onClick={() => {
 				settings.setShown(true);
 				props.for && settings.setTab(props.for);
 			}}>
@@ -65,16 +65,16 @@ export const SettingsSidebar = memo(() => {
 						<span className={styles.address}>{Instance.client.user.email}</span>
 					</div>
 				</div>
-				<Section title="user settings">
+				<Section title="User Settings">
 					<Tab icon="idCardSolid" name="My Account" for={Page.ACCOUNT} />
 					<Tab icon="shieldSolid" name="Authorized Apps" />
 					<Tab icon="extensionSolid" name="Integrations" beta/>
 				</Section>
-                <Section title="riot pro">
+                <Section title="Riot PRO">
 					<Tab icon="idCardSolid" name="Riot PRO" />
 					<Tab icon="cardSolid" name="Billing" />
 				</Section>
-                <Section title="client settings">
+                <Section title="Client Settings">
 					<Tab icon="microphoneSolid" name="Voice & Video" />
 					<Tab icon="brushSolid" name="Appearance" />
                     <Tab icon="bodyRegular" name="Accessibility" />
@@ -82,7 +82,7 @@ export const SettingsSidebar = memo(() => {
                     <Tab icon="globeRegular" name="Language" />
 					<Tab icon="wrenchSolid" name="Developer Mode" />
 				</Section>
-				<Section title="about">
+				<Section title="About">
 					<Tab icon="infoCircleSolid" name="About" />
                     <Tab icon="fileRegular" name="Changelog" />
                     <Tab icon="helpCircleSolid" name="Support" />

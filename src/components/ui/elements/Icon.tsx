@@ -20,7 +20,6 @@ import { ReactComponent as infoCircleSolid } from 'boxicons/svg/solid/bxs-info-c
 import { ReactComponent as helpCircleSolid } from 'boxicons/svg/solid/bxs-help-circle.svg';
 import { ReactComponent as megaphoneSolid } from 'boxicons/svg/solid/bxs-megaphone.svg';
 
-
 /* === REGULAR ICONS === */
 import { ReactComponent as plusRegular } from 'boxicons/svg/regular/bx-plus.svg';
 import { ReactComponent as mobileRegular } from 'boxicons/svg/regular/bx-mobile.svg';
@@ -29,7 +28,7 @@ import { ReactComponent as bodyRegular } from 'boxicons/svg/regular/bx-body.svg'
 import { ReactComponent as globeRegular } from 'boxicons/svg/regular/bx-globe.svg';
 import { ReactComponent as fileRegular } from 'boxicons/svg/regular/bx-file.svg';
 import { ReactComponent as logoutRegular } from 'boxicons/svg/regular/bx-log-out.svg';
-import { ReactComponent as arrowBackRegular } from 'boxicons/svg/regular/bx-arrow-back.svg';
+import { ReactComponent as leftArrowAltRegular } from 'boxicons/svg/regular/bx-left-arrow-alt.svg';
 import { ReactComponent as xRegular } from 'boxicons/svg/regular/bx-x.svg';
 
 
@@ -37,7 +36,7 @@ export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'us
 					| 'userPlusSolid' | 'mobileRegular' | 'chevronDownRegular' | 'shieldSolid'
 					| 'idCardSolid' | 'extensionSolid' | 'microphoneSolid' | 'cardSolid' | 'brushSolid'
 					| 'bodyRegular' | 'slideshowSolid' | 'globeRegular' | 'wrenchSolid' | 'infoCircleSolid'
-					| 'fileRegular' | 'helpCircleSolid' | 'megaphoneSolid' | 'logoutRegular' | 'arrowBackRegular'
+					| 'fileRegular' | 'helpCircleSolid' | 'megaphoneSolid' | 'logoutRegular' | 'leftArrowAltRegular'
 					| 'xRegular';
 const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, homeSolid, newsSolid, 
 														userDetailSolid, userPlusSolid, mobileRegular,
@@ -46,7 +45,7 @@ const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, h
 														brushSolid, bodyRegular, slideshowSolid,
 														globeRegular, wrenchSolid, infoCircleSolid,
 														fileRegular, helpCircleSolid, megaphoneSolid,
-														logoutRegular, arrowBackRegular, xRegular };
+														logoutRegular, leftArrowAltRegular, xRegular };
 interface IconProps extends SVGProps<SVGElement> {
 	icon: Icons,
 	color?: string,

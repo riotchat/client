@@ -1,5 +1,6 @@
 import React, { useState, Fragment, memo } from 'react';
 import styles from './Home.module.scss';
+import common from './common.module.scss';
 
 import classNames from 'classnames';
 import { Icon, Icons } from "../../../../components/ui/elements/Icon";
@@ -48,8 +49,9 @@ export const HomeSidebar = memo(() => {
 		);
 	}
 
+	let classes = classNames(scrollable, common.sidebar);
 	return (
-		<div className={scrollable}>
+		<div className={classes}>
 			<div className={styles.tabs}>
 				<div className={styles.tab}><Icon icon="homeSolid"/>Feed</div>
 				<div className={styles.tab}><Icon icon="newsSolid"/>News</div>

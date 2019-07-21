@@ -3,8 +3,9 @@
     align-items: center;
     flex-direction: column;
     width: 80px;
-    background: var(--primary);
-    :nth-last-child(2) { margin-bottom: 60px; }
+	background: var(--primary);
+	
+    .padding {}
 
     .home {
         margin: 8px 0;
