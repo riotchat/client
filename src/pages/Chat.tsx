@@ -6,6 +6,7 @@ import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
 import Browser from './chat/sidebar/Browser';
 import { Profile } from './chat/sidebar/conversation/Profile';
+import Channel from './chat/Channel';
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -40,7 +41,7 @@ const Chat = memo(() => {
 	let body;
 	if (page & 0x7) {
 		// display a channel
-		body = <div>i am stuff</div>;
+		body = <Channel id={channel as string} />;
 	} else {
 		// other things
 		body = <div>other things yes</div>;

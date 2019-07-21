@@ -1,4 +1,4 @@
-import React, { useState, createContext, CSSProperties } from 'react';
+import React, { useState, createContext, CSSProperties, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import styles from './App.module.scss';
 
@@ -55,18 +55,20 @@ export default function App() {
 		doRender(!dummyValue);
 	}
 
-	if (!ready) {
-		let token = localStorage.getItem('accessToken');
-		if (token) {
-			Instance.client
-				.login(token)
-				.catch(() => setPage(Page.LOGIN))
-				.finally(() => setReady(true));
-		} else {
-			setPage(Page.LOGIN);
-			setReady(true);
+	useEffect(() => {
+		if (!ready) {
+			let token = localStorage.getItem('accessToken');
+			if (token) {
+				Instance.client
+					.login(token)
+					.catch(() => setPage(Page.LOGIN))
+					.finally(() => setReady(true));
+			} else {
+				setPage(Page.LOGIN);
+				setReady(true);
+			}
 		}
-	}
+	}, [ready]);
 
 	let states = {
 		theme, setTheme,

@@ -31,9 +31,6 @@ export const HomeSidebar = memo(() => {
 			.array()
 			.filter(x => x instanceof props.type);
 
-		// make array longer
-		// array = array.concat(array, array, array, array, array, array, array);
-
 		return (
 			<Fragment>
 				<div className={styles.category}>

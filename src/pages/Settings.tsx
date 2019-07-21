@@ -83,8 +83,8 @@ export function Settings() {
 		setLogoutModal
 	} as any;
 
-	function doClose() {
-		if (showContent) {
+	function doClose(force?: any) {
+		if (showContent && force !== true) {
 			setShown(false);
 		} else {
 			app.setPage(AppPage.APP);
@@ -122,7 +122,7 @@ export function Settings() {
 							{RenderPage(tab)}
 						</div>
 						<div className={styles.close}>
-							<Icon icon="xRegular" onClick={doClose} />
+							<Icon icon="xRegular" onClick={() => doClose(true)} />
 						</div>
 					</div>
 				</div>

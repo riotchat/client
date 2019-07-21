@@ -1,0 +1,36 @@
+.root {
+	display: flex;
+	flex-direction: column;
+    height: 100vh;
+    color: var(--body-text);
+
+	.header {
+		flex-shrink: 1;
+	}
+
+	.body {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: row;
+		overflow: hidden;
+		min-height: 0;
+
+		.chat {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+
+			.messages {
+				flex-grow: 1;
+			}
+
+			.messageBox {
+				flex-shrink: 1;
+			}
+		}
+
+		.sidebar {
+			flex-shrink: 1;
+		}
+	}
+}
