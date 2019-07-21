@@ -30,6 +30,8 @@ import { ReactComponent as fileRegular } from 'boxicons/svg/regular/bx-file.svg'
 import { ReactComponent as logoutRegular } from 'boxicons/svg/regular/bx-log-out.svg';
 import { ReactComponent as leftArrowAltRegular } from 'boxicons/svg/regular/bx-left-arrow-alt.svg';
 import { ReactComponent as xRegular } from 'boxicons/svg/regular/bx-x.svg';
+import { ReactComponent as checkRegular } from 'boxicons/svg/regular/bx-check.svg';
+
 
 
 export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'userDetailSolid'
@@ -37,7 +39,7 @@ export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'us
 					| 'idCardSolid' | 'extensionSolid' | 'microphoneSolid' | 'cardSolid' | 'brushSolid'
 					| 'bodyRegular' | 'slideshowSolid' | 'globeRegular' | 'wrenchSolid' | 'infoCircleSolid'
 					| 'fileRegular' | 'helpCircleSolid' | 'megaphoneSolid' | 'logoutRegular' | 'leftArrowAltRegular'
-					| 'xRegular';
+					| 'xRegular' | 'checkRegular';
 const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, homeSolid, newsSolid, 
 														userDetailSolid, userPlusSolid, mobileRegular,
 														chevronDownRegular, shieldSolid, idCardSolid,
@@ -45,7 +47,8 @@ const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, h
 														brushSolid, bodyRegular, slideshowSolid,
 														globeRegular, wrenchSolid, infoCircleSolid,
 														fileRegular, helpCircleSolid, megaphoneSolid,
-														logoutRegular, leftArrowAltRegular, xRegular };
+														logoutRegular, leftArrowAltRegular, xRegular,
+														checkRegular };
 interface IconProps extends SVGProps<SVGElement> {
 	icon: Icons,
 	color?: string,

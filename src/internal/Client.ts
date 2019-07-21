@@ -13,11 +13,13 @@ export var Instance: {
 } = CreateInstance();
 
 export function ResetClient() {
-	// ! REPLACE WITH CLOSE LATER
-	let c = Instance.client as any;
-	if (c.ws) c.ws.close();
-	clearInterval(c.pingPong);
-
+	Instance.loggedIn = false;
+	Instance.client.close();
 	delete Instance.client;
 	Instance = CreateInstance();
+}
+
+export function LogoutClient() {
+	ResetClient();
+	localStorage.removeItem('accessToken');
 }

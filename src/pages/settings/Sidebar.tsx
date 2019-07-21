@@ -27,17 +27,19 @@ export const SettingsSidebar = memo(() => {
 		return <span className={classes}>{ props.type }</span>;
 	}
 
-	function Tab(props: { icon: Icons, for?: Page, custom?: boolean, children?: ReactNode[] | ReactNode, beta?: boolean, classes?: any }) {
+	function Tab(props: { icon: Icons, for?: Page, custom?: boolean, children?: ReactNode[] | ReactNode, beta?: boolean, classes?: any, canHide?: boolean, onClick?: Function }) {
 		let classes = classNames(props.classes, {
 			[styles.tab]: true,
-			[styles.canHide]: props.for === Page.ACCOUNT
+			[styles.canHide]: props.canHide
 		});
 
 		let name = typeof props.for === 'undefined' ? undefined : PageTitles[props.for];
 		return (
 			<div className={classes} aria-label={name} onClick={() => {
+				props.onClick && props.onClick();
+				if (typeof props.for === 'undefined') return;
 				settings.setShown(true);
-				typeof props.for !== 'undefined' && settings.setTab(props.for);
+				settings.setTab(props.for);
 			}}>
 				<Icon icon={props.icon} />
 				{props.custom ? props.children : name}
@@ -67,9 +69,9 @@ export const SettingsSidebar = memo(() => {
 					</div>
 				</div>
 				<Section title="User Settings">
-					<Tab icon="idCardSolid" for={Page.ACCOUNT} />
+					<Tab icon="idCardSolid" for={Page.ACCOUNT} canHide />
 					<Tab icon="shieldSolid" for={Page.APPS} />
-					<Tab icon="extensionSolid" for={Page.INTEGRATIONS} beta/>
+					<Tab icon="extensionSolid" for={Page.INTEGRATIONS} beta />
 				</Section>
                 <Section title="Riot PRO">
 					<Tab icon="idCardSolid" classes={styles.pro} for={Page.PRO} custom>
@@ -92,7 +94,7 @@ export const SettingsSidebar = memo(() => {
                     <Tab icon="helpCircleSolid" for={Page.SUPPORT} />
 					<Tab icon="megaphoneSolid" for={Page.FEEDBACK} />
 				</Section>
-				<Tab icon="logoutRegular" classes={styles.logoutButton} custom>
+				<Tab icon="logoutRegular" classes={styles.logoutButton} onClick={() => settings.setLogoutModal(true)} custom canHide>
 					Logout
 				</Tab>
 				<div className={styles.branding}>

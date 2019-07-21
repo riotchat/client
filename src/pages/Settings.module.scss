@@ -22,6 +22,7 @@
 			padding: 80px 40px 40px;
 		
 			@media screen and (max-width: 900px) {
+				background: var(--primary);
 				padding: 20px 12px;
 				&:not(.shown) {
 					display: none;
@@ -75,8 +76,10 @@
 }
 
 .close {
-	display: none;
-	@media screen and (min-width: 901px) {
+	display: block;
+	min-width: 140px;
+
+	svg {
 		right: 100px;
 		position: absolute;
 		display: flex;
@@ -87,5 +90,9 @@
 		fill: white;
 		border: 1px solid grey;
 		border-radius: 50%;
+	}
+
+	@media screen and (max-width: 901px) {
+		display: none;
 	}
 }

@@ -8,6 +8,8 @@ import { scrollable } from '../components/util/Scrollbar';
 import { Icon } from '../components/ui/elements/Icon';
 import { AppContext, Page as AppPage } from '../App';
 import { RenderPage } from './settings/pages';
+import Modal from '../components/ui/components/Modal';
+import { Instance, LogoutClient } from '../internal/Client';
 
 export enum Page {
 	ACCOUNT,
@@ -53,18 +55,21 @@ export const SettingsContext = createContext<{
 	tab: Page,
 	setTab: (tab: Page) => void,
 	showContent: boolean,
-	setShown: (show: boolean) => void
+	setShown: (show: boolean) => void,
+	setLogoutModal: (show: boolean) => void
 }>({
 	tab: Page.ACCOUNT,
 	setTab: () => {},
 	showContent: false,
-	setShown: () => {}
+	setShown: () => {},
+	setLogoutModal: () => {}
 });
 
 export function Settings() {
 	let app = useContext(AppContext);
 	let [ tab, setTab ] = useState(Page.ACCOUNT);
 	let [ showContent, setShown ] = useState(false);
+	let [ showLogout, setLogoutModal ] = useState(false);
 
 	let content = classNames({
 		[styles.content]: true,
@@ -74,7 +79,8 @@ export function Settings() {
 
 	const states = {
 		tab, setTab,
-		showContent, setShown
+		showContent, setShown,
+		setLogoutModal
 	} as any;
 
 	function doClose() {
@@ -83,6 +89,11 @@ export function Settings() {
 		} else {
 			app.setPage(AppPage.APP);
 		}
+	}
+
+	function doLogout() {
+		app.setPage(AppPage.LOGIN);
+		LogoutClient();
 	}
 
 	let doHideTitle: CSSProperties = {
@@ -101,7 +112,7 @@ export function Settings() {
 					{ showContent ? <Icon className={styles.x} icon="leftArrowAltRegular" onClick={doClose} />
 					: <Icon className={styles.x} icon="xRegular" onClick={doClose} /> }
 					<span className={styles.title}>{showContent ? PageTitles[tab] : 'Settings'}</span>
-					<Icon icon="logoutRegular" onClick={() => alert('no leaving this place')}/>
+					<Icon icon="logoutRegular" onClick={() => setLogoutModal(true)}/>
 				</div>
 				<div className={styles.main}>
 					<SettingsSidebar />
@@ -110,9 +121,28 @@ export function Settings() {
 							<div className={styles.title} style={doHideTitle}>{PageTitles[tab]}</div>
 							{RenderPage(tab)}
 						</div>
-						<Icon className={styles.close} icon="xRegular" onClick={doClose} />
+						<div className={styles.close}>
+							<Icon icon="xRegular" onClick={doClose} />
+						</div>
 					</div>
 				</div>
+				{ showLogout && <Modal
+							title='Are you sure?'
+							buttons={[
+								{
+									type: 'warning',
+									value: 'Logout',
+									handler: doLogout
+								},
+								{
+									close: true,
+									value: 'Cancel'
+								}
+							]}
+							dismiss={() => setLogoutModal(false)}
+							allowClose={true}>
+						You will be logged out of your RIOT account.
+					</Modal> }
 			</div>
 		</SettingsContext.Provider>
 	);

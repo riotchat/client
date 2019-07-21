@@ -28,11 +28,13 @@ export default function Login() {
 	let [ username, setUsername ] = useState('');
 	let [ password, setPassword ] = useState('');
 	let [ acceptTOS, setTOS ] = useState('');
+	let [ disableButton, setDisabled ] = useState(false);
 
 	let [ animation, playAnimation ] = useAnimator(Animation.BOUNCE_IN, 250);
 
 	function submitForm(e: React.FormEvent, setPage: (page: Page) => void) {
 		e.preventDefault();
+		setDisabled(true);
 		
 		Instance.client.login(email, password).then((tfa) => {
 			if (tfa) {
@@ -41,7 +43,10 @@ export default function Login() {
 
 			localStorage.setItem('accessToken', Instance.client.accessToken as string);
 			setPage(Page.LOAD);
-		}).catch((err: ErrorObject) => {console.log(err);setError(err)});
+		}).catch((err: ErrorObject) => {
+			setDisabled(false);
+			setError(err)
+		});
 	}
 
 	function toggle(target: LoginState, e?: React.MouseEvent) {
@@ -68,7 +73,7 @@ export default function Login() {
 					</span>
 					<Input type="password" aria-label="Password" value={password} onChange={e => setPassword(e.target.value)} />
 					<a className={styles.link} href="/forgot" onClick={e => toggle(LoginState.ResetPassword, e)}>Forgot your password?</a>
-					<Button theme="confirm" type="submit" value="Log in" fullwidth={true} />
+					<Button theme="confirm" type="submit" value={ disableButton ? 'Logging you in...' : 'Log in' } fullwidth={true} disabled={disableButton} />
 
 					<span className={styles.signin}>Need an account? <a href="/register" className={styles.link} onClick={e => toggle(LoginState.Register, e)}>Sign up</a></span>
 				</div>;
@@ -85,7 +90,7 @@ export default function Login() {
 					<Checkbox required value={acceptTOS} onChange={e => setTOS(e.target.value)}>
 						I agree to Riot's <a href="/somewhere/idk" target="_blank" className={styles.link}>Terms of Service</a> and <a href="/test" className={styles.link}>Community Guidelines</a>
 					</Checkbox>
-					<Button theme="confirm" type="submit" value="Sign up" fullwidth={true} />
+					<Button theme="confirm" type="submit" value="Sign up" fullwidth={true} disabled={disableButton} />
 
 					<span className={styles.signin}>Have an account? <a href="/login" className={styles.link} onClick={e => toggle(LoginState.Login, e)}>Sign in</a></span>
 				</div>;
@@ -95,7 +100,7 @@ export default function Login() {
 					<div className={styles.welcome}>Two-Factor Authentication</div>
 					<NumberGroup aria-label="Verification Code" digits={6} separator={3} />
 					<a href="/login" className={styles.link} onClick={e => toggle(LoginState.Login, e)}>Resend Code</a>
-					<Button theme="confirm" type="submit" value="Log in" fullwidth={true} />
+					<Button theme="confirm" type="submit" value="Log in" fullwidth={true} disabled={disableButton} />
 					<Button theme="cancel" type="submit" value="Cancel" onClick={e => toggle(LoginState.Login, e)} fullwidth={true} />
 				</div>;
 			break;
@@ -105,7 +110,7 @@ export default function Login() {
 					<div className={styles.text}>No worries, just enter your e-mail and we'll send you instructions to reset your password.</div>
 					<span className={styles.title}>Email</span>
 					<Input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
-					<Button theme="confirm" type="submit" value="Send E-Mail" fullwidth={true} />
+					<Button theme="confirm" type="submit" value="Send E-Mail" fullwidth={true} disabled={disableButton} />
 					<span className={styles.signin}>Remembered your password? <a href="/register" className={styles.link} onClick={e => toggle(LoginState.Login, e)}>Log in</a></span>
 				</div>;
 			break;
