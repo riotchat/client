@@ -7,7 +7,7 @@
 	padding: 0 12px;
 
 	@media screen and (min-width: 901px) {
-		padding: 0 6px 0 20px;
+		padding: 60px 6px 0 20px;
 		max-height: 100%;
 		background: var(--secondary);
 	}
@@ -18,7 +18,7 @@
 
     .wrapper {
         margin-left: auto;
-		width: max-content;
+		width: 216px;
 		
 		@media screen and (max-width: 900px) {
 			margin-left: 0;
@@ -26,15 +26,16 @@
 		}
 
         .section {
-			padding: 20px 10px 10px 10px;
-			@media screen and (max-width: 900px) {
-				padding: 20px 0 10px;
-			}
-			
+			//&:first-child {padding: 100px 0 0 0;}
+			padding: 20px 0 0 0;
 			.name {
-				font-size: 0.875rem;
+				font-size: 13px;
             	font-weight: 600;
 				text-transform: uppercase;
+				padding: 0 10px 14px 10px;
+				@media screen and (max-width: 900px) {
+					padding: 0 10px 10px;
+				}
 			}
         }
 
@@ -49,8 +50,9 @@
             transition: background-color .3s;
 			cursor: pointer;
 			//min-width: 216px;
+			font-size: 15px;
 
-			svg { height: 20px; width: 20px; margin-right: 8px;}
+			svg { height: 22px; width: 22px; margin-right: 8px;}
 
 			&:hover { background-color: var(--button-hover); }
             &:active { background-color: var(--button-active); }
@@ -91,7 +93,7 @@
 	}
 
 	.account {
-		margin-top: 20px;
+		margin: 20px 0;
 		background: #404040;
 		background: var(--tertiary);
 		padding: 18px;

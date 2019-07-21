@@ -31,8 +31,8 @@
 	.header {
         display: flex;
 		width: 100%;
-		height: 64px;
-		padding: 17px 20px;
+		height: 58px;
+		padding: 14px 20px;
 		box-sizing: border-box;
 		align-items: center;
 		color: var(--body-text);
@@ -43,7 +43,6 @@
 		svg { cursor: pointer; }
 	
 		.title {
-			cursor: initial;
 			font-weight: 600;
 			flex: 1 1 auto;
 		}
@@ -52,7 +51,7 @@
 			height: 30px;
 			width: 30px;
             margin-right: 10px;
-            fill: var(--icon);
+            fill: var(--icon); //a different className overwrites className icon, needs fix
 		}
 	}
 }
