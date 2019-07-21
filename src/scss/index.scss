@@ -17,6 +17,7 @@ html, body {
 	user-select: none;
 	overscroll-behavior: contain;
 	-webkit-tap-highlight-color: transparent;
+	-webkit-overflow-scrolling: touch;
 }
 
 // causes issues on Firefox, outta here

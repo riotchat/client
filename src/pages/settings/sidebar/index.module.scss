@@ -2,8 +2,10 @@
 	flex: 3;
 	color: var(--main-text);
 	background: var(--primary);
+
 	min-height: 0;
 	overflow: hidden;
+
 	padding: 0 10px;
 
 	@media screen and (min-width: 901px) {
