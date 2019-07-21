@@ -3,9 +3,14 @@
     align-items: center;
     flex-direction: column;
     width: 80px;
-	background: var(--primary);
+    background: var(--primary);
+    height: 100vh;
 	
-    .padding {}
+    .padding {
+		display: block;
+		width: 1px;
+        min-height: 65px;
+	}
 
     .home {
         margin: 8px 0;

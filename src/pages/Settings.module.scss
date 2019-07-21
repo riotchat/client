@@ -9,6 +9,7 @@
 	background: var(--primary);
 	display: flex;
 	flex-direction: column;
+	@media screen and (max-width: 900px) { background: var(--secondary); }
 
 	.main {
 		flex-grow: 1;

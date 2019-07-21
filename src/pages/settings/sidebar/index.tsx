@@ -27,8 +27,8 @@ export const SettingsSidebar = memo(() => {
 		return <span className={classes}>{ props.type }</span>;
 	}
 
-	function Tab(props: { icon: Icons, for?: Page, name?: string, children?: ReactNode[] | ReactNode, beta?: boolean }) {
-		let classes = classNames({
+	function Tab(props: { icon: Icons, for?: Page, name?: string, children?: ReactNode[] | ReactNode, beta?: boolean, classes?: any }) {
+		let classes = classNames(props.classes, {
 			[styles.tab]: true,
 			[styles.canHide]: props.for === Page.ACCOUNT
 		});
@@ -71,7 +71,10 @@ export const SettingsSidebar = memo(() => {
 					<Tab icon="extensionSolid" name="Integrations" beta/>
 				</Section>
                 <Section title="Riot PRO">
-					<Tab icon="idCardSolid" name="Riot PRO" />
+					<Tab icon="idCardSolid" classes={styles.pro}>
+						RIOT IMAGE HERE
+						<Label type='pro' />
+					</Tab>
 					<Tab icon="cardSolid" name="Billing" />
 				</Section>
                 <Section title="Client Settings">
@@ -88,7 +91,7 @@ export const SettingsSidebar = memo(() => {
                     <Tab icon="helpCircleSolid" name="Support" />
 					<Tab icon="megaphoneSolid" name="Feedback" />
 				</Section>
-				<Tab icon="logoutRegular" name="Log Out" />
+				<Tab icon="logoutRegular" name="Log Out" classes={styles.logoutButton}/>
 				<div className={styles.branding}>
 					<img src={logo} alt='Riot' draggable={false}/>
 					<span>Version {VERSION}</span>

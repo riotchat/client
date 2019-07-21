@@ -25,3 +25,7 @@ html, body {
 iframe {
 	display: none;
 }
+
+svg {
+	shape-rendering: geometricPrecision;
+}
