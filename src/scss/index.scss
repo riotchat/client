@@ -18,6 +18,7 @@ html, body {
 	overscroll-behavior: contain;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-overflow-scrolling: touch;
+	-webkit-text-size-adjust: 100%;
 }
 
 // causes issues on Firefox, outta here

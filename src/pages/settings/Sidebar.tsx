@@ -1,14 +1,14 @@
 import React, { memo, ReactNode, useContext } from 'react';
-import styles from './index.module.scss';
+import styles from './Sidebar.module.scss';
 import classNames from 'classnames';
 
-import logo from '../../../assets/downloads/branding/logo-white-full.svg';
+import logo from '../../assets/downloads/branding/logo-white-full.svg';
 
-import { Icons, Icon } from '../../../components/ui/elements/Icon';
-import { SettingsContext, Page } from '../../Settings';
-import { Instance } from '../../../internal/Client';
-import { scrollable } from '../../../components/util/Scrollbar';
-import { VERSION } from '../../../release';
+import { Icons, Icon } from '../../components/ui/elements/Icon';
+import { SettingsContext, Page } from '../Settings';
+import { Instance } from '../../internal/Client';
+import { scrollable } from '../../components/util/Scrollbar';
+import { VERSION } from '../../release';
 
 export const SettingsSidebar = memo(() => {
 	let settings = useContext(SettingsContext);

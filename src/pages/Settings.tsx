@@ -2,7 +2,8 @@ import React, { useState, createContext, useContext } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Settings.module.scss';
 import classNames from 'classnames';
-import { SettingsSidebar } from './settings/sidebar';
+
+import { SettingsSidebar } from './settings/Sidebar';
 import { scrollable } from '../components/util/Scrollbar';
 import { Icon } from '../components/ui/elements/Icon';
 import { AppContext, Page as AppPage } from '../App';

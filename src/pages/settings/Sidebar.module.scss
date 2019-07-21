@@ -3,9 +3,6 @@
 	color: var(--main-text);
 	background: var(--primary);
 
-	min-height: 0;
-	overflow: hidden;
-
 	padding: 0 10px;
 
 	@media screen and (min-width: 901px) {
@@ -22,6 +19,9 @@
     .wrapper {
         margin-left: auto;
 		width: 216px;
+
+		min-height: 0;
+		overflow: hidden;
 		
 		@media screen and (max-width: 900px) {
 			margin-left: 0;
