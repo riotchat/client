@@ -34,13 +34,14 @@
 				transition: border .3s;
 				//pointer-events: none;
 
-			&:hover, &.active {
-				border: 2px solid var(--accent-color, mediumslatepurple);
-			}
+			    &:hover,
+			    &.active {
+				    border: 2px solid var(--accent-color, mediumslatepurple);
+			    }
 
-			&.active {
-				cursor: default;
-			}
+			    &.active {
+				    cursor: default;
+			    }
 		}
 	}
 }

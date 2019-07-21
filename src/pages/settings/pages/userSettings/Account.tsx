@@ -23,9 +23,9 @@ export default function Account() {
 									<span className={styles.infoTitle}>E-Mail</span>
 									<span className={styles.copy}>{Instance.client.user.email}</span>
 						</div>
-						<a className={styles.button}>Edit</a>
+						<Button theme="confirm">Edit</Button>
 					</div>
-					<a className={`${styles.button} ${styles.mobile}`}>Edit</a>
+					<Button theme="confirm">Edit</Button>
 				</div>
 				{/*!this.state.options.streamerMode.enabled && ( <div className={`${main.section} ${styles.mobile}`}>
 					<div className={main.category}>UID
@@ -37,8 +37,8 @@ export default function Account() {
 					<div className={styles.securityEnabled}>
 						<span>2FA has been enabled on this account.</span>
 					</div>
-					<a className={styles.button}>View Backup Codes</a>
-					<a className={`${styles.button} ${styles.red}`}>Remove 2FA</a>
+					<Button theme="confirm">View Backup Codes</Button>
+					<Button theme="confirm">Disable 2FA</Button>
 				</div>
 				<div className={main.section}>
 					<div className={main.category}>Pending Community Strikes</div>
@@ -61,8 +61,8 @@ export default function Account() {
 				<div className={main.section}>
 					<div className={main.category}>Account Management</div>
 					<div>
-						<Button theme="confirm">Test</Button>
-						<a className={`${styles.button} ${styles.red}`}>Delete Account</a>
+						<Button theme="confirm">Disable Account</Button>
+						<Button theme="warning">Delete Account</Button>
 					</div>
 				</div>
 			</div>

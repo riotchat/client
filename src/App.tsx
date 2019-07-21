@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, CSSProperties } from 'react';
 import Helmet from 'react-helmet';
 import styles from './App.module.scss';
 
@@ -19,8 +19,10 @@ export enum Page {
 export const AppContext = createContext(
 	{
 		theme: '??',
+		accent: '#000000',
 		page: Page.NONE,
 		setTheme: (theme: string) => undefined,
+		setAccent: (accent: string) => undefined,
 		setPage: (page: Page) => undefined,
 		propogate: () => undefined
 	}
@@ -29,6 +31,7 @@ export const AppContext = createContext(
 export default function App() {
 	let [ ready, setReady ] = useState(false);
 	let [ theme, setThemeState ] = useState('dark');
+	let [ accent, setAccent ] = useState('#7B68EE');
 	let [ page, setPage ] = useState(Page.LOAD);
 
 	function setTheme(toTheme: string) {
@@ -67,14 +70,20 @@ export default function App() {
 
 	let states = {
 		theme, setTheme,
+		accent, setAccent,
 		page, setPage,
 		propogate
 	} as any;
 
+	let style = {
+		// eslint-disable-next-line
+		['--accent-color']: accent
+	} as CSSProperties;
+
 	return (
-		<div className={`theme-${theme} ${styles.app}`}>
+		<div className={`theme-${theme} ${styles.app}`} style={style}>
 			<Helmet>
-				<meta name="theme-color" content="#7B68EE" />
+				<meta name="theme-color" content={accent} />
 			</Helmet>
 			<AppContext.Provider value={states}>
 				{ page & Page.LOAD ? <Load waitForClient={ready} /> : null }
