@@ -22,6 +22,10 @@
 
 			.messages {
 				flex-grow: 1;
+
+				.pending {
+					opacity: .45;
+				}
 			}
 
 			.messageBox {

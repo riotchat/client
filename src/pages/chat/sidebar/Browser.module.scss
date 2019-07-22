@@ -56,13 +56,14 @@
     .add {
         width: 80px;
         z-index: 1;
-        position: fixed;
+        position: absolute;
+        //position: sticky; //FIXED ON CHROME, NEED TO CHECK OTHER DEVICES
         display: flex;
         align-items: center;
         justify-content: center;
         bottom: 0;
         left: 0;
-        background: linear-gradient(transparent, var(--primary));
+        background: linear-gradient(rgba(0, 0, 0, 0), var(--primary));
 
         svg { cursor: pointer; }
 
