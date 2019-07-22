@@ -9,6 +9,8 @@ export function Profile() {
 	let app = useContext(AppContext);
 	let user = Instance.client.user;
 
+	//let [ statusMenu, setStatusMenu ] = useState(false);
+
 	return (
 		<div className={styles.profile}>
 			{/*this.state.statusMenuOpen && <StatusMenu onSet={(status: "online" | "away" | "busy" | "offline") => {

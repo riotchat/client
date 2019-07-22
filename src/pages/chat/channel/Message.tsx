@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './Message.module.scss';
 
 import { Message as RMessage } from 'riotchat.js/dist/internal/Message';
 
-export default function Message(props: { message: RMessage }) {
+const Message = memo((props: { message: RMessage }) => {
 	let msg = props.message;
 	return (
 		<div className={styles.message}>
@@ -16,4 +16,6 @@ export default function Message(props: { message: RMessage }) {
 			</div>
 		</div>
 	);
-}
+});
+
+export default Message;

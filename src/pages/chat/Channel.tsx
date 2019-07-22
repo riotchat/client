@@ -51,6 +51,7 @@ export default function Channel(props: { id: string }) {
 
 	let sidebar = classNames({
 		[styles.sidebar]: true,
+		[hiddenScrollbar]: true,
 		[styles.visible]: !!((Page.GROUP | Page.GUILD) & chat.page)
 	});
 
@@ -74,7 +75,7 @@ export default function Channel(props: { id: string }) {
 							</form>
 						</div>
 					</div>
-					<div className={classNames(sidebar, hiddenScrollbar)}>
+					<div className={sidebar}>
 						sidebar time
 					</div>
 				</div>

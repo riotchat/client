@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     padding: 0 20px;
+    box-shadow: 0px 1px 6px 0px rgba(33, 33, 33, 0.3);
     
     .info {
         display: flex;
@@ -25,15 +26,16 @@
 
         .channel {
             margin-right: 5px;
+            height: 22px;
+            width: 22px;
         }
 
         .title {
+            font-size: .875rem;
             font-weight: 600;
         }
     
-        .dropdown {
-            cursor: pointer;
-        }
+        .dropdown { margin: 0 4px; cursor: pointer; }
     
         .divider {
             width: 1px;
@@ -67,5 +69,16 @@
                 display: flex;
             }
         }
+    }
+
+    .menu {
+        flex: 0 0 auto;
+
+        .icon {
+            margin-left: 10px;
+            &:first-child { margin-left: 0; }
+        }
+
+        .feedback { margin-left: 20px; }
     }
 }

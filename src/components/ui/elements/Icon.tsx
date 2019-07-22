@@ -22,6 +22,8 @@ import { ReactComponent as helpCircleSolid } from 'boxicons/svg/solid/bxs-help-c
 import { ReactComponent as megaphoneSolid } from 'boxicons/svg/solid/bxs-megaphone.svg';
 import { ReactComponent as chatSolid } from 'boxicons/svg/solid/bxs-chat.svg';
 import { ReactComponent as groupSolid } from 'boxicons/svg/solid/bxs-group.svg';
+import { ReactComponent as bellSolid } from 'boxicons/svg/solid/bxs-bell.svg';
+
 
 /* === REGULAR ICONS === */
 import { ReactComponent as plusRegular } from 'boxicons/svg/regular/bx-plus.svg';
@@ -44,7 +46,8 @@ export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'us
 					| 'idCardSolid' | 'extensionSolid' | 'microphoneSolid' | 'cardSolid' | 'brushSolid'
 					| 'bodyRegular' | 'slideshowSolid' | 'globeRegular' | 'wrenchSolid' | 'infoCircleSolid'
 					| 'fileRegular' | 'helpCircleSolid' | 'megaphoneSolid' | 'logoutRegular' | 'leftArrowAltRegular'
-					| 'xRegular' | 'checkRegular' | 'atRegular' | 'chatSolid' | 'groupSolid' | 'menuRegular';
+					| 'xRegular' | 'checkRegular' | 'atRegular' | 'chatSolid' | 'groupSolid' | 'menuRegular'
+					| 'bellSolid';
 const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, homeSolid, newsSolid, 
 														userDetailSolid, userPlusSolid, mobileRegular,
 														chevronDownRegular, shieldSolid, idCardSolid,
@@ -54,7 +57,7 @@ const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, h
 														fileRegular, helpCircleSolid, megaphoneSolid,
 														logoutRegular, leftArrowAltRegular, xRegular,
 														checkRegular, atRegular, chatSolid, groupSolid,
-														menuRegular };
+														menuRegular, bellSolid };
 interface IconProps extends Omit<SVGProps<SVGElement>, 'className'> {
 	icon: Icons,
 	color?: string,

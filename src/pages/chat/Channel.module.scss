@@ -22,6 +22,13 @@
 
 			.messages {
 				flex-grow: 1;
+				padding: 0px 30px;
+				user-select: text;
+				color: var(--body-text);
+
+				@media only screen and (max-width: 900px) { padding: 0 12px; }
+			}
+
 
 				.pending {
 					opacity: .45;
@@ -35,6 +42,9 @@
 
 		.sidebar {
 			flex-shrink: 1;
+
+			&:not(.visible) {
+				display: none;
+			}
 		}
 	}
-}

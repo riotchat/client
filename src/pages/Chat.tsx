@@ -1,12 +1,13 @@
-import React, { createContext, useState, memo } from 'react';
+import React, { createContext, useState, memo, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
+import { SwipeableDrawer } from 'flatbase/dist';
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
 import Browser from './chat/sidebar/Browser';
 import { Profile } from './chat/sidebar/conversation/Profile';
-import Channel from './chat/Channel';
+import Channel from './chat/Channel';	
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -32,6 +33,9 @@ export const ChatContext = createContext<{
 const Chat = memo(() => {
 	let [ page, setPage ] = useState<Page>(Page.FRIENDS);
 	let [ channel, setChannel ] = useState<string>();
+	let [ drawer, setDrawer ] = useState(false);
+
+	useEffect(() => setDrawer(false), [page, channel]);
 
 	let states = {
 		page, setPage,
@@ -53,13 +57,14 @@ const Chat = memo(() => {
 			<meta name="theme-color" content="#333234"/>
 		</Helmet>
 			<div className={styles.chat}>
-				<div className={styles.sidebar}>
+				<SwipeableDrawer className={styles.sidebar} open={drawer}
+					onChange={setDrawer} closeOnOpacityClick={true}>
 					<Browser />
 					<div className={styles.conversation}>
 						{ page ? <HomeSidebar /> : <GuildSidebar /> }
 						<Profile />
 					</div>
-				</div>
+				</SwipeableDrawer>
 				<div className={styles.main}>
 					{ body }
 				</div>
