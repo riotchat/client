@@ -9,7 +9,7 @@ import { Message as RMessage } from 'riotchat.js/dist/internal/Message';
 import { scrollable, hiddenScrollbar } from '../../components/util/Scrollbar';
 import { Input } from '../../components/ui/elements/Input';
 import Header from './channel/Header';
-import Message from './channel/Message';
+import MessageList from './channel/MessageList';
 
 export const ChannelContext = createContext<RChannel | undefined>(undefined);
 
@@ -65,9 +65,10 @@ export default function Channel(props: { id: string }) {
 				<div className={styles.body}>
 					<div className={styles.chat}>
 						<div className={classNames(styles.messages, scrollable)}>
-							{ messages.map(m => <Message message={m} />) }
+							<MessageList messages={messages} />
 							<div style={{ float: 'left', clear: 'both' }}
-								ref={e => e && e.scrollIntoView()}></div>
+								ref={e => e && e.scrollIntoView()}>
+							</div>
 						</div>
 						<div className={styles.messageBox}>
 							<form onSubmit={sendMessage}>

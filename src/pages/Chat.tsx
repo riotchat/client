@@ -1,4 +1,4 @@
-import React, { createContext, useState, memo, useEffect } from 'react';
+import React, { createContext, useState, memo } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
@@ -23,11 +23,13 @@ export const ChatContext = createContext<{
 	page: Page,
 	setPage: (page: Page) => void,
 	channel?: string,
-	setChannel: (channel: string) => void
+	setChannel: (channel: string) => void,
+	setDrawer: (open: boolean) => void
 }>({
 	page: Page.HOME,
 	setPage: () => {},
-	setChannel: () => {}
+	setChannel: () => {},
+	setDrawer: () => {}
 });
 
 const Chat = memo(() => {
@@ -35,20 +37,22 @@ const Chat = memo(() => {
 	let [ channel, setChannel ] = useState<string>();
 	let [ drawer, setDrawer ] = useState(false);
 
-	useEffect(() => setDrawer(false), [page, channel]);
-
 	let states = {
 		page, setPage,
-		channel, setChannel
+		channel, setChannel,
+		setDrawer
 	} as any;
 
 	let body;
 	if (page & 0x7) {
 		// display a channel
 		body = <Channel id={channel as string} />;
-	} else {
-		// other things
-		body = <div>other things yes</div>;
+	} else if (page & Page.HOME) {
+		body = <div>home-y</div>;
+	} else if (page & Page.FEED) {
+		body = <div>feedy</div>;
+	} else if (page & Page.FRIENDS) {
+		body = <div>you have no friends lol</div>;
 	}
 
 	return (
@@ -57,12 +61,14 @@ const Chat = memo(() => {
 			<meta name="theme-color" content="#333234"/>
 		</Helmet>
 			<div className={styles.chat}>
-				<SwipeableDrawer className={styles.sidebar} open={drawer}
-					onChange={setDrawer} closeOnOpacityClick={true}>
-					<Browser />
-					<div className={styles.conversation}>
-						{ page ? <HomeSidebar /> : <GuildSidebar /> }
-						<Profile />
+				<SwipeableDrawer open={drawer} onChange={setDrawer}
+						closeOnOpacityClick={true} variant='permanent'>
+					<div className={styles.sidebar}>
+						<Browser />
+						<div className={styles.conversation}>
+							{ page ? <HomeSidebar /> : <GuildSidebar /> }
+							<Profile />
+						</div>
 					</div>
 				</SwipeableDrawer>
 				<div className={styles.main}>

@@ -1,13 +1,17 @@
 import React, { useContext, Fragment } from 'react';
 import styles from './Header.module.scss';
+import classNames from 'classnames';
 
 import { ChannelContext } from '../Channel';
 import { Channel } from 'riotchat.js';
 import { Icon, Icons } from '../../../components/ui/elements/Icon';
 import { DMChannel, GroupChannel } from 'riotchat.js/dist/internal/Channel';
+import { ChatContext } from '../../Chat';
 
 export default function Header() {
+	let chat = useContext(ChatContext);
 	let channel = useContext(ChannelContext) as Channel;
+
 	let title, icon: Icons, description;
 	if (channel instanceof DMChannel) {
 		title = channel.recipient.username;
@@ -24,10 +28,10 @@ export default function Header() {
 	return (
 		<div className={styles.header}>
 			<div className={styles.info}>
-				<div className={styles.hamburger}><Icon icon="menuRegular"/></div>
+				<div className={styles.hamburger} onClick={() => chat.setDrawer(true)}><Icon icon="menuRegular"/></div>
 				<Icon className={styles.channel} icon={icon} />
 				<div className={styles.title}>{title}</div>
-				{ channel instanceof DMChannel && <div className={styles.indicator}/> }
+				{ channel instanceof DMChannel && <div className={classNames(styles.indicator, styles[channel.recipient.status])}/> }
 				{ channel instanceof GroupChannel && <div className={styles.dropdown}><Icon icon="chevronDownRegular"/></div>  }
 				{ description && <Fragment>
 					<div className={styles.divider}/>

@@ -4,9 +4,7 @@
     height: 100vh;
     color: var(--body-text);
 
-	.header {
-		flex-shrink: 1;
-	}
+	.header { flex-shrink: 1; }
 
 	.body {
 		flex-grow: 1;
@@ -31,7 +29,7 @@
 
 
 				.pending {
-					opacity: .45;
+					opacity: .5;
 				}
 			}
 
