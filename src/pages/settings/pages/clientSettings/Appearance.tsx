@@ -37,20 +37,20 @@ export default function Appearance() {
                 <div className={main.section}>
                     <div className={main.category}>Accent Color</div>
 					<div className={styles.colorPicker}>
-                        <a href="#" className={styles.customColor} style={{background: hasCustomColor ? app.accent : "grey"}}>
+                        <span className={styles.customColor} style={{background: hasCustomColor ? app.accent : "grey"}}>
                             { hasCustomColor && (
                                 <Icon className={styles.check} icon="checkRegular"/>
                             )}
                             <Icon className={styles.edit} icon="brushSolid"/>
-                        </a>
+                        </span>
                         <div className={`${styles.colorGrid} ${styles.disabled}`} style={{ gridTemplateColumns: "29px ".repeat(Math.floor(colors.length / 2)) }}>
                             {colors.map((value) => {
                                 return (
-                                    <a href="#" key={`acc${value}`} className={styles.color} style={{ backgroundColor: value }} onClick={() => app.setAccent(value)}>
+                                    <span key={`acc${value}`} className={styles.color} style={{ backgroundColor: value }} onClick={() => app.setAccent(value)}>
                                         { app.accent === value && (
                                             <Icon className={styles.check} icon="checkRegular"/>
                                         )}
-                                    </a>
+                                    </span>
                                 )
                             })}
                         </div>

@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:sass": "stylelint src/**.* --config=.stylelintrc"
+    "lint:sass": "stylelint src/**.* --config=.stylelintrc --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

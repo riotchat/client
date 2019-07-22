@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import { ChatContext, Page } from '../Chat';
 import { Channel as RChannel, Collection } from 'riotchat.js';
 import { Instance } from '../../internal/Client';
-import { string } from 'prop-types';
 import { Message } from 'riotchat.js/dist/internal/Message';
-import { scrollable } from '../../components/util/Scrollbar';
+import { scrollable, hiddenScrollbar } from '../../components/util/Scrollbar';
 
 export default function Channel(props: { id: string }) {
 	let chat = useContext(ChatContext);
@@ -41,7 +40,7 @@ export default function Channel(props: { id: string }) {
 						box
 					</div>
 				</div>
-				<div className={classNames(sidebar, scrollable)}>
+				<div className={classNames(sidebar, hiddenScrollbar)}>
 					sidebar time
 				</div>
 			</div>

@@ -9,7 +9,7 @@ import { Icon } from '../components/ui/elements/Icon';
 import { AppContext, Page as AppPage } from '../App';
 import { RenderPage } from './settings/pages';
 import Modal from '../components/ui/components/Modal';
-import { Instance, LogoutClient } from '../internal/Client';
+import { LogoutClient } from '../internal/Client';
 
 export enum Page {
 	ACCOUNT,
