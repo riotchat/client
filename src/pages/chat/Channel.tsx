@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, FormEvent } from 'react';
 import styles from './Channel.module.scss';
 import classNames from 'classnames';
 
@@ -7,11 +7,36 @@ import { Channel as RChannel, Collection } from 'riotchat.js';
 import { Instance } from '../../internal/Client';
 import { Message } from 'riotchat.js/dist/internal/Message';
 import { scrollable, hiddenScrollbar } from '../../components/util/Scrollbar';
+import { Input } from '../../components/ui/elements/Input';
 
 export default function Channel(props: { id: string }) {
 	let chat = useContext(ChatContext);
 	let channel: RChannel = Instance.client.channels.get(chat.channel as string) as any;
+
 	let [ synced, setSynced ] = useState(false);
+	let [ message, setMessage ] = useState('');
+
+	const [, updateState] = React.useState();
+	const forceUpdate = React.useCallback(() => updateState({}), []);
+	useEffect(() => {
+		Instance.client.on('message', forceUpdate);
+		Instance.client.on('messageUpdate', forceUpdate);
+
+		return (() => {
+			Instance.client.removeListener('message', forceUpdate);
+			Instance.client.removeListener('messageUpdate', forceUpdate);
+		});
+	});
+
+	async function sendMessage(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		setMessage('');
+		await channel.send(message);
+	}
+
+	useEffect(() => {
+		setSynced(false);
+	}, [props.id]);
 
 	useEffect(() => {
 		if (!synced) {
@@ -35,9 +60,13 @@ export default function Channel(props: { id: string }) {
 				<div className={styles.chat}>
 					<div className={classNames(styles.messages, scrollable)}>
 						{ messages.map(m => <p>{m.author.username}: {m.content}</p>) }
+						<div style={{ float: 'left', clear: 'both' }}
+							ref={e => e && e.scrollIntoView()}></div>
 					</div>
 					<div className={styles.messageBox}>
-						box
+						<form onSubmit={sendMessage}>
+							<Input type='text' value={message} onChange={e => setMessage(e.target.value)} />
+						</form>
 					</div>
 				</div>
 				<div className={classNames(sidebar, hiddenScrollbar)}>
