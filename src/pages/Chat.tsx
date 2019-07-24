@@ -10,6 +10,7 @@ import { GuildSidebar } from './chat/sidebar/conversation/Guild';
 import Browser from './chat/sidebar/Browser';
 import { Profile } from './chat/sidebar/conversation/Profile';
 import Channel from './chat/Channel';	
+import { useVar } from '../components/util/CSS';
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -58,12 +59,13 @@ const Chat = memo(() => {
 	}
 
 	let is900 = useCheckWidth(900);
+	let [ color, processRef ] = useVar('primary');
 	return (
 		<ChatContext.Provider value={states}>
-		<Helmet>
-			<meta name="theme-color" content="#333234"/>
-		</Helmet>
-			<div className={styles.chat}>
+			<Helmet>
+				<meta name="theme-color" content={color || '#000000'}/>
+			</Helmet>
+			<div className={styles.chat} ref={ref => processRef(ref)}>
 				<SwipeableDrawer open={drawer} onChange={setDrawer}
 						closeOnOpacityClick={true} variant={is900 ? 'permanent' : 'temporary'}>
 					<div className={styles.sidebar}>

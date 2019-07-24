@@ -10,6 +10,7 @@ import { AppContext, Page as AppPage } from '../App';
 import { RenderPage } from './settings/pages';
 import Modal from '../components/ui/components/Modal';
 import { LogoutClient } from '../internal/Client';
+import { useVar } from '../components/util/CSS';
 
 export enum Page {
 	ACCOUNT,
@@ -102,12 +103,13 @@ export function Settings() {
 					'none' : undefined
 	};
 
+	let [ color, processRef ] = useVar('secondary');
 	return (
 		<SettingsContext.Provider value={states}>
 			<Helmet>
-				<meta name="theme-color" content="#212121"/> {/*Change content to the same color as theme*/}
+				<meta name="theme-color" content={color || '#000000'}/>
 			</Helmet>
-			<div className={styles.settings}>
+			<div className={styles.settings} ref={ref => processRef(ref)}>
 				<div className={styles.header}>
 					{ showContent ? <Icon className={styles.x} icon="leftArrowAltRegular" onClick={doClose} />
 					: <Icon className={styles.x} icon="xRegular" onClick={doClose} /> }

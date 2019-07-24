@@ -28,7 +28,7 @@
 			.username {
 				font-size: 1rem;
 				font-weight: 600;
-				padding-right: 6px;
+				padding-right: 4px;
 				cursor: pointer;
 				min-width: 0;
 				white-space: nowrap;
@@ -45,5 +45,33 @@
 				font-size: 0.75rem;
 			}
 		}
+	}
+}
+
+.separator {
+	display: flex;
+	align-items: center;
+	user-select: none;
+	&:first-child { display: none; }
+
+	.bar {
+		flex: 1 1 auto;
+		height: 1px;
+		background: gray;
+		margin: 0px 10px;
+		border-radius: 60px;
+
+		@media only screen and (max-width: 900px) { margin: 0 8px; }
+	}
+
+	.text {
+		font-size: .75rem;
+		flex: 0 0 auto;
+		color: gray;
+	}
+
+	&.new {
+		.bar { background: #DF3535; }
+		.text { color: #DF3535; }
 	}
 }

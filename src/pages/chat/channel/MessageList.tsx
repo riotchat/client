@@ -19,33 +19,38 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 	if (props.messages.length === 0)
 		return <Fragment />;
 
-	let index: RMessage[][][] = [[[]]];
+	let days: RMessage[][][] = [[[]]];
 
 	props.messages.forEach(msg => {
-		let day = index[index.length - 1];
-		let separator = day[day.length - 1];
-		let last = separator[separator.length - 1];
+		let day = days[days.length - 1];
+		let group = day[day.length - 1];
 
-		if (!last) {
-			separator.push(msg);
+		let lastMessage = group[group.length - 1];
+
+		if (!lastMessage) {
+			group.push(msg);
 		} else {
-			if (isDifferentDay(msg.createdAt, last.createdAt)) {
-				index.push([[ msg ]]);
-			} if (diffMinutes(msg.createdAt, last.createdAt) > 10
-				|| msg.author !== last.author) {
+			let a = msg.createdAt || new Date();
+			let b = lastMessage.createdAt || new Date();
+			if (isDifferentDay(a, b)) {
+				days.push([[ msg ]]);
+			} else if (diffMinutes(a, b) > 10
+				|| msg.author !== lastMessage.author) {
 				day.push([ msg ]);
 			} else {
-				separator.push(msg);
+				group.push(msg);
 			}
 		}
 	});
 
 	return <Fragment>
 		{
-			index.map(day => <Fragment>
+			days.map(day => <Fragment>
 				<div className={styles.separator}>
 					<div className={styles.bar}/>
-					<div className={styles.text}>{day[0][0].createdAt.getDate()}</div>
+					<div className={styles.text}>
+						<time>{moment(day[0][0].createdAt).format('ll')}</time>
+					</div>
 					<div className={styles.bar}/>
 				</div>
 				{ day.map(group =>
@@ -54,7 +59,7 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 							<div className={styles.content}>
 							<div className={styles.header}>
 								<span className={styles.username}>{group[0].author.username}</span>
-								<time>{ moment(group[0].createdAt).calendar() }</time>
+								<time> { moment(group[0].createdAt).calendar() }</time>
 							</div>
 							{ group.map(x => <div>{x.content}</div>) }
 						</div>

@@ -14,9 +14,10 @@ export const ChannelEntry = memo((props: ChannelProps) => {
     let iconURL, name, status, click;
 
     if (props.channel instanceof DMChannel) {
-        iconURL = props.channel.users[1].avatarURL; // ! FIX
-        name = props.channel.users[1].username;
-        status = props.channel.users[1].status;
+		let user = props.channel.recipient;
+        iconURL = user.avatarURL;
+        name = user.username;
+        status = user.status;
 
         click = () => {
             chat.setPage(Page.DM);
