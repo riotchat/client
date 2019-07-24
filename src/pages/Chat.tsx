@@ -3,6 +3,8 @@ import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
 import { SwipeableDrawer } from 'flatbase/dist';
+import { useCheckWidth } from 'flatbase/dist/util';
+
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
 import Browser from './chat/sidebar/Browser';
@@ -55,6 +57,7 @@ const Chat = memo(() => {
 		body = <div>you have no friends lol</div>;
 	}
 
+	let is900 = useCheckWidth(900);
 	return (
 		<ChatContext.Provider value={states}>
 		<Helmet>
@@ -62,7 +65,7 @@ const Chat = memo(() => {
 		</Helmet>
 			<div className={styles.chat}>
 				<SwipeableDrawer open={drawer} onChange={setDrawer}
-						closeOnOpacityClick={true} variant='permanent'>
+						closeOnOpacityClick={true} variant={is900 ? 'permanent' : 'temporary'}>
 					<div className={styles.sidebar}>
 						<Browser />
 						<div className={styles.conversation}>

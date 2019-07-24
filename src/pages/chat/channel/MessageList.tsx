@@ -56,7 +56,7 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 								<span className={styles.username}>{group[0].author.username}</span>
 								<time>{ moment(group[0].createdAt).calendar() }</time>
 							</div>
-							{ group.map(x => <div>x.content</div>) }
+							{ group.map(x => <div>{x.content}</div>) }
 						</div>
 					</div>
 				) }
