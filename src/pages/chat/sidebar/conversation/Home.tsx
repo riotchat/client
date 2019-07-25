@@ -1,4 +1,4 @@
-import React, { useState, Fragment, memo } from 'react';
+import React, { useState, Fragment, memo, useContext } from 'react';
 import styles from './Home.module.scss';
 import common from './common.module.scss';
 
@@ -8,8 +8,11 @@ import { scrollable } from '../../../../components/util/Scrollbar';
 import { Instance } from '../../../../internal/Client';
 import { DMChannel, GroupChannel, Channel } from 'riotchat.js/dist/internal/Channel';
 import { ChannelEntry } from './home/Channel';
+import { ChatContext, Page } from '../../../Chat';
 
 export const HomeSidebar = memo(() => {
+	let chat = useContext(ChatContext);
+
 	function Channels(props: { array: Channel[], collapse: boolean }) {
 		return (
 			<div className={styles.directMessages}>
@@ -50,9 +53,9 @@ export const HomeSidebar = memo(() => {
 	return (
 		<div className={classes}>
 			<div className={styles.tabs}>
-				<div className={styles.tab}><Icon icon="homeSolid"/>Feed</div>
-				<div className={styles.tab}><Icon icon="newsSolid"/>News</div>
-				<div className={styles.tab}><Icon icon="userDetailSolid"/>Friends</div>
+				<div onClick={e => chat.switch(Page.HOME)} className={styles.tab}><Icon icon="homeSolid"/>Home</div>
+				<div onClick={e => chat.switch(Page.FEED)} className={styles.tab}><Icon icon="newsSolid"/>Feed</div>
+				<div onClick={e => chat.switch(Page.FRIENDS)} className={styles.tab}><Icon icon="userDetailSolid"/>Friends</div>
 			</div>
 			<Section title="Direct Messages" icon="userPlusSolid" type={DMChannel} />
 			<Section title="Group Messages" icon="plusRegular" type={GroupChannel} />

@@ -27,12 +27,14 @@ export const ChatContext = createContext<{
 	setPage: (page: Page) => void,
 	channel?: string,
 	setChannel: (channel: string) => void,
-	setDrawer: (open: boolean) => void
+	setDrawer: (open: boolean) => void,
+	switch: (page: Page, channel?: string) => void
 }>({
 	page: Page.HOME,
 	setPage: () => {},
 	setChannel: () => {},
-	setDrawer: () => {}
+	setDrawer: () => {},
+	switch: () => {}
 });
 
 const Chat = memo(() => {
@@ -43,7 +45,12 @@ const Chat = memo(() => {
 	let states = {
 		page, setPage,
 		channel, setChannel,
-		setDrawer
+		setDrawer,
+		switch: (page: Page, channel?: string) => {
+			setPage(page);
+			setChannel(channel);
+			setDrawer(false);
+		}
 	} as any;
 
 	let body;

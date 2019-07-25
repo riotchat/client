@@ -19,18 +19,12 @@ export const ChannelEntry = memo((props: ChannelProps) => {
         name = user.username;
         status = user.status;
 
-        click = () => {
-            chat.setPage(Page.DM);
-            chat.setChannel(props.channel.id);
-        };
+        click = () => chat.switch(Page.DM, props.channel.id);
     } else {
         iconURL = 'GROUP ICON';
         name = props.channel.group.displayTitle;
 
-        click = () => {
-            chat.setPage(Page.GROUP);
-            chat.setChannel(props.channel.id);
-        };
+        click = () => chat.switch(Page.GROUP, props.channel.id);
     }
 
     return (
