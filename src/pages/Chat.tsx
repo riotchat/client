@@ -83,7 +83,6 @@ const Chat = memo(() => {
 				<MediaQuery maxWidth={901}>
 					<SwipeableDrawer open={drawer} onChange={setDrawer}
 							closeOnOpacityClick={true}>
-						nice
 						{sidebar}
 					</SwipeableDrawer>
 				</MediaQuery>
