@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
 import { SwipeableDrawer } from 'flatbase/dist';
-import { useCheckWidth } from 'flatbase/dist/util';
+import MediaQuery from 'react-responsive';
 
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
@@ -58,7 +58,14 @@ const Chat = memo(() => {
 		body = <div>you have no friends lol</div>;
 	}
 
-	let is900 = useCheckWidth(900);
+	let sidebar = <div className={styles.sidebar}>
+		<Browser />
+		<div className={styles.conversation}>
+			{ page ? <HomeSidebar /> : <GuildSidebar /> }
+			<Profile />
+		</div>
+	</div>;
+
 	let [ color, processRef ] = useVar('primary');
 	return (
 		<ChatContext.Provider value={states}>
@@ -66,16 +73,16 @@ const Chat = memo(() => {
 				<meta name="theme-color" content={color || '#000000'}/>
 			</Helmet>
 			<div className={styles.chat} ref={ref => processRef(ref)}>
-				<SwipeableDrawer open={drawer} onChange={setDrawer}
-						closeOnOpacityClick={true} variant={is900 ? 'permanent' : 'temporary'}>
-					<div className={styles.sidebar}>
-						<Browser />
-						<div className={styles.conversation}>
-							{ page ? <HomeSidebar /> : <GuildSidebar /> }
-							<Profile />
-						</div>
-					</div>
-				</SwipeableDrawer>
+				<MediaQuery maxWidth={901}>
+					<SwipeableDrawer open={drawer} onChange={setDrawer}
+							closeOnOpacityClick={true}>
+						nice
+						{sidebar}
+					</SwipeableDrawer>
+				</MediaQuery>
+				<MediaQuery minWidth={900}>
+					{sidebar}
+				</MediaQuery>
 				<div className={styles.main}>
 					{ body }
 				</div>

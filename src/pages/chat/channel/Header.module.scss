@@ -33,12 +33,7 @@
             @media only screen and (max-width: 900px) {font-size: 1rem;}
         }
     
-        .dropdown { 
-            margin: 0 4px; 
-            svg {
-                cursor: pointer;
-            }
-        }
+        .dropdown {margin: 0 4px; svg {cursor: pointer; }}
     
         .divider {
             width: 1px;
@@ -49,9 +44,7 @@
             background: var(--divider);
         }
     
-        .description {
-            font-size: 14px;
-        }
+        .description { font-size: .875rem; }
     
         .indicator {
             display: none;
@@ -75,10 +68,11 @@
         flex: 0 0 auto;
 
         .icon {
+            cursor: pointer;
             margin-left: 10px;
             &:first-child { margin-left: 0; }
         }
 
-        .feedback { margin-left: 20px; }
+        .feedback { cursor: pointer; margin-left: 20px; }
     }
 }
