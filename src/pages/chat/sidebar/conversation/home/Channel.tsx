@@ -28,7 +28,8 @@ export const ChannelEntry = memo((props: ChannelProps) => {
     }
 
     return (
-        <div className={styles.parent} onClick={click} key={props.channel.id}>
+		<div className={styles.parent} onClick={click} key={props.channel.id}
+				data-active={props.channel.id === chat.channel}>
             <div className={styles.avatar}
                 aria-label={name}
                 style={{ backgroundImage: `url("${iconURL}")` }}>

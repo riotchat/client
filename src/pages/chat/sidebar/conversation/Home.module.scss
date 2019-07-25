@@ -13,7 +13,7 @@
 
         &:hover {background: var(--button-hover);}
         &:active {background: var(--button-active);}
-        &.active {
+        &[data-active=true] {
             cursor: default;
             transition: none;
             background: var(--button-active);

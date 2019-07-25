@@ -8,6 +8,7 @@
 	cursor: pointer;
 	align-items: center;
 	opacity: .99;
+	
 	&:hover {
 		background-color: var(--button-hover);
 		.avatar .indicator { border: 2px solid var(--button-hover) !important; }
@@ -18,7 +19,7 @@
 		.avatar .indicator { border: 2px solid var(--button-active) !important; }
 	}
 
-	&.active {
+	&[data-active=true] {
 		cursor: default;
 		transition: none;
 		background-color: var(--button-hover) !important;

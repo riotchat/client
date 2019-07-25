@@ -53,9 +53,9 @@ export const HomeSidebar = memo(() => {
 	return (
 		<div className={classes}>
 			<div className={styles.tabs}>
-				<div onClick={e => chat.switch(Page.HOME)} className={styles.tab}><Icon icon="homeSolid"/>Home</div>
-				<div onClick={e => chat.switch(Page.FEED)} className={styles.tab}><Icon icon="newsSolid"/>Feed</div>
-				<div onClick={e => chat.switch(Page.FRIENDS)} className={styles.tab}><Icon icon="userDetailSolid"/>Friends</div>
+				<div data-active={chat.page === Page.HOME} onClick={e => chat.switch(Page.HOME)} className={styles.tab}><Icon icon="homeSolid"/>Home</div>
+				<div data-active={chat.page === Page.FEED} onClick={e => chat.switch(Page.FEED)} className={styles.tab}><Icon icon="newsSolid"/>Feed</div>
+				<div data-active={chat.page === Page.FRIENDS} onClick={e => chat.switch(Page.FRIENDS)} className={styles.tab}><Icon icon="userDetailSolid"/>Friends</div>
 			</div>
 			<Section title="Direct Messages" icon="userPlusSolid" type={DMChannel} />
 			<Section title="Group Messages" icon="plusRegular" type={GroupChannel} />

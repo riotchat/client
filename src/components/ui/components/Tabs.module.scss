@@ -1,15 +1,22 @@
 .tabs {
-	width: 100%;
 	display: flex;
+	color: white;
+	height: 58px;
+	align-items: center;
+	justify-content: center;
 }
 
 .tab {
-	flex: 1;
-	background: blue;
-	margin: 1em;
-	padding: 0.4em;
+	cursor: pointer;
+	display: flex;
+	height: 58px;
+	min-width: 80px;
+	font-size: 14px;
+	align-items: center;
+	justify-content: center;
 
 	&[data-active=true] {
-		background: green;
+		cursor: default;
+		border-bottom: 1px solid mediumslateblue;
 	}
 }

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react';
-//import styles from './Friends.module.scss';
+import styles from './Friends.module.scss';
 
 import { Instance } from '../../internal/Client';
 import SwipeableViews from 'react-swipeable-views';
@@ -34,11 +34,11 @@ export default function Friends() {
 	return (
 		<Fragment>
 			<Tabs index={index} setIndex={setIndex}>
-				<Fragment>ONLINE</Fragment>
-				<Fragment>ALL</Fragment>
-				<Fragment>REQUESTS</Fragment>
+				<Fragment>Online</Fragment>
+				<Fragment>All</Fragment>
+				<Fragment>Requests</Fragment>
 			</Tabs>
-			<SwipeableViews index={index} onChangeIndex={setIndex}>
+			<SwipeableViews index={index} onChangeIndex={setIndex} className={styles.container}>
 				{ renderList(u => u.relation === 'active' && u.status !== 'offline', switchTo) }
 				{ renderList(u => u.relation === 'active', switchTo) }
 				<Fragment>
@@ -46,7 +46,8 @@ export default function Friends() {
 						<Fragment>PENDING</Fragment>
 						<Fragment>INCOMING</Fragment>
 					</Tabs>
-					<SwipeableViews index={requestIndex} onChangeIndex={setRequestIndex}>
+					<SwipeableViews index={requestIndex} onChangeIndex={setRequestIndex}
+							className={styles.container}>
 						{ renderList(u => u.relation === 'pending', switchTo) }
 						{ renderList(u => u.relation === 'incoming', switchTo) }
 					</SwipeableViews>
