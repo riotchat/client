@@ -1,0 +1,15 @@
+.tabs {
+	width: 100%;
+	display: flex;
+}
+
+.tab {
+	flex: 1;
+	background: blue;
+	margin: 1em;
+	padding: 0.4em;
+
+	&[data-active=true] {
+		background: green;
+	}
+}

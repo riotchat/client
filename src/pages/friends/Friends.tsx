@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import styles from './Friends.module.scss';
+//import styles from './Friends.module.scss';
 
 import { Instance } from '../../internal/Client';
 import SwipeableViews from 'react-swipeable-views';
 import { User } from 'riotchat.js';
+import Tabs from '../../components/ui/components/Tabs';
 
 function renderList(condition: (user: User) => boolean) {
 	return <Fragment> { 
@@ -17,18 +18,28 @@ function renderList(condition: (user: User) => boolean) {
 
 export default function Friends() {
 	let [ index, setIndex ] = useState(0);
+	let [ requestIndex, setRequestIndex ] = useState(0);
 
 	return (
 		<Fragment>
-			<div className={styles.tabs}>
-				<span onClick={() => setIndex(0)} data-active={index === 0}>ONLINE</span>
-				<span onClick={() => setIndex(1)} data-active={index === 1}>ALL</span>
-				<span onClick={() => setIndex(2)} data-active={index === 2}>PENDING</span>
-			</div>
+			<Tabs index={index} setIndex={setIndex}>
+				<Fragment>ONLINE</Fragment>
+				<Fragment>ALL</Fragment>
+				<Fragment>REQUESTS</Fragment>
+			</Tabs>
 			<SwipeableViews index={index} onChangeIndex={setIndex}>
 				{ renderList(u => u.relation === 'active' && u.status !== 'offline') }
 				{ renderList(u => u.relation === 'active') }
-				{ renderList(u => u.relation === 'pending' || u.relation === 'incoming') }
+				<Fragment>
+					<Tabs index={requestIndex} setIndex={setRequestIndex}>
+						<Fragment>PENDING</Fragment>
+						<Fragment>INCOMING</Fragment>
+					</Tabs>
+					<SwipeableViews index={requestIndex} onChangeIndex={setRequestIndex}>
+						{ renderList(u => u.relation === 'pending') }
+						{ renderList(u => u.relation === 'incoming') }
+					</SwipeableViews>
+				</Fragment>
 			</SwipeableViews>
 		</Fragment>
 	);
