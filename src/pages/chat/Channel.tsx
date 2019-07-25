@@ -84,7 +84,7 @@ export default function Channel(props: { id: string }) {
 								.array()
 								.map(x =>
 									<div>
-										<img src={x.avatarURL} width="64" height="64" />
+										<img alt={x.username} src={x.avatarURL} width="64" height="64" />
 										{x.username}
 									</div>
 								)
