@@ -56,7 +56,6 @@ const Chat = memo(() => {
 
 	let body;
 	if (page & 0x7) {
-		// display a channel
 		body = <Channel id={channel as string} />;
 	} else if (page & Page.HOME) {
 		body = <div>home-y</div>;
@@ -91,7 +90,7 @@ const Chat = memo(() => {
 					{sidebar}
 				</MediaQuery>
 				<div className={styles.main}>
-					{ body }
+					{body}
 				</div>
 			</div>
 		</ChatContext.Provider>

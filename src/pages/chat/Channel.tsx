@@ -10,6 +10,7 @@ import { scrollable, hiddenScrollbar } from '../../components/util/Scrollbar';
 import { Input } from '../../components/ui/elements/Input';
 import Header from './channel/Header';
 import MessageList from './channel/MessageList';
+import { GroupChannel } from 'riotchat.js/dist/internal/Channel';
 
 export const ChannelContext = createContext<RChannel | undefined>(undefined);
 
@@ -77,7 +78,17 @@ export default function Channel(props: { id: string }) {
 						</div>
 					</div>
 					<div className={sidebar}>
-						sidebar time
+						{
+							channel instanceof GroupChannel
+							&& channel.group.members
+								.array()
+								.map(x =>
+									<div>
+										<img src={x.avatarURL} width="64" height="64" />
+										{x.username}
+									</div>
+								)
+						}
 					</div>
 				</div>
 			</div>
