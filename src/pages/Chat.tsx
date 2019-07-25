@@ -48,8 +48,8 @@ const Chat = memo(() => {
 		channel, setChannel,
 		setDrawer,
 		switch: (page: Page, channel?: string) => {
-			setPage(page);
 			setChannel(channel);
+			setPage(page);
 			setDrawer(false);
 		}
 	} as any;
