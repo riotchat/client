@@ -11,6 +11,7 @@ import Browser from './chat/sidebar/Browser';
 import { Profile } from './chat/sidebar/conversation/Profile';
 import Channel from './chat/Channel';	
 import { useVar } from '../components/util/CSS';
+import Friends from './friends/Friends';
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -62,7 +63,7 @@ const Chat = memo(() => {
 	} else if (page & Page.FEED) {
 		body = <div>feedy</div>;
 	} else if (page & Page.FRIENDS) {
-		body = <div>you have no friends lol</div>;
+		body = <Friends />;
 	}
 
 	let sidebar = <div className={styles.sidebar}>
