@@ -7,6 +7,7 @@
 }
 
 .tab {
+	position: relative;
 	cursor: pointer;
 	display: flex;
 	height: 58px;
@@ -36,7 +37,6 @@
 	
 	&[data-active=true] {
 		cursor: default;
-		//border-bottom: 1px solid mediumslateblue;
 		.bar { width: 100%; }
 	}
 }

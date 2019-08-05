@@ -40,7 +40,7 @@ export const SettingsSidebar = memo(() => {
 				if (typeof props.for === 'undefined') return;
 				settings.setShown(true);
 				settings.setTab(props.for);
-			}}>
+			}} data-active={settings.tab === props.for}>
 				<Icon icon={props.icon} />
 				{props.custom ? props.children : name}
 				{props.beta && <Label type='beta' />}

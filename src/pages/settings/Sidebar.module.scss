@@ -72,7 +72,7 @@
             }
 
             @media screen and (min-width: 901px) {
-                &.active {
+                &[data-active=true] {
                     cursor: default;
                     transition: none;
                     background: var(--button-hover) !important;
@@ -155,8 +155,8 @@
 }
 
 .pro {
-	&, &:hover, &:active, &.active { background-color: transparent; }
-	&:hover, &:active, &.active {color: white;}
+	&, &:hover, &:active, &[data-active=true] { background-color: transparent; }
+	&:hover, &:active, &[data-active=true] {color: white;}
 	span {
 		position: relative;
 		transition: color .3s;
@@ -174,7 +174,7 @@
 		border-radius: 4px;
 		z-index: 0;
 	}
-	&:hover .bg, &.active .bg { opacity: 1; }
+	&:hover .bg, &[data-active=true] .bg { opacity: 1; }
 	&:active .bg { opacity: 0.7; }
 }
 
