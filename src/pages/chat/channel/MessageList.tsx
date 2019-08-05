@@ -1,8 +1,10 @@
-import React, { Fragment, memo } from 'react';
+import React, { Fragment, memo, useState } from 'react';
 import styles from './MessageList.module.scss';
 import moment from 'moment';
 
 import { Message as RMessage } from 'riotchat.js/dist/internal/Message';
+import useContextMenu from '../../../components/ui/components/ContextMenu';
+import MenuItem from '../../../components/ui/components/contextMenu/MenuItem';
 
 function isDifferentDay(a: Date, b: Date) {
 	return a.getDate() !== b.getDate();
@@ -43,6 +45,28 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 		}
 	});
 
+	const share = (navigator as any).share;
+	let [ selectedMessage, setMessage ] = useState<RMessage>();
+	let [ contextMenu, showMenu ] = useContextMenu([
+		<MenuItem hideOnDesktop type='header' className={styles.contextHeader}>
+			<div className={styles.avatar} style={{ backgroundImage: `url('${selectedMessage && selectedMessage.author.avatarURL}')`}}/>
+			<div className={styles.context}>
+				<div className={styles.username}>{ selectedMessage && selectedMessage.author.username }</div>
+				<div className={styles.cMessage}>{ selectedMessage && selectedMessage.content }</div>
+			</div>
+		</MenuItem>,
+		<MenuItem icon='cardSolid'>Copy Text</MenuItem>,
+		<MenuItem hideOnDesktop icon='cardSolid' onClick={() => share && selectedMessage && share({ text: selectedMessage.content })}>Share</MenuItem>,
+		<MenuItem icon='cardSolid'>henlo</MenuItem>,
+		<MenuItem icon='cardSolid'>henlo</MenuItem>
+	]);
+
+	function onContextMenu(e: React.MouseEvent<HTMLDivElement, MouseEvent>, x: RMessage) {
+		e.preventDefault();
+		setMessage(x);
+		showMenu(e.pageX, e.pageY);
+	}
+
 	return <Fragment>
 		{
 			days.map(day => <Fragment>
@@ -61,12 +85,14 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 								<span className={styles.username}>{group[0].author.username}</span>
 								<time> { moment(group[0].createdAt).calendar() }</time>
 							</div>
-							{ group.map(x => <div>{x.content}</div>) }
+							{ group.map(x => <div className={styles.line}
+												onContextMenu={e => onContextMenu(e, x)}>{x.content}</div>) }
 						</div>
 					</div>
 				) }
 			</Fragment>)
 		}
+		{ contextMenu }
 	</Fragment>;
 });
 

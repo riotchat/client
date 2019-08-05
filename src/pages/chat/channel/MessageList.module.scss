@@ -2,6 +2,7 @@
 	display: flex;
 	margin: 25px 0;
 	overflow: hidden;
+	user-select: none;
 
 	.avatar {
 		flex: 0 0 auto;
@@ -53,6 +54,16 @@
 				font-size: 0.75rem;
 			}
 		}
+
+		.line {
+			padding: 0 2px;
+			@media only screen and (max-width: 900px) {
+				&:active {
+					transition: background-color .2s; 
+					border-radius: 2px; 
+					background-color: var(--secondary);}
+			}
+		}
 	}
 }
 
@@ -81,5 +92,43 @@
 	&.new {
 		.bar { background: #DF3535; }
 		.text { color: #DF3535; }
+	}
+}
+
+.contextHeader {
+	padding: 12px 15px;
+
+	.avatar {
+		height: 50px;
+		width: 50px;
+		display: flex;
+		flex-shrink: 0;
+		border-radius: 50%;
+		margin-right: 20px;
+		background: var(--tertiary);
+		background-size: cover;
+		background-position: center;
+	}
+
+	.context {
+		flex-direction: column;
+		overflow: hidden;
+		
+		.username {
+			display: flex;
+			font-size: 1.125rem;
+			font-weight: 600;
+		}
+	
+		.cMessage {
+			min-width: 0;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			margin: 0;
+			font-size: 1rem;
+			color: var(--body-text);
+		}
+
 	}
 }
