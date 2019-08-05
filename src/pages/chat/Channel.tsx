@@ -37,6 +37,7 @@ export default function Channel(props: { id: string }) {
 	});
 
 	async function sendMessage(message: string) {
+		forceUpdate();
 		await channel.send(message);
 	}
 

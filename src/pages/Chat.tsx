@@ -39,14 +39,24 @@ export const ChatContext = createContext<{
 	switch: () => {}
 });
 
+const updateStrings = [
+	"It's time to get epicer.",
+	"Update in one click yes",
+	"This is very epic."
+];
+
 const Chat = memo(() => {
 	let [ page, setPage ] = useState<Page>(Page.HOME);
 	let [ channel, setChannel ] = useState<string>();
 	let [ drawer, setDrawer ] = useState(false);
 	let [ updateAvailable, setUpdate ] = useState(false);
+	let [ updateString, setUpdateString ] = useState<string>();
 
 	UpdateEmitter.removeAllListeners();
-	UpdateEmitter.once('update', () => setUpdate(true));
+	UpdateEmitter.once('update', () => {
+		setUpdate(true);
+		setUpdateString(updateStrings[Math.floor(Math.random() * updateStrings.length)]);
+	});
 
 	let states = {
 		page, setPage,
@@ -107,7 +117,7 @@ const Chat = memo(() => {
 				</MediaQuery>
 				<div className={styles.main}>
 					{ updateAvailable && <Notification isElement={true} type='update' centerText={true}>
-						An update is available, restart RIOT to get the latest client.
+						{updateString}
 						<button onClick={() => window.location.reload()}>Update</button>
 					</Notification> }
 					{body}
