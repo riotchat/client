@@ -49,16 +49,16 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 	function share() {
 		if (typeof navigator.share === 'undefined' ||
 			typeof selectedMessage === 'undefined')
-			return alert('oooofed');
+			return;
 		
+		hideMenu();
 		navigator.share({
-			title: selectedMessage.author.username,
-			text: selectedMessage.content
-		}).then(x => console.log('shared'))
-		.catch(e => alert(e));
+			title: `Message from ${selectedMessage.author.username}`,
+			text: `[${moment(selectedMessage.updatedAt).format('HH:mm')} ${selectedMessage.author.username}: ${selectedMessage.content}`
+		});
 	}
 
-	let [ contextMenu, showMenu ] = useContextMenu([
+	let [ contextMenu, showMenu, hideMenu ] = useContextMenu([
 		<MenuItem hideOnDesktop type='header' className={styles.contextHeader}>
 			<div className={styles.avatar} style={{ backgroundImage: `url('${selectedMessage && selectedMessage.author.avatarURL}')`}}/>
 			<div className={styles.context}>
