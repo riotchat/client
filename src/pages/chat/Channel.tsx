@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, FormEvent, createContext } from 'react';
+import React, { useContext, useState, useEffect, createContext } from 'react';
 import styles from './Channel.module.scss';
 import classNames from 'classnames';
 import MediaQuery from 'react-responsive';
@@ -11,7 +11,7 @@ import { Message as RMessage } from 'riotchat.js/dist/internal/Message';
 import { scrollable, hiddenScrollbar } from '../../components/util/Scrollbar';
 import Header from './channel/Header';
 import MessageList from './channel/MessageList';
-import { GroupChannel } from 'riotchat.js/dist/internal/Channel';
+import { GroupChannel, DMChannel } from 'riotchat.js/dist/internal/Channel';
 import { SidebarEntry } from './sidebar/global/Entry';
 import MessageBox from '../../components/ui/elements/MessageBox';
 
@@ -22,7 +22,6 @@ export default function Channel(props: { id: string }) {
 	let channel: RChannel = Instance.client.channels.get(chat.channel as string) as any;
 
 	let [ synced, setSynced ] = useState(false);
-	let [ message, setMessage ] = useState('');
 	let [ drawer, setDrawer ] = React.useState(false);
 
 	const [, updateState] = React.useState();
@@ -37,9 +36,7 @@ export default function Channel(props: { id: string }) {
 		});
 	});
 
-	async function sendMessage(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
-		setMessage('');
+	async function sendMessage(message: string) {
 		await channel.send(message);
 	}
 
@@ -76,9 +73,11 @@ export default function Channel(props: { id: string }) {
 							</div>
 						</div>
 						<div className={styles.messageBox}>
-							<form onSubmit={sendMessage}>
-								<MessageBox value={message} onChange={setMessage} />
-							</form>
+							<MessageBox send={sendMessage}
+								placeholder={'Message ' +
+									( channel instanceof DMChannel ? '@' + channel.recipient.username : 
+									  channel instanceof GroupChannel ? channel.group.displayTitle :
+									  'guild' )} />
 						</div>
 					</div>
 					{ !!((Page.GROUP | Page.GUILD) & chat.page) && <MediaQuery maxWidth={900}>

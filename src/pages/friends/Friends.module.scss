@@ -1,3 +1,8 @@
 .container {
 	height: 100%;
+
+	@media only screen and (min-width: 901px) {
+			transform: none;
+			transition: none;
+	}
 }
