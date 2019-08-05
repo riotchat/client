@@ -7,12 +7,13 @@
     padding: 12px 20px;
     box-sizing: border-box;
     min-height: 50px;
-    background: var(--red);
     color: white;
     font-size: .8125rem;
 
-    &.notice {justify-content: center; background: var(--default-accent-color);}
-    &.error {background: var(--red);}
+	&.inherit { position: inherit; }
+	&.centered { position: relative; text-align: center; }
+	&.error { background: var(--red); }
+	&.update { background: var(--green); }
 
     .title {
         font-weight: bold;
@@ -38,5 +39,13 @@
     .dismiss {
         margin: 0 10px;
         cursor: pointer;
+    }
+
+    .button {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        border-radius: 4px;
+        margin-left: 10px;
     }
 }

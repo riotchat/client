@@ -131,8 +131,10 @@ export default function Login() {
 				<meta name="theme-color" content="#7B68EE"/>
 			</Helmet>
 			{ error.error === APIError.CONNECTION_FAILED &&
-				<Notification title='Failed to login'
-					text={error.reason} />
+				<Notification type='error'
+					title='Failed to login'>
+						{error.reason}
+					</Notification>
 			}
 			<div className={styles.overlay} />
 			<div className={styles.login}>

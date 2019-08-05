@@ -11,6 +11,8 @@ import Channel from './chat/Channel';
 import { useVar } from '../components/util/CSS';
 import Friends from './friends/Friends';
 import MediaQuery from 'react-responsive';
+import Notification from '../components/ui/components/Notification';
+import { UpdateEmitter } from '..';
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -41,6 +43,10 @@ const Chat = memo(() => {
 	let [ page, setPage ] = useState<Page>(Page.HOME);
 	let [ channel, setChannel ] = useState<string>();
 	let [ drawer, setDrawer ] = useState(false);
+	let [ updateAvailable, setUpdate ] = useState(false);
+
+	UpdateEmitter.removeAllListeners();
+	UpdateEmitter.once('update', () => setUpdate(true));
 
 	let states = {
 		page, setPage,
@@ -100,6 +106,10 @@ const Chat = memo(() => {
 						</SwipeableDrawer>}
 				</MediaQuery>
 				<div className={styles.main}>
+					{ updateAvailable && <Notification isElement={true} type='update' centerText={true}>
+						An update is available, restart RIOT to get the latest client.
+						<button onClick={() => window.location.reload()}>Update</button>
+					</Notification> }
 					{body}
 				</div>
 			</div>

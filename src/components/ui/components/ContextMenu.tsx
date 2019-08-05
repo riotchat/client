@@ -68,7 +68,7 @@ export default function useContextMenu(children: ReactNode[] | ReactNode): [ JSX
 	let [ position, setPosition ] = useState([0, 0]);
 
 	function show(x?: number, y?: number) {
-		navigator.vibrate(25);
+		navigator.vibrate(100);
 		setVisible(true);
 		if (x && y) {
 			setPosition([x, y]);
