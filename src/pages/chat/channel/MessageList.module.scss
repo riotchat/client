@@ -21,6 +21,14 @@
 		flex-direction: column;
 		font-size: 0.875rem;
 		color: var(--body-text);
+
+		&, * {
+			min-width: 0;
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+			word-break: break-word;
+			overflow: hidden;
+		}
 		
 		.header {
 			margin-bottom: 2px;

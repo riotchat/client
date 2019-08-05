@@ -2,9 +2,7 @@ import React, { createContext, useState, memo } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
-import { SwipeableDrawer } from 'flatbase';
-import MediaQuery from 'react-responsive';
-
+import { SwipeableDrawer } from '@material-ui/core';
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
 import Browser from './chat/sidebar/Browser';
@@ -12,6 +10,7 @@ import { Profile } from './chat/sidebar/conversation/Profile';
 import Channel from './chat/Channel';	
 import { useVar } from '../components/util/CSS';
 import Friends from './friends/Friends';
+import MediaQuery from 'react-responsive';
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -80,13 +79,25 @@ const Chat = memo(() => {
 				<meta name="theme-color" content={color || '#000000'} />
 			</Helmet>
 			<div className={styles.chat} ref={ref => processRef(ref)}>
-				<MediaQuery maxWidth={900}>
+				<MediaQuery minWidth={900}>
 					{ (matches) =>
-						<SwipeableDrawer open={drawer} onChange={setDrawer}
-								closeOnOpacityClick={true} variant={matches ? "temporary" : "permanent"}>
+						<SwipeableDrawer
+							variant={matches ? 'permanent' : 'temporary'}
+							anchor={'left'}
+							open={drawer}
+							swipeAreaWidth={30}
+							disableSwipeToOpen={
+								(typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !((navigator as any).standalone))
+							}
+							onOpen={() => setDrawer(true)}
+							onClose={() => setDrawer(false)}
+							classes={{
+								docked: styles.docked,
+								paper: styles.drawer
+							}}
+						>
 							{sidebar}
-						</SwipeableDrawer>
-					}
+						</SwipeableDrawer>}
 				</MediaQuery>
 				<div className={styles.main}>
 					{body}

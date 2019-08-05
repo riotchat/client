@@ -3,22 +3,40 @@
 	display: flex;
 	height: 100%;
 	width: 100%;
-
-	.sidebar {
-		display: flex;
-
-		.conversation {
-			display: flex;
-			flex-direction: column;
-			width: 240px;
-			color: var(--main-text);
-			background: var(--secondary);
-			border-radius: 10px 0 0 10px;
-		}
-	}
 	
 	.main {
 		flex-grow: 1;
 		background: var(--primary);
+	}
+}
+
+.sidebar {
+	display: flex;
+	height: 100vh;
+	background-color: var(--primary);
+
+	.conversation {
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		width: 240px;
+		color: var(--main-text);
+		background: var(--secondary);
+		border-radius: 10px 0 0 10px;
+	}
+}
+
+.docked > div {
+	position: inherit;
+}
+
+.drawer {
+	overflow-y: unset !important;
+	border: none !important;
+}
+
+.dockedMainSidebar {
+	@media only screen and (min-width: 901px) {
+		width: 320px;
 	}
 }
