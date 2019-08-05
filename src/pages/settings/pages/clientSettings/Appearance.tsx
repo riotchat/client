@@ -22,13 +22,15 @@ export default function Appearance() {
                         <div className={styles.themePicker}>
                             <div className={styles.theme}>
                                 <div className={styles.light} onClick={() => app.setTheme('light')}>
-                                    <img alt="Light Mode" src={lightTheme} draggable={false}/>
+                                    <img alt="Light Mode" src={lightTheme} draggable={false}
+										data-active={app.theme === 'light'} />
                                 </div>
                                 <span className={styles.type}>Light</span>
                             </div>
                             <div className={styles.theme}>
-                                <div className={styles.dark} onClick={() => app.setTheme('dark')}>
-                                    <img alt="Dark Mode" src={darkTheme} draggable={false}/>
+								<div className={styles.dark} onClick={() => app.setTheme('dark')}>
+                                    <img alt="Dark Mode" src={darkTheme} draggable={false}
+										data-active={app.theme === 'dark'} />
                                 </div>
                                 <span className={styles.type}>Dark</span>
                             </div>

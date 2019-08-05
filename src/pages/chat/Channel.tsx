@@ -9,11 +9,11 @@ import { Channel as RChannel, Collection } from 'riotchat.js';
 import { Instance } from '../../internal/Client';
 import { Message as RMessage } from 'riotchat.js/dist/internal/Message';
 import { scrollable, hiddenScrollbar } from '../../components/util/Scrollbar';
-import { Input } from '../../components/ui/elements/Input';
 import Header from './channel/Header';
 import MessageList from './channel/MessageList';
 import { GroupChannel } from 'riotchat.js/dist/internal/Channel';
 import { SidebarEntry } from './sidebar/global/Entry';
+import MessageBox from '../../components/ui/elements/MessageBox';
 
 export const ChannelContext = createContext<RChannel | undefined>(undefined);
 
@@ -77,7 +77,7 @@ export default function Channel(props: { id: string }) {
 						</div>
 						<div className={styles.messageBox}>
 							<form onSubmit={sendMessage}>
-								<Input type='text' value={message} onChange={e => setMessage(e.target.value)} />
+								<MessageBox value={message} onChange={setMessage} />
 							</form>
 						</div>
 					</div>
@@ -93,7 +93,8 @@ export default function Channel(props: { id: string }) {
 										&& channel.group.members
 											.array()
 											.map(x =>
-												<SidebarEntry for={x} />
+												<SidebarEntry for={x}
+													onClick={() => alert(`You selected ${x.username}`)} />
 											)
 									}
 								</div>

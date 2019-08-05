@@ -1,5 +1,5 @@
 import React, { useContext, memo } from 'react';
-import styles from './Channel.module.scss';
+import styles from './Entry.module.scss';
 
 import { Icon } from "../../../../components/ui/elements/Icon";
 import { DMChannel, GroupChannel } from 'riotchat.js/dist/internal/Channel';
@@ -7,7 +7,8 @@ import { ChatContext, Page } from '../../../Chat';
 import { User } from 'riotchat.js';
 
 interface EntryProps {
-    for: DMChannel | GroupChannel | User
+	for: DMChannel | GroupChannel | User,
+	onClick?: () => void
 }
 
 export const SidebarEntry = memo((props: EntryProps) => {
@@ -36,7 +37,7 @@ export const SidebarEntry = memo((props: EntryProps) => {
     }
 
     return (
-		<div className={styles.parent} onClick={click} key={props.for.id}
+		<div className={styles.parent} onClick={props.onClick || click} key={props.for.id}
 				data-active={props.for.id === chat.channel}>
             <div className={styles.avatar}
                 aria-label={name}
@@ -49,7 +50,6 @@ export const SidebarEntry = memo((props: EntryProps) => {
                 <div className={styles.usernameInline}>
                     <span>{name}</span>
                     <span className={styles.mobile}><Icon icon="mobileRegular"/></span>
-                    {/*this.props.mobile && <div className={styles.mobile}><Icon icon="mobile"/></div>*/}
                 </div>
                 {
                     status && <div className={styles.status}>{status}</div>

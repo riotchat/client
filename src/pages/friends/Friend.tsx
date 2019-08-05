@@ -20,59 +20,59 @@ export default function Friend(props: FriendProps) {
 
 	return (
 		<div className={styles.friend} onClick={props.onClick}>
-				<div className={styles.name}>
-					<div className={styles.avatar} style={{backgroundImage: `url(${user.avatarURL})`}}>
-						<span className={styles.indicatorMobile} />
+			<div className={styles.name}>
+				<div className={styles.avatar} style={{backgroundImage: `url(${user.avatarURL})`}}>
+					<span className={styles.indicatorMobile} />
+				</div>
+				<div className={styles.flexColumn}>
+					<div style={{ display: "flex", alignItems: "center"}}>
+						<span className={styles.username}>
+							{user.username}
+							<Icon className={styles.mobileIndicator} icon="mobileRegular"/>
+						</span>
 					</div>
-					<div className={styles.flexColumn}>
-						<div style={{ display: "flex", alignItems: "center"}}>
-							<span className={styles.username}>
-								{user.username}
-								<Icon className={styles.mobileIndicator} icon="mobileRegular"/>
-							</span>
-						</div>
-						<span className={styles.statusText}>{user.status}</span>
-					</div>
-					{ user.relation === 'active' && (
-						<div className={styles.status}>
-							<span className={classNames(styles.indicator, styles[user.status])} />
-							<span className={styles.statusText}>{user.status}</span>
-						</div>
-					)}
+					<span className={styles.statusText}>{user.status}</span>
 				</div>
 				{ user.relation === 'active' && (
-					<div className={`${styles.buttons} ${styles.desktopOnly}`}>
-						<div className={styles.call}>
-							<Icon icon="phoneCallSolid" />
-						</div>
-						<div className={styles.videochat}>
-							<Icon icon="videoSolid" />
-						</div>
-						<div className={styles.remove} onClick={onRemove}>
-							<Icon icon="userMinusSolid" />
-						</div>
-					</div>
-				)}
-				{ user.relation === 'active' ? (
-					<div className={styles.mobileStatus}>
+					<div className={styles.status}>
 						<span className={classNames(styles.indicator, styles[user.status])} />
-					</div>
-				) : (
-					<div className={styles.buttons}>
-						{ user.relation === 'incoming' ? ([
-							<div className={styles.accept} onClick={onAccept}>
-								<Icon icon="userPlusSolid" />
-							</div>,
-							<div className={styles.decline} onClick={onDecline}>
-								<Icon icon="userXSolid" />
-							</div>
-						]) : (
-							<div className={styles.cancel} onClick={onCancel}>
-								<Icon icon="xRegular"/>
-							</div>
-						)}
+						<span className={styles.statusText}>{user.status}</span>
 					</div>
 				)}
 			</div>
+			{ user.relation === 'active' && (
+				<div className={`${styles.buttons} ${styles.desktopOnly}`}>
+					<div className={styles.call}>
+						<Icon icon="phoneCallSolid" />
+					</div>
+					<div className={styles.videochat}>
+						<Icon icon="videoSolid" />
+					</div>
+					<div className={styles.remove} onClick={onRemove}>
+						<Icon icon="userMinusSolid" />
+					</div>
+				</div>
+			)}
+			{ user.relation === 'active' ? (
+				<div className={styles.mobileStatus}>
+					<span className={classNames(styles.indicator, styles[user.status])} />
+				</div>
+			) : (
+				<div className={styles.buttons}>
+					{ user.relation === 'incoming' ? ([
+						<div className={styles.accept} onClick={onAccept}>
+							<Icon icon="userPlusSolid" />
+						</div>,
+						<div className={styles.decline} onClick={onDecline}>
+							<Icon icon="userXSolid" />
+						</div>
+					]) : (
+						<div className={styles.cancel} onClick={onCancel}>
+							<Icon icon="xRegular"/>
+						</div>
+					)}
+				</div>
+			)}
+		</div>
 	);
 }

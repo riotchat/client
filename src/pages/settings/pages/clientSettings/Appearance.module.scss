@@ -35,11 +35,11 @@
 				//pointer-events: none;
 
 			    &:hover,
-			    &.active {
+			    &[data-active=true] {
 				    border: 2px solid var(--accent-color, mediumslatepurple);
 			    }
 
-			    &.active {
+			    &[data-active=true] {
 				    cursor: default;
 			    }
 		}
