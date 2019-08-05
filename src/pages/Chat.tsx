@@ -2,7 +2,7 @@ import React, { createContext, useState, memo } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Chat.module.scss';
 
-import { SwipeableDrawer } from 'flatbase/dist';
+import { SwipeableDrawer } from 'flatbase';
 import MediaQuery from 'react-responsive';
 
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
@@ -39,7 +39,7 @@ export const ChatContext = createContext<{
 });
 
 const Chat = memo(() => {
-	let [ page, setPage ] = useState<Page>(Page.FRIENDS);
+	let [ page, setPage ] = useState<Page>(Page.HOME);
 	let [ channel, setChannel ] = useState<string>();
 	let [ drawer, setDrawer ] = useState(false);
 
@@ -77,17 +77,16 @@ const Chat = memo(() => {
 	return (
 		<ChatContext.Provider value={states}>
 			<Helmet>
-				<meta name="theme-color" content={color || '#000000'}/>
+				<meta name="theme-color" content={color || '#000000'} />
 			</Helmet>
 			<div className={styles.chat} ref={ref => processRef(ref)}>
-				<MediaQuery maxWidth={901}>
-					<SwipeableDrawer open={drawer} onChange={setDrawer}
-							closeOnOpacityClick={true}>
-						{sidebar}
-					</SwipeableDrawer>
-				</MediaQuery>
-				<MediaQuery minWidth={900}>
-					{sidebar}
+				<MediaQuery maxWidth={900}>
+					{ (matches) =>
+						<SwipeableDrawer open={drawer} onChange={setDrawer}
+								closeOnOpacityClick={true} variant={matches ? "temporary" : "permanent"}>
+							{sidebar}
+						</SwipeableDrawer>
+					}
 				</MediaQuery>
 				<div className={styles.main}>
 					{body}

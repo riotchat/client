@@ -15,8 +15,28 @@
 	align-items: center;
 	justify-content: center;
 
+	.bar {
+		position: absolute;
+		bottom: 0px;
+		left: 50%; //after disabling animations, this property must be removed
+		transform: translate(-50%, 0%);
+		height: 2px;
+		background-color: var(--accent-color, #7B68EE);
+		width: 0%;
+		transition: width .3s;
+		border-radius: 60px;
+		pointer-events: none;
+
+		&.incoming {
+			background-color: red;
+			width: 0%;
+		}
+	
+	}
+	
 	&[data-active=true] {
 		cursor: default;
-		border-bottom: 1px solid mediumslateblue;
+		//border-bottom: 1px solid mediumslateblue;
+		.bar { width: 100%; }
 	}
 }

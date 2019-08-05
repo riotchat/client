@@ -40,6 +40,7 @@
 
 		.sidebar {
 			flex-shrink: 1;
+			width: 200px;
 
 			&:not(.visible) {
 				display: none;

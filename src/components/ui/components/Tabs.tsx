@@ -16,7 +16,8 @@ export default function Tabs(props: TabProps) {
 						<div className={styles.tab}
 							onClick={() => props.setIndex(i)}
 							data-active={props.index === i}>
-							{ child }	
+							{ child }
+							{ props.index === i && <div className={styles.bar}/> }
 						</div>
 					)
 			}

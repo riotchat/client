@@ -1,0 +1,212 @@
+.friend {
+	display: flex;
+	border-radius: 6px;
+	height: 64px;
+	align-items: center;
+	justify-content: space-between;
+	transition: opacity .3s, background-color .3s;
+	color: var(--body-text);
+	background-color: var(--primary);
+
+	&.clickable {
+		cursor: pointer;
+	}
+
+
+	&.hidden {
+		display: none;
+	}
+
+	> .name {
+		display: flex;
+		align-items: center;
+
+		.flexColumn {
+			display: flex;
+			flex-direction: column;
+		
+			.username {
+				display: flex;
+				align-items: center;
+				min-width: 0;
+				font-weight: 600;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: var(--main-text);
+				
+				@media only screen and (min-width: 901px) {
+					width: calc(40vw - 300px);
+				}
+			}
+		
+			.statusText {
+				display: none;
+
+				@media only screen and (max-width: 900px) {
+					color: #aaaaaa;
+					display: flex;
+					font-size: .75rem;
+				}
+			}
+		
+			.mobileIndicator {
+				fill: grey;
+				margin-left: 4px;
+				height: 20px;
+				width: 20px;
+			}
+		}
+
+		> .avatar {
+			position: relative;
+			$size: 40px;
+			height: $size;
+			width: $size;
+			margin-right: 15px;
+			border-radius: 50%;
+			background-color: grey;
+			background-size: cover;
+			background-position: center;
+			flex: 0 0 auto;
+
+			.indicatorMobile {
+				position: absolute;
+				height: 14px;
+				width: 14px;
+				right: -3px;
+				bottom: -3px;
+				border-radius: 50%;
+				background-color: grey;
+				transition: background-color .2s;
+				border: 2px solid var(--secondary);
+			
+				@media only screen and (min-width: 901px) {
+					display: none;
+				}
+				
+				&.online { background-color: var(--green); }
+				&.streaming { background-color: var(--streaming); }
+				&.away { background-color: var(--yellow); }
+				&.busy { background-color: var(--red); }
+
+				&.colorblind {
+					&.streaming { background-image: var(--streaming); }
+					&.away { background-image: var(--yellow); }
+					&.busy { background-image: var(--red); }
+				}
+			}
+		}
+	}
+
+	&:hover > .buttons.desktopOnly { opacity: 1; }
+	> .buttons {
+		display: flex;
+		&.desktopOnly {
+			opacity: 0;
+			transition: opacity .3s;
+			@media only screen and (max-width: 900px) {
+				display: none;
+			}
+		}
+
+		/*@mixin button($main-color) {
+			height: 50px;
+			width: 50px;
+			border-radius: 4px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: background-color .3s;
+			background-color: var(--home);
+			
+			&:hover { background-color: lighten($main-color, 5%); }
+			&:active { background-color: darken($main-color, 5%); }
+
+			> span {
+				width: 25px;
+				height: 25px;
+			}
+		}*/
+
+		.accept {
+			//@include button($accept);
+			margin-right: 10px;
+		}
+
+		.decline {
+			//@include button($red);
+			margin-left: 10px;
+		}
+
+		.cancel {
+			//@include button(gray);
+		}
+
+		//$button-call: var(--secondary);
+		.call {
+			//@include button($button-call);
+			margin-right: 10px;
+		}
+
+		.videochat {
+			//@include button($button-call);
+			margin: 0 10px;
+		}
+
+		.remove {
+			//@include button($red);
+			margin-left: 10px;
+		}
+	}
+}
+
+.status, .mobileStatus {
+	> .indicator {
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background-color: gray;
+		flex: 0 0 auto;
+
+		&.online { background-color: var(--green); }
+		&.streaming { background-color: var(--streaming); }
+		&.away { background-color: var(--yellow); }
+		&.busy { background-color: var(--red); }
+
+		@media only screen and (max-width: 900px) {
+			display: none;
+		}
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.status { display: none; }
+	.mobileStatus { display: block; }
+}
+
+@media only screen and (min-width: 901px) {
+	.status {
+		font-size: .9375rem;
+		display: flex;
+		align-items: center;
+		color: #aaaaaa;
+		> .indicator { margin-right: 8px; }
+	}
+	.mobileStatus { display: none; }
+}
+
+.mobile {
+	@media only screen and (min-width: 901px) {
+		display: none;
+	}
+}
+
+.icon {
+	fill: #aaaaaa;
+	height: 18px;
+	width: 18px;
+	margin-left: 3px;
+}

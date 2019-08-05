@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect, FormEvent, createContext } from 'react';
 import styles from './Channel.module.scss';
 import classNames from 'classnames';
+import MediaQuery from 'react-responsive';
+import { SwipeableDrawer } from 'flatbase';
 
 import { ChatContext, Page } from '../Chat';
 import { Channel as RChannel, Collection } from 'riotchat.js';
@@ -11,6 +13,7 @@ import { Input } from '../../components/ui/elements/Input';
 import Header from './channel/Header';
 import MessageList from './channel/MessageList';
 import { GroupChannel } from 'riotchat.js/dist/internal/Channel';
+import { SidebarEntry } from './sidebar/global/Entry';
 
 export const ChannelContext = createContext<RChannel | undefined>(undefined);
 
@@ -20,6 +23,7 @@ export default function Channel(props: { id: string }) {
 
 	let [ synced, setSynced ] = useState(false);
 	let [ message, setMessage ] = useState('');
+	let [ drawer, setDrawer ] = React.useState(false);
 
 	const [, updateState] = React.useState();
 	const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -77,19 +81,25 @@ export default function Channel(props: { id: string }) {
 							</form>
 						</div>
 					</div>
-					<div className={sidebar}>
-						{
-							channel instanceof GroupChannel
-							&& channel.group.members
-								.array()
-								.map(x =>
-									<div>
-										<img alt={x.username} src={x.avatarURL} width="64" height="64" />
-										{x.username}
-									</div>
-								)
-						}
-					</div>
+					{ !!((Page.GROUP | Page.GUILD) & chat.page) && <MediaQuery maxWidth={900}>
+						{ (matches) => (
+							<SwipeableDrawer open={drawer} onChange={setDrawer} position="right"
+								closeOnOpacityClick={true} variant={matches ? "temporary" : "permanent"}
+								style={{ backgroundColor: "var(--primary)" }}
+							>
+								<div className={sidebar}>
+									{
+										channel instanceof GroupChannel
+										&& channel.group.members
+											.array()
+											.map(x =>
+												<SidebarEntry for={x} />
+											)
+									}
+								</div>
+							</SwipeableDrawer>
+						)}
+					</MediaQuery> }
 				</div>
 			</div>
 		</ChannelContext.Provider>

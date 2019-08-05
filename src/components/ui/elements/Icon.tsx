@@ -23,6 +23,12 @@ import { ReactComponent as megaphoneSolid } from 'boxicons/svg/solid/bxs-megapho
 import { ReactComponent as chatSolid } from 'boxicons/svg/solid/bxs-chat.svg';
 import { ReactComponent as groupSolid } from 'boxicons/svg/solid/bxs-group.svg';
 import { ReactComponent as bellSolid } from 'boxicons/svg/solid/bxs-bell.svg';
+import { ReactComponent as userXSolid } from 'boxicons/svg/solid/bxs-user-x.svg';
+import { ReactComponent as videoSolid } from 'boxicons/svg/solid/bxs-video.svg';
+import { ReactComponent as userMinusSolid } from 'boxicons/svg/solid/bxs-user-minus.svg';
+import { ReactComponent as phoneCallSolid } from 'boxicons/svg/solid/bxs-phone-call.svg';
+
+
 
 
 /* === REGULAR ICONS === */
@@ -47,7 +53,7 @@ export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'us
 					| 'bodyRegular' | 'slideshowSolid' | 'globeRegular' | 'wrenchSolid' | 'infoCircleSolid'
 					| 'fileRegular' | 'helpCircleSolid' | 'megaphoneSolid' | 'logoutRegular' | 'leftArrowAltRegular'
 					| 'xRegular' | 'checkRegular' | 'atRegular' | 'chatSolid' | 'groupSolid' | 'menuRegular'
-					| 'bellSolid';
+					| 'bellSolid' | 'userXSolid' | 'videoSolid' | 'userMinusSolid' | 'phoneCallSolid';
 const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, homeSolid, newsSolid, 
 														userDetailSolid, userPlusSolid, mobileRegular,
 														chevronDownRegular, shieldSolid, idCardSolid,
@@ -57,7 +63,8 @@ const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, h
 														fileRegular, helpCircleSolid, megaphoneSolid,
 														logoutRegular, leftArrowAltRegular, xRegular,
 														checkRegular, atRegular, chatSolid, groupSolid,
-														menuRegular, bellSolid };
+														menuRegular, bellSolid, userXSolid, videoSolid,
+														phoneCallSolid, userMinusSolid };
 interface IconProps extends Omit<SVGProps<SVGElement>, 'className'> {
 	icon: Icons,
 	color?: string,

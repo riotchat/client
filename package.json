@@ -14,7 +14,7 @@
     "@types/react-swipeable-views": "^0.13.0",
     "boxicons": "^2.0.2",
     "classnames": "^2.2.6",
-    "flatbase": "^0.1.2",
+    "flatbase": "0.1.4",
     "moment": "^2.24.0",
     "nanoid": "^2.0.3",
     "node-sass": "^4.12.0",

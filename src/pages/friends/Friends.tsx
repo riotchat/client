@@ -6,6 +6,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { User } from 'riotchat.js';
 import Tabs from '../../components/ui/components/Tabs';
 import { ChatContext, Page } from '../Chat';
+import Friend from './Friend';
 
 function renderList(condition: (user: User) => boolean, switchTo: (user: User) => void) {
 	return <Fragment> { 
@@ -13,7 +14,8 @@ function renderList(condition: (user: User) => boolean, switchTo: (user: User) =
 			.array()
 			.filter(condition)
 			.map(u =>
-				<div onClick={async () => switchTo(u)}>{u.username} ({u.status})</div>)
+				<Friend user={u}
+					onClick={() => switchTo(u)} />)
 	} </Fragment>;
 }
 
@@ -42,10 +44,11 @@ export default function Friends() {
 				{ renderList(u => u.relation === 'active' && u.status !== 'offline', switchTo) }
 				{ renderList(u => u.relation === 'active', switchTo) }
 				<Fragment>
-					<Tabs index={requestIndex} setIndex={setRequestIndex}>
+					{/*<Tabs index={requestIndex} setIndex={setRequestIndex}>
 						<Fragment>PENDING</Fragment>
 						<Fragment>INCOMING</Fragment>
-					</Tabs>
+					</Tabs>*/}
+					
 					<SwipeableViews index={requestIndex} onChangeIndex={setRequestIndex}
 							className={styles.container}>
 						{ renderList(u => u.relation === 'pending', switchTo) }

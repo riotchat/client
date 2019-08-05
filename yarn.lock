@@ -4485,10 +4485,10 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flatbase@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/flatbase/-/flatbase-0.1.2.tgz#ee54921498c721887934a0adbd42bc46f7d65009"
-  integrity sha512-JyamlDg+g42oy/j2DsrPKgN84OZNn2XYCe+yzJy0Q6iwEkfAvHAmt4x4Cc/njyoL1O+0Z9HlvFQHI0/XfVxAmw==
+flatbase@0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/flatbase/-/flatbase-0.1.4.tgz#5a4d681454998c896323353fac1d37008e3bd0ec"
+  integrity sha512-kpcxDjLPn0rDd+2jCmYiJm24RsTOTKU9vLRm+r6enwPo1at2NIRZ97r9fmq4wTDUpdZ/Of9GU0ATAdzOMURq5g==
   dependencies:
     aphrodite "^2.3.1"
     react-input-autosize "^2.2.1"

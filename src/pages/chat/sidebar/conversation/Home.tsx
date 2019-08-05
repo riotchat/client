@@ -7,7 +7,7 @@ import { Icon, Icons } from "../../../../components/ui/elements/Icon";
 import { scrollable } from '../../../../components/util/Scrollbar';
 import { Instance } from '../../../../internal/Client';
 import { DMChannel, GroupChannel, Channel } from 'riotchat.js/dist/internal/Channel';
-import { ChannelEntry } from './home/Channel';
+import { SidebarEntry } from '../global/Entry';
 import { ChatContext, Page } from '../../../Chat';
 
 export const HomeSidebar = memo(() => {
@@ -18,7 +18,7 @@ export const HomeSidebar = memo(() => {
 			<div className={styles.directMessages}>
 				{ props.array
 					.slice(0, props.collapse ? 5 : props.array.length)
-					.map((x: any) => <ChannelEntry channel={x} />) }
+					.map((x: any) => <SidebarEntry for={x} />) }
 			</div>
 		);
 	}
