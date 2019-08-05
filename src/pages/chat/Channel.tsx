@@ -84,9 +84,14 @@ export default function Channel(props: { id: string }) {
 						{ (matches) => (
 							<SwipeableDrawer open={drawer} onChange={setDrawer} position="right"
 								closeOnOpacityClick={true} variant={matches ? "temporary" : "permanent"}
-								style={{ backgroundColor: "var(--primary)" }}
+								style={{ backgroundColor: "var(--secondary)" }}
 							>
 								<div className={sidebar}>
+									<div className={styles.header}>
+										<div className={styles.channelTitle}>Group Title I guess</div>
+										<div className={styles.channelDesc}>Hello this is a description that is very berry long</div>
+									</div>
+									<div className={styles.members}>
 									{
 										channel instanceof GroupChannel
 										&& channel.group.members
@@ -96,6 +101,7 @@ export default function Channel(props: { id: string }) {
 													onClick={() => alert(`You selected ${x.username}`)} />
 											)
 									}
+									</div>
 								</div>
 							</SwipeableDrawer>
 						)}

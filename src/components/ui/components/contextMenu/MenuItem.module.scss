@@ -3,8 +3,7 @@
 	display: flex;
     align-items: center;
     flex-shrink: 0;
-	border-radius: 4px;
-	overflow-y: hidden;
+    overflow-y: hidden;
 
 	&[data-type=item] {
         height: 20px;
@@ -12,17 +11,30 @@
         &:active {
             background-color: var(--button-active);
         }
+        &:hover {
+            background-color: var(--button-hover);
+        }
 	}
 
-	@media only screen and (max-width: 900px) {
+	@media only screen and (min-width: 769px) {
+        padding: 5px;
+        font-size: 14px;
+	}
+
+	@media only screen and (max-width: 768px) {
         &[data-type=item] {
             height: 60px;
-		    padding: 0 20px;
+            padding: 0 20px;
+            font-size: 1rem;
         }
 	}
 
 	.icon {
-		fill: var(--icon);
-		margin-right: 10px;
+        fill: var(--icon);
+        height: 20px;
+        width: 20px;
+        margin-right: 8px;
+        
+        @media only screen and (max-width: 900px) { height: 28px; width: 28px; margin-right: 12px; }
 	}
 }

@@ -2,7 +2,10 @@
 	display: flex;
 	margin: 25px 0;
 	overflow: hidden;
-	user-select: none;
+
+	@media only screen and (max-width: 768px) {
+		user-select: none;
+	}
 
 	.avatar {
 		flex: 0 0 auto;
@@ -117,7 +120,7 @@
 		.username {
 			display: flex;
 			font-size: 1.125rem;
-			font-weight: 600;
+			font-weight: 700;
 		}
 	
 		.cMessage {
@@ -126,7 +129,7 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			margin: 0;
-			font-size: 1rem;
+			font-size: 14px;
 			color: var(--body-text);
 		}
 

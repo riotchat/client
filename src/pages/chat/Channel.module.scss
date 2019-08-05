@@ -34,13 +34,43 @@
 			}
 
 			.messageBox {
-				flex-shrink: 1;
+				flex-shrink: 0;
 			}
 		}
 
 		.sidebar {
-			flex-shrink: 1;
-			width: 200px;
+			//flex-shrink: 1;
+			//padding: 0 10px;
+			background: var(--secondary);
+			width: 240px;
+
+			@media only screen and (max-width: 900px) {width: 280px;}
+
+			.header {
+				padding: 15px 10px 10px;
+				background: var(--primary);
+
+				@media only screen and (min-width: 901px) {display: none;}
+
+				.channelTitle {
+					font-size: 14px;
+					margin-bottom: 2px;
+					font-weight: 600;
+				}
+	
+				.channelDesc {
+					color: var(--main-text);
+					font-size: 12px;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+	
+			}
+
+			.members {
+				padding: 10px;
+				flex-grow: 1;
+			}
 
 			&:not(.visible) {
 				display: none;

@@ -45,8 +45,19 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 		}
 	});
 
-	const share = (navigator as any).share;
 	let [ selectedMessage, setMessage ] = useState<RMessage>();
+	function share() {
+		if (typeof navigator.share === 'undefined' ||
+			typeof selectedMessage === 'undefined')
+			return alert('oooofed');
+		
+		navigator.share({
+			title: selectedMessage.author.username,
+			text: selectedMessage.content
+		}).then(x => console.log('shared'))
+		.catch(e => alert(e));
+	}
+
 	let [ contextMenu, showMenu ] = useContextMenu([
 		<MenuItem hideOnDesktop type='header' className={styles.contextHeader}>
 			<div className={styles.avatar} style={{ backgroundImage: `url('${selectedMessage && selectedMessage.author.avatarURL}')`}}/>
@@ -55,10 +66,11 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 				<div className={styles.cMessage}>{ selectedMessage && selectedMessage.content }</div>
 			</div>
 		</MenuItem>,
-		<MenuItem icon='cardSolid'>Copy Text</MenuItem>,
-		<MenuItem hideOnDesktop icon='cardSolid' onClick={() => share && selectedMessage && share({ text: selectedMessage.content })}>Share</MenuItem>,
-		<MenuItem icon='cardSolid'>henlo</MenuItem>,
-		<MenuItem icon='cardSolid'>henlo</MenuItem>
+		<MenuItem icon='copyAltRegular'>Copy Text</MenuItem>,
+		<MenuItem icon='smileyHappySolid'>Add Reaction</MenuItem>,
+		<MenuItem icon='pencilSolid'>Edit</MenuItem>,
+		<MenuItem icon='pinSolid'>Pin Message</MenuItem>,
+		<MenuItem hideOnDesktop icon='shareAltSolid' onClick={share}>Share</MenuItem>
 	]);
 
 	function onContextMenu(e: React.MouseEvent<HTMLDivElement, MouseEvent>, x: RMessage) {

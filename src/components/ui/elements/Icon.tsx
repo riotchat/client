@@ -27,8 +27,10 @@ import { ReactComponent as userXSolid } from 'boxicons/svg/solid/bxs-user-x.svg'
 import { ReactComponent as videoSolid } from 'boxicons/svg/solid/bxs-video.svg';
 import { ReactComponent as userMinusSolid } from 'boxicons/svg/solid/bxs-user-minus.svg';
 import { ReactComponent as phoneCallSolid } from 'boxicons/svg/solid/bxs-phone-call.svg';
-
-
+import { ReactComponent as shareAltSolid } from 'boxicons/svg/solid/bxs-share-alt.svg';
+import { ReactComponent as smileyHappySolid } from 'boxicons/svg/solid/bxs-smiley-happy.svg';
+import { ReactComponent as pencilSolid } from 'boxicons/svg/solid/bxs-pencil.svg';
+import { ReactComponent as pinSolid } from 'boxicons/svg/solid/bxs-pin.svg';
 
 
 /* === REGULAR ICONS === */
@@ -44,6 +46,8 @@ import { ReactComponent as xRegular } from 'boxicons/svg/regular/bx-x.svg';
 import { ReactComponent as checkRegular } from 'boxicons/svg/regular/bx-check.svg';
 import { ReactComponent as atRegular } from 'boxicons/svg/regular/bx-at.svg';
 import { ReactComponent as menuRegular } from 'boxicons/svg/regular/bx-menu.svg';
+import { ReactComponent as copyAltRegular } from 'boxicons/svg/regular/bx-copy-alt.svg';
+
 import { ClassValue } from 'classnames/types';
 
 
@@ -53,7 +57,8 @@ export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'us
 					| 'bodyRegular' | 'slideshowSolid' | 'globeRegular' | 'wrenchSolid' | 'infoCircleSolid'
 					| 'fileRegular' | 'helpCircleSolid' | 'megaphoneSolid' | 'logoutRegular' | 'leftArrowAltRegular'
 					| 'xRegular' | 'checkRegular' | 'atRegular' | 'chatSolid' | 'groupSolid' | 'menuRegular'
-					| 'bellSolid' | 'userXSolid' | 'videoSolid' | 'userMinusSolid' | 'phoneCallSolid';
+					| 'bellSolid' | 'userXSolid' | 'videoSolid' | 'userMinusSolid' | 'phoneCallSolid'
+					| 'copyAltRegular' | 'shareAltSolid' | 'smileyHappySolid' | 'pencilSolid' | 'pinSolid';
 const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, homeSolid, newsSolid, 
 														userDetailSolid, userPlusSolid, mobileRegular,
 														chevronDownRegular, shieldSolid, idCardSolid,
@@ -64,7 +69,9 @@ const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, h
 														logoutRegular, leftArrowAltRegular, xRegular,
 														checkRegular, atRegular, chatSolid, groupSolid,
 														menuRegular, bellSolid, userXSolid, videoSolid,
-														phoneCallSolid, userMinusSolid };
+														phoneCallSolid, userMinusSolid, copyAltRegular,
+														shareAltSolid, smileyHappySolid, pencilSolid,
+														pinSolid };
 interface IconProps extends Omit<SVGProps<SVGElement>, 'className'> {
 	icon: Icons,
 	color?: string,
