@@ -12,6 +12,7 @@ import Alert from '../components/ui/components/Alert';
 import { LogoutClient } from '../internal/Client';
 import { useVar } from '../components/util/CSS';
 import { useAnimator, Animation } from '../scss/animations';
+import MobileHeader from '../components/ui/components/MobileHeader';
 
 export enum Page {
 	ACCOUNT,
@@ -114,12 +115,14 @@ export function Settings() {
 				<meta name="theme-color" content={color || '#000000'}/>
 			</Helmet>
 			<div className={styles.settings} ref={ref => processRef(ref)} style={animation.styles}>
-				<div className={styles.header}>
-					{ showContent ? <Icon className={styles.x} icon="leftArrowAltRegular" onClick={doClose} />
-					: <Icon className={styles.x} icon="xRegular" onClick={doClose} /> }
-					<span className={styles.title}>{showContent ? PageTitles[tab] : 'Settings'}</span>
-					<Icon icon="logoutRegular" onClick={() => setLogoutModal(true)}/>
-				</div>
+				<MobileHeader
+						icon={showContent ? 'leftArrowAltRegular' : 'xRegular'}
+						onClose={doClose}
+						secondaryIcon={['logoutRegular']}
+						onAction={[() => setLogoutModal(true)]}
+					>
+					{ showContent ? PageTitles[tab] : 'Settings' }
+				</MobileHeader>
 				<div className={styles.main}>
 					<SettingsSidebar />
 					<div className={content}>

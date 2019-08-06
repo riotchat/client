@@ -3,16 +3,20 @@ import styles from './Modal.module.scss';
 
 import { useAnimator, Animation } from "../../../scss/animations";
 import Helmet from "react-helmet";
+import { useMediaQuery } from "@material-ui/core";
 
 export interface ModalProps {
 	dismiss?: () => void
 	allowClose?: boolean
 	closeCB?: (cb: () => void) => void
+	canActAsPage?: boolean
 	children: ReactNode[] | ReactNode
 };
 
 export default function Modal(props: ModalProps) {
-	let [ fadeAnimation, playFade ] = useAnimator(Animation.FADE_IN, 250);
+	let isDesktop = useMediaQuery('(min-width: 900px)');
+	
+	let [ fadeAnimation, playFade ] = useAnimator(isDesktop || !props.canActAsPage ? Animation.FADE_IN : Animation.PAGE_IN, 250);
 	let [ scaleAnimation, playScale ] = useAnimator(Animation.SCALE_IN, 250);
 
 	function handleClose(e?: React.MouseEvent) {
@@ -20,7 +24,7 @@ export default function Modal(props: ModalProps) {
 		if (!props.allowClose) return;
 
 		playScale(Animation.SCALE_OUT, 250);
-		playFade(Animation.FADE_OUT, 250)
+		playFade(isDesktop || !props.canActAsPage ? Animation.FADE_OUT : Animation.PAGE_OUT, 250)
 			.then(() => props.dismiss && props.dismiss());
 	}
 
@@ -31,7 +35,7 @@ export default function Modal(props: ModalProps) {
 			<Helmet>
 				<meta name="theme-color" content='#1D1D1E'/>
 			</Helmet>
-			<div style={scaleAnimation.styles}>
+			<div style={isDesktop || !props.canActAsPage ? scaleAnimation.styles : undefined}>
 				{ props.children }
 			</div>
 		</div>

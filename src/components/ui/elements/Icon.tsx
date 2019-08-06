@@ -1,4 +1,4 @@
-import { FunctionComponent, createElement, CSSProperties, SVGProps } from 'react';
+import React, { createElement, CSSProperties, SVGProps } from 'react';
 import styles from './Icon.module.scss';
 import classNames from 'classnames';
 import { remove } from 'flatbase/dist/util/props';
@@ -32,7 +32,6 @@ import { ReactComponent as smileyHappySolid } from 'boxicons/svg/solid/bxs-smile
 import { ReactComponent as pencilSolid } from 'boxicons/svg/solid/bxs-pencil.svg';
 import { ReactComponent as pinSolid } from 'boxicons/svg/solid/bxs-pin.svg';
 
-
 /* === REGULAR ICONS === */
 import { ReactComponent as plusRegular } from 'boxicons/svg/regular/bx-plus.svg';
 import { ReactComponent as mobileRegular } from 'boxicons/svg/regular/bx-mobile.svg';
@@ -50,8 +49,7 @@ import { ReactComponent as copyAltRegular } from 'boxicons/svg/regular/bx-copy-a
 
 import { ClassValue } from 'classnames/types';
 
-
-export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'userDetailSolid'
+export type Icons = 'padding' | 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'userDetailSolid'
 					| 'userPlusSolid' | 'mobileRegular' | 'chevronDownRegular' | 'shieldSolid'
 					| 'idCardSolid' | 'extensionSolid' | 'microphoneSolid' | 'cardSolid' | 'brushSolid'
 					| 'bodyRegular' | 'slideshowSolid' | 'globeRegular' | 'wrenchSolid' | 'infoCircleSolid'
@@ -59,19 +57,19 @@ export type Icons = 'cogSolid' | 'plusRegular' | 'homeSolid' | 'newsSolid' | 'us
 					| 'xRegular' | 'checkRegular' | 'atRegular' | 'chatSolid' | 'groupSolid' | 'menuRegular'
 					| 'bellSolid' | 'userXSolid' | 'videoSolid' | 'userMinusSolid' | 'phoneCallSolid'
 					| 'copyAltRegular' | 'shareAltSolid' | 'smileyHappySolid' | 'pencilSolid' | 'pinSolid';
-const INDEX: { [key in Icons]: FunctionComponent } = {  cogSolid, plusRegular, homeSolid, newsSolid, 
-														userDetailSolid, userPlusSolid, mobileRegular,
-														chevronDownRegular, shieldSolid, idCardSolid,
-														extensionSolid, microphoneSolid, cardSolid,
-														brushSolid, bodyRegular, slideshowSolid,
-														globeRegular, wrenchSolid, infoCircleSolid,
-														fileRegular, helpCircleSolid, megaphoneSolid,
-														logoutRegular, leftArrowAltRegular, xRegular,
-														checkRegular, atRegular, chatSolid, groupSolid,
-														menuRegular, bellSolid, userXSolid, videoSolid,
-														phoneCallSolid, userMinusSolid, copyAltRegular,
-														shareAltSolid, smileyHappySolid, pencilSolid,
-														pinSolid };
+const INDEX= {  cogSolid, plusRegular, homeSolid, newsSolid, 
+				userDetailSolid, userPlusSolid, mobileRegular,
+				chevronDownRegular, shieldSolid, idCardSolid,
+				extensionSolid, microphoneSolid, cardSolid,
+				brushSolid, bodyRegular, slideshowSolid,
+				globeRegular, wrenchSolid, infoCircleSolid,
+				fileRegular, helpCircleSolid, megaphoneSolid,
+				logoutRegular, leftArrowAltRegular, xRegular,
+				checkRegular, atRegular, chatSolid, groupSolid,
+				menuRegular, bellSolid, userXSolid, videoSolid,
+				phoneCallSolid, userMinusSolid, copyAltRegular,
+				shareAltSolid, smileyHappySolid, pencilSolid,
+				pinSolid };
 interface IconProps extends Omit<SVGProps<SVGElement>, 'className'> {
 	icon: Icons,
 	color?: string,
@@ -82,7 +80,11 @@ export function Icon(props: IconProps) {
 	const style: CSSProperties = {
 		fill: props.color
 	};
-	
-	return createElement(INDEX[props.icon], {
+
+	if (props.icon === 'padding') {
+		return <div className={styles.icon}></div>;
+	}
+
+	return createElement((INDEX as any)[props.icon], {
 		className: classNames(styles.icon, props.className), style, ...remove(props, ['className']) } as any);
 }

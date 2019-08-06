@@ -28,7 +28,7 @@ export function Modals() {
 	return (
 		<Fragment>
 			{ modals.showProfile &&
-				<UserProfile user={modals.profileUser} dismiss={() => modals && modals.setProfile()} /> }
+				<UserProfile user={modals.profileUser as User} dismiss={() => modals && modals.setProfile()} /> }
 		</Fragment>
 	);
 }

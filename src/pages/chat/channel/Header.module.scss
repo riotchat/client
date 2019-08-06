@@ -30,10 +30,10 @@
         .title {
             font-size: .875rem;
             font-weight: 600;
-            white-space: nowrap;
+            /*white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-            min-width: 0;
+            min-width: 0;*/
             @media only screen and (max-width: 900px) {font-size: 1rem;}
         }
     

@@ -12,6 +12,7 @@ import MessageList from './channel/MessageList';
 import { GroupChannel, DMChannel } from 'riotchat.js/dist/internal/Channel';
 import MessageBox from '../../components/ui/elements/MessageBox';
 import MembersSidebar from './sidebar/members/Members';
+import { useMediaQuery } from '@material-ui/core';
 
 export type channelContext = {
 	channel: RChannel,
@@ -24,8 +25,11 @@ export default function Channel(props: { id: string }) {
 	let chat = useContext(ChatContext);
 	let channel: RChannel = Instance.client.channels.get(chat.channel as string) as any;
 
+	let isDesktop = useMediaQuery('(min-width: 900px)');
 	let [ synced, setSynced ] = useState(false);
 	let [ sidebar, setSidebar ] = useState(true);
+
+	useEffect(() => setSidebar(isDesktop), [ isDesktop ]);
 
 	const [, updateState] = React.useState();
 	const forceUpdate = React.useCallback(() => updateState({}), []);
