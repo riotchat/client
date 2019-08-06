@@ -4,6 +4,25 @@
 	height: 58px;
 	align-items: center;
 	justify-content: center;
+
+	&.fullwidth {
+		justify-content: space-around;
+
+		.tab {
+			flex-grow: 1;
+		}
+	}
+
+	&.compact {
+		background: transparent;
+		height: 45px;
+
+		.tab {
+			height: 45px;
+			min-width: unset;
+			font-weight: 600;
+		}
+	}
 }
 
 .tab {

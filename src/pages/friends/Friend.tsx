@@ -22,7 +22,7 @@ export default function Friend(props: FriendProps) {
 		<div className={styles.friend} onClick={props.onClick}>
 			<div className={styles.name}>
 				<div className={styles.avatar} style={{backgroundImage: `url(${user.avatarURL})`}}>
-					<span className={styles.indicatorMobile} />
+					<span className={classNames(styles.indicatorMobile, styles[user.status])} />
 				</div>
 				<div className={styles.flexColumn}>
 					<div style={{ display: "flex", alignItems: "center"}}>

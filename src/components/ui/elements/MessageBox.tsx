@@ -28,8 +28,7 @@ export default function MessageBox(props: { send: (value: string) => void, place
 						className={styles.textarea}
                         onKeyDown={onPress}
                         autoFocus={true}
-                        placeholder={props.placeholder}
-						ref={(el: any) => el !== null && el._ref.focus()} />
+                        placeholder={props.placeholder} />
 					<div className={styles.buttons}>
                         <div className={styles.button}>
 					        <Icon icon='cardSolid' />

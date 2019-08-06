@@ -30,11 +30,12 @@ export const AppContext = createContext(
 
 export default function App() {
 	let [ ready, setReady ] = useState(false);
-	let [ theme, setThemeState ] = useState('dark');
-	let [ accent, setAccent ] = useState('#7B68EE');
+	let [ theme, setThemeState ] = useState('light');
+	let [ accent, setAccentState ] = useState('#7B68EE');
 	let [ page, setPage ] = useState(Page.LOAD);
 
 	function setTheme(toTheme: string) {
+		localStorage.setItem('theme', toTheme);
 		let cL = document.body.classList;
 		cL.forEach(x => {
 			if (x.startsWith('theme-')) {
@@ -47,7 +48,17 @@ export default function App() {
 			setThemeState(toTheme);
 		}
 	}
-	setTheme(theme);
+
+	function setAccent(toAccent: string) {
+		localStorage.setItem('accent', toAccent);
+
+		if (accent !== toAccent) {
+			setAccentState(toAccent);
+		}
+	}
+
+	setTheme(localStorage.getItem('theme') || theme);
+	setAccent(localStorage.getItem('accent') || accent);
 
 	// riotchat.js re-render hook
 	let [ dummyValue, doRender ] = useState(false);

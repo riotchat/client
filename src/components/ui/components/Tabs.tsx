@@ -1,15 +1,18 @@
 import React, { ReactNode } from 'react';
 import styles from './Tabs.module.scss';
+import classNames from 'classnames';
 
 interface TabProps {
-	children: ReactNode[],
-	index: number,
+	variant?: 'default' | 'compact'
+	fullWidth?: boolean
+	children: ReactNode[]
+	index: number
 	setIndex: (i: number) => void
 };
 
 export default function Tabs(props: TabProps) {
 	return (
-		<div className={styles.tabs}>
+		<div className={classNames(styles.tabs, styles[props.variant || 'default'], { [styles.fullwidth]: props.fullWidth })}>
 			{
 				props.children
 					.map((child, i) =>

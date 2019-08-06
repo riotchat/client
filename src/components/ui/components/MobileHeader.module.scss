@@ -14,8 +14,8 @@
     svg { cursor: pointer; }
 
     .content {
-        font-weight: 600;
         flex: 1 1 auto;
+        font-weight: 600; //change this to only text, not tabs
     }
 
     .icon {

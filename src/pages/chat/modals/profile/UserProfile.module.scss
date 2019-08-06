@@ -1,8 +1,10 @@
 .root {
-	background: var(--secondary);
+	display: flex;
+	flex-direction: column;
+	background: var(--primary);
 	border-radius: 6px;
-	height: 300px;
-	width: 500px;
+	height: 350px;
+	width: 600px;
 	color: var(--body-text);
 	overflow: hidden;
 
@@ -12,12 +14,20 @@
 		border-radius: 0;
 	}
 
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+	}
+
 	.profile {
-		height: 100px;
-		padding: 10px;
+		padding: 30px 20px;
 		display: flex;
 		align-items: center;
 		background: var(--primary);
+		background-size: cover;
+		background-position: center;
+		
 		@media only screen and (max-width: 900px) {
 			justify-content: center;
 			height: 200px;
@@ -29,6 +39,7 @@
 			height: $size;
 			width: $size;
 			display: flex;
+			flex-shrink: 0;
 			position: relative;
 			border-radius: 50%;
 			background: var(--secondary);
@@ -65,7 +76,8 @@
 
 		.info {
 			flex-direction: column;
-			@media only screen and (max-width: 900px) {text-align: center;}
+			@media only screen and (max-width: 900px) {text-align: center; align-items: center; justify-content: center;}
+
 			.username {
 				font-weight: 700;
 				font-size: 20px;
@@ -76,11 +88,35 @@
 				color: var(--body-text);
 				@media only screen and (max-width: 900px) {font-size: 14px;}
 			}
+			
+			.badges {
+				display: none;
+				height: 25px;
+				background: var(--secondary);
+				width: 60px;
+				border-radius: 60px;
+				margin: 5px 0;
+				@media only screen and (max-width: 900px) {margin: 10px auto;}
+			}
 		}
 	}
 
-	.container {
-		height: 100%;
-		overflow: auto;
+	.view {
+		padding: 20px 10px;
+		color: var(--body-text);
+		background: var(--secondary);
+
+		.category {
+			font-size: 12px;
+			color: var(--main-text);
+			font-weight: 600;
+			text-transform: uppercase;
+			padding-bottom: 8px;
+		}
+
+		.text {
+			word-wrap: break-word;
+			font-size: 14px;
+		}
 	}
 }
