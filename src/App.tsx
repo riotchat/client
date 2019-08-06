@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import { Instance } from './internal/Client';
 import Chat from './pages/Chat';
 import { Settings } from './pages/Settings';
+import ErrorBoundary from './components/util/ErrorBoundary';
 
 export enum Page {
 	NONE = 0,
@@ -94,16 +95,18 @@ export default function App() {
 	} as CSSProperties;
 
 	return (
-		<div className={`theme-${theme} ${styles.app}`} style={style}>
-			<Helmet>
-				<meta name="theme-color" content={accent} />
-			</Helmet>
-			<AppContext.Provider value={states}>
-				{ page & Page.LOAD ? <Load waitForClient={ready} /> : null }
-				{ page & Page.LOGIN ? <Login />: null }
-				{ page & (Page.APP | Page.SETTINGS) ? <Chat /> : null }
-				{ page & Page.SETTINGS ? <Settings /> : null }
-			</AppContext.Provider>
-		</div>
+		<ErrorBoundary>
+			<div className={`theme-${theme} ${styles.app}`} style={style}>
+				<Helmet>
+					<meta name="theme-color" content={accent} />
+				</Helmet>
+				<AppContext.Provider value={states}>
+					{ page & Page.LOAD ? <Load waitForClient={ready} /> : null }
+					{ page & Page.LOGIN ? <Login />: null }
+					{ page & (Page.APP | Page.SETTINGS) ? <Chat /> : null }
+					{ page & Page.SETTINGS ? <Settings /> : null }
+				</AppContext.Provider>
+			</div>
+		</ErrorBoundary>
 	);
 }

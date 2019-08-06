@@ -18,6 +18,8 @@ export default function Friend(props: FriendProps) {
 	function onDecline() {}
 	function onCancel() {}
 
+	throw new Error('test');
+
 	return (
 		<div className={styles.friend} onClick={props.onClick}>
 			<div className={styles.name}>

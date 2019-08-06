@@ -68,8 +68,19 @@
 				font-size: 1rem;
 			}
 			noscript > div > a {
-
+				align-self: center;
+				margin-top: 20px;
+				padding: 8px 10px;
+				width: 100px;
+				font-weight: 600;
+				background: #7B68EE;
+				border-radius: 4px;
+				text-decoration: none;
+				color: white;
+				transition: background-color .2s;
 			}
+			noscript > div > a:hover {background-color: #6253be}
+			noscript > div > a:active {background-color: #493e8e}
 		</style>
 	</head>
 	<body ontouchstart="">
@@ -79,7 +90,7 @@
         		<h1>Well, this is really awkward...</h1>
         		<p>Seems like your JavaScript is disabled.</p>
 				<p>You'll need to enable JavaScript to run this app.</p>
-				<a>Support</a>
+				<a href="https://support.riotchat.gq" target="_blank">Get Support</a>
 			</div>
 		</noscript>
 		<div id="root"></div>
