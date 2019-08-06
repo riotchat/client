@@ -2,15 +2,14 @@ import React, { useContext, Fragment } from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames';
 
-import { ChannelContext } from '../Channel';
-import { Channel } from 'riotchat.js';
+import { ChannelContext, channelContext } from '../Channel';
 import { Icon, Icons } from '../../../components/ui/elements/Icon';
 import { DMChannel, GroupChannel } from 'riotchat.js/dist/internal/Channel';
 import { ChatContext } from '../../Chat';
 
 export default function Header() {
 	let chat = useContext(ChatContext);
-	let channel = useContext(ChannelContext) as Channel;
+	let { channel, sidebar, setSidebar } = useContext(ChannelContext) as channelContext;
 
 	let title, icon: Icons, description;
 	if (channel instanceof DMChannel) {
@@ -40,6 +39,7 @@ export default function Header() {
 			</div>
 			<div className={styles.menu}>
                 <Icon className={styles.icon} icon="bellSolid" />
+				{ channel instanceof GroupChannel && <Icon className={styles.icon} icon="groupSolid" onClick={() => setSidebar(!sidebar)} /> }
                 <Icon className={styles.feedback} icon="megaphoneSolid" />
 			</div>
 		</div>

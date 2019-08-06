@@ -1,0 +1,46 @@
+.sidebar {
+	background: var(--secondary);
+	width: 240px;
+
+	@media only screen and (max-width: 900px) {width: 280px;}
+
+	.header {
+		padding: 15px 10px 10px;
+		background: var(--primary);
+
+		@media only screen and (min-width: 901px) {display: none;}
+
+		.channelTitle {
+			font-size: 14px;
+			margin-bottom: 2px;
+			font-weight: 600;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		.channelDesc {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			color: var(--main-text);
+			font-size: 12px;
+		}
+	}
+
+	.members {
+		padding: 14px 10px;
+		flex-grow: 1;
+
+		@media only screen and (max-width: 900px) {padding: 10px;}
+
+		.role {
+			padding: 0 8px;
+			font-size: 12px;
+			font-weight: 600;
+			color: #BCBCBC;
+		}
+	}
+}

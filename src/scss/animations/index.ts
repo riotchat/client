@@ -8,7 +8,9 @@ export enum Animation {
 	FADE_OUT,
 	SCALE_IN,
 	SCALE_OUT,
-	BOUNCE_IN
+	BOUNCE_IN,
+	PAGE_IN,
+	PAGE_OUT
 };
 
 export interface Animatable {
@@ -25,7 +27,9 @@ const ANIMATIONS: {
 	[Animation.FADE_OUT]: [styles.fadeOut, false],
 	[Animation.SCALE_IN]: [styles.scaleIn, true],
 	[Animation.SCALE_OUT]: [styles.scaleOut, false],
-	[Animation.BOUNCE_IN]: [styles.bounceIn, true]
+	[Animation.BOUNCE_IN]: [styles.bounceIn, true],
+	[Animation.PAGE_IN]: [styles.pageIn, true],
+	[Animation.PAGE_OUT]: [styles.pageOut, false]
 };
 
 function createAnimator(animation?: string | Animation, duration?: number): Animatable {

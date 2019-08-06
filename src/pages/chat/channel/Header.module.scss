@@ -1,5 +1,5 @@
 .header {
-    height: 58px;
+    height: 56px;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -30,6 +30,10 @@
         .title {
             font-size: .875rem;
             font-weight: 600;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            min-width: 0;
             @media only screen and (max-width: 900px) {font-size: 1rem;}
         }
     

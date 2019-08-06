@@ -56,7 +56,7 @@ export function ContextMenu(props: ContextProps) {
 			ref={processRef}
 		>
 			<Helmet>
-				<meta name="theme-color" content={color} />
+				<meta name="theme-color" content={color}/>
 			</Helmet>
 			{props.children}
 		</SwipeableDrawer>

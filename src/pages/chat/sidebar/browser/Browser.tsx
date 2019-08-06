@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './Browser.module.scss';
 import classNames from 'classnames';
 
-import { hiddenScrollbar } from "../../../components/util/Scrollbar";
+import { hiddenScrollbar } from "../../../../components/util/Scrollbar";
 import { Guild } from "./Guild";
-import { Icon } from "../../../components/ui/elements/Icon";
+import { Icon } from "../../../../components/ui/elements/Icon";
 
 export default function Browser() {
     return (

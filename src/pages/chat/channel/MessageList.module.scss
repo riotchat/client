@@ -3,9 +3,7 @@
 	margin: 25px 0;
 	overflow: hidden;
 
-	@media only screen and (max-width: 768px) {
-		user-select: none;
-	}
+	@media only screen and (max-width: 768px) {user-select: none;}
 
 	.avatar {
 		flex: 0 0 auto;
@@ -64,7 +62,8 @@
 				&:active {
 					transition: background-color .2s; 
 					border-radius: 2px; 
-					background-color: var(--secondary);}
+					background-color: var(--secondary);
+				}
 			}
 		}
 	}
@@ -99,7 +98,7 @@
 }
 
 .contextHeader {
-	padding: 12px 15px;
+	padding: 12px 10px;
 
 	.avatar {
 		height: 50px;
@@ -117,13 +116,13 @@
 		flex-direction: column;
 		overflow: hidden;
 		
-		.username {
+		.contextUsername {
 			display: flex;
 			font-size: 1.125rem;
 			font-weight: 700;
 		}
 	
-		.cMessage {
+		.contextMessage {
 			min-width: 0;
 			overflow: hidden;
 			white-space: nowrap;
@@ -132,6 +131,5 @@
 			font-size: 14px;
 			color: var(--body-text);
 		}
-
 	}
 }

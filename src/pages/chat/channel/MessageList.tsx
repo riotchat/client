@@ -62,8 +62,8 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 		<MenuItem hideOnDesktop type='header' className={styles.contextHeader}>
 			<div className={styles.avatar} style={{ backgroundImage: `url('${selectedMessage && selectedMessage.author.avatarURL}')`}}/>
 			<div className={styles.context}>
-				<div className={styles.username}>{ selectedMessage && selectedMessage.author.username }</div>
-				<div className={styles.cMessage}>{ selectedMessage && selectedMessage.content }</div>
+				<div className={styles.contextUsername}>{ selectedMessage && selectedMessage.author.username }</div>
+				<div className={styles.contextMessage}>{ selectedMessage && selectedMessage.content }</div>
 			</div>
 		</MenuItem>,
 		<MenuItem icon='copyAltRegular'>Copy Text</MenuItem>,

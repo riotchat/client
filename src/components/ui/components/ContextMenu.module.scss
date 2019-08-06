@@ -17,13 +17,6 @@
         padding: 10px;
     }
 
-    .header {
-        display: none;
-        @media only screen and (max-width: 768px) {
-            display: flex;
-        }
-    }
-
     > .divider {
         height: 1px;
         width: 100%;

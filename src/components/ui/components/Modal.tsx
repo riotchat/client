@@ -1,21 +1,14 @@
-import React, { ReactNode } from 'react';
-import Helmet from 'react-helmet'
+import React, { ReactNode } from "react";
 import styles from './Modal.module.scss';
-import { Button, ButtonType } from '../elements/Button';
-import { useAnimator, Animation } from '../../../scss/animations';
 
-interface ModalProps {
-	title: string
+import { useAnimator, Animation } from "../../../scss/animations";
+import Helmet from "react-helmet";
+
+export interface ModalProps {
 	dismiss?: () => void
 	allowClose?: boolean
-
+	closeCB?: (cb: () => void) => void
 	children: ReactNode[] | ReactNode
-	buttons: {
-		type?: ButtonType
-		value: ReactNode[] | ReactNode
-		handler?: () => void
-		close?: boolean
-	}[]
 };
 
 export default function Modal(props: ModalProps) {
@@ -31,31 +24,15 @@ export default function Modal(props: ModalProps) {
 			.then(() => props.dismiss && props.dismiss());
 	}
 
-	let buttons: ReactNode[] = props.buttons
-		.map(btn => <Button theme={btn.type}
-			onClick={() => {
-				if (btn.close) {
-					handleClose();
-				} else if (btn.handler) {
-					btn.handler();
-				}
-			}}>
-				{btn.value}
-			</Button>);
+	if (props.closeCB) props.closeCB(handleClose);
 
 	return (
 		<div className={styles.modal} onClick={handleClose} style={fadeAnimation.styles}>
 			<Helmet>
 				<meta name="theme-color" content='#1D1D1E'/>
 			</Helmet>
-			<div className={styles.root} style={scaleAnimation.styles}>
-				<div className={styles.container}>
-					<span className={styles.title}>{props.title}</span>
-					<p>{props.children}</p>
-				</div>
-				<div className={styles.footer}>
-                    {buttons}
-				</div>
+			<div style={scaleAnimation.styles}>
+				{ props.children }
 			</div>
 		</div>
 	);

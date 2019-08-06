@@ -9,40 +9,4 @@
 	justify-content: center;
 	align-items: center;
 	background: rgba(0, 0, 0, 0.8);
-
-	.root {
-		margin: 0 10px;
-		max-width: 440px;
-		min-width: 200px;
-		max-height: 660px;
-		min-height: 200px;
-
-		.container {
-			color: var(--body-text);
-			padding: 1em;
-			border-radius: 5px 5px 0 0;
-			background: var(--primary);
-		}
-		
-		.title {
-			color: var(--main-text);
-			text-transform: uppercase;
-			font-weight: 600;
-		}
-		
-		.footer {
-			padding: 1em;
-			border-radius: 0 0 5px 5px;
-			background: var(--secondary);
-
-			display: flex;
-			flex-direction: row-reverse;
-
-			> button {
-				margin: 0 10px;
-				
-				&:first-child { margin-right: 0; }
-			}
-		}
-	}
 }

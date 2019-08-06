@@ -5,7 +5,7 @@ import styles from './Chat.module.scss';
 import { SwipeableDrawer } from '@material-ui/core';
 import { HomeSidebar } from './chat/sidebar/conversation/Home';
 import { GuildSidebar } from './chat/sidebar/conversation/Guild';
-import Browser from './chat/sidebar/Browser';
+import Browser from './chat/sidebar/browser/Browser';
 import { Profile } from './chat/sidebar/conversation/Profile';
 import Channel from './chat/Channel';	
 import { useVar } from '../components/util/CSS';
@@ -13,6 +13,7 @@ import Friends from './friends/Friends';
 import MediaQuery from 'react-responsive';
 import Notification from '../components/ui/components/Notification';
 import { UpdateEmitter } from '..';
+import { ModalContext, useModals, Modals } from './chat/modals/ModalContext';
 
 export enum Page {
 	GUILD = 0x1, // switches to guild specific sidebar
@@ -40,15 +41,16 @@ export const ChatContext = createContext<{
 });
 
 const updateStrings = [
-	"It's time to get epicer.",
-	"Update in one click yes",
-	"This is very epic."
+	"Senpai, senpai! An new update is available, just for you!",
+	"🎉 An new update is available!",
+	"A new update is ready for you, chief."
 ];
 
 const Chat = memo(() => {
 	let [ page, setPage ] = useState<Page>(Page.HOME);
 	let [ channel, setChannel ] = useState<string>();
 	let [ drawer, setDrawer ] = useState(false);
+
 	let [ updateAvailable, setUpdate ] = useState(false);
 	let [ updateString, setUpdateString ] = useState<string>();
 
@@ -89,40 +91,45 @@ const Chat = memo(() => {
 	</div>;
 
 	let [ color, processRef ] = useVar('primary');
+	let modalValues = useModals();
 	return (
 		<ChatContext.Provider value={states}>
-			<Helmet>
-				<meta name="theme-color" content={color || '#000000'} />
-			</Helmet>
-			<div className={styles.chat} ref={ref => processRef(ref)}>
-				<MediaQuery minWidth={900}>
-					{ (matches) =>
-						<SwipeableDrawer
-							variant={matches ? 'permanent' : 'temporary'}
-							anchor={'left'}
-							open={drawer}
-							swipeAreaWidth={30}
-							disableSwipeToOpen={
-								(typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !((navigator as any).standalone))
-							}
-							onOpen={() => setDrawer(true)}
-							onClose={() => setDrawer(false)}
-							classes={{
-								docked: styles.docked,
-								paper: styles.drawer
-							}}
-						>
-							{sidebar}
-						</SwipeableDrawer>}
-				</MediaQuery>
-				<div className={styles.main}>
-					{ updateAvailable && <Notification isElement={true} type='update' centerText={true}>
-						{updateString}
-						<button onClick={() => window.location.reload()}>Update</button>
-					</Notification> }
-					{body}
+			<ModalContext.Provider value={modalValues}>
+				<Helmet>
+					<meta name="theme-color" content={color || '#000000'} />
+				</Helmet>
+				<div className={styles.chat} ref={ref => processRef(ref)}>
+					<MediaQuery minWidth={900}>
+						{ (matches) =>
+							<SwipeableDrawer
+								variant={matches ? 'permanent' : 'temporary'}
+								anchor="left"
+								swipeAreaWidth={30}
+								disableSwipeToOpen={
+									(typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !((navigator as any).standalone))
+								}
+								open={drawer}
+								onOpen={() => setDrawer(true)}
+								onClose={() => setDrawer(false)}
+								classes={{
+									docked: styles.docked,
+									paper: styles.drawer
+								}}
+								
+							>
+								{sidebar}
+							</SwipeableDrawer>}
+					</MediaQuery>
+					<div className={styles.main}>
+						{ updateAvailable && <Notification isElement={true} type='update' centerText={true}>
+							{updateString}
+							<button onClick={() => window.location.reload()}>Update</button>
+						</Notification> }
+						{body}
+					</div>
 				</div>
-			</div>
+				<Modals />
+			</ModalContext.Provider>
 		</ChatContext.Provider>
 	);
 });

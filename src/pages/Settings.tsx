@@ -8,9 +8,10 @@ import { scrollable } from '../components/util/Scrollbar';
 import { Icon } from '../components/ui/elements/Icon';
 import { AppContext, Page as AppPage } from '../App';
 import { RenderPage } from './settings/pages';
-import Modal from '../components/ui/components/Modal';
+import Alert from '../components/ui/components/Alert';
 import { LogoutClient } from '../internal/Client';
 import { useVar } from '../components/util/CSS';
+import { useAnimator, Animation } from '../scss/animations';
 
 export enum Page {
 	ACCOUNT,
@@ -72,6 +73,8 @@ export function Settings() {
 	let [ showContent, setShown ] = useState(false);
 	let [ showLogout, setLogoutModal ] = useState(false);
 
+	let [ animation, playAnimation ] = useAnimator(Animation.PAGE_IN, 200);
+
 	let content = classNames({
 		[styles.content]: true,
 		[styles.shown]: showContent,
@@ -88,7 +91,8 @@ export function Settings() {
 		if (showContent && force !== true) {
 			setShown(false);
 		} else {
-			app.setPage(AppPage.APP);
+			playAnimation(Animation.PAGE_OUT, 200)
+				.then(() => app.setPage(AppPage.APP));
 		}
 	}
 
@@ -109,7 +113,7 @@ export function Settings() {
 			<Helmet>
 				<meta name="theme-color" content={color || '#000000'}/>
 			</Helmet>
-			<div className={styles.settings} ref={ref => processRef(ref)}>
+			<div className={styles.settings} ref={ref => processRef(ref)} style={animation.styles}>
 				<div className={styles.header}>
 					{ showContent ? <Icon className={styles.x} icon="leftArrowAltRegular" onClick={doClose} />
 					: <Icon className={styles.x} icon="xRegular" onClick={doClose} /> }
@@ -128,7 +132,7 @@ export function Settings() {
 						</div>
 					</div>
 				</div>
-				{ showLogout && <Modal
+				{ showLogout && <Alert
 							title='Are you sure?'
 							buttons={[
 								{
@@ -144,7 +148,7 @@ export function Settings() {
 							dismiss={() => setLogoutModal(false)}
 							allowClose={true}>
 						You will be logged out of your RIOT account.
-					</Modal> }
+					</Alert> }
 			</div>
 		</SettingsContext.Provider>
 	);
