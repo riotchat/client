@@ -7,7 +7,6 @@ import { User } from "riotchat.js";
 import MobileHeader from '../../../../components/ui/components/MobileHeader';
 import Tabs from '../../../../components/ui/components/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-import { scrollable } from '../../../../components/util/Scrollbar';
 
 interface ProfileProps {
 	user: User

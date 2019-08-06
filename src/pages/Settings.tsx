@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, CSSProperties } from 'react';
+import React, { useState, createContext, useContext, CSSProperties, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import styles from './Settings.module.scss';
 import classNames from 'classnames';
@@ -13,6 +13,7 @@ import { LogoutClient } from '../internal/Client';
 import { useVar } from '../components/util/CSS';
 import { useAnimator, Animation } from '../scss/animations';
 import MobileHeader from '../components/ui/components/MobileHeader';
+import { useMediaQuery } from '@material-ui/core';
 
 export enum Page {
 	ACCOUNT,
@@ -88,14 +89,26 @@ export function Settings() {
 		setLogoutModal
 	} as any;
 
-	function doClose(force?: any) {
-		if (showContent && force !== true) {
+	let isDesktop = useMediaQuery('(min-width: 900px)');
+	function doClose() {
+		if (showContent && !isDesktop) {
 			setShown(false);
 		} else {
 			playAnimation(Animation.PAGE_OUT, 200)
 				.then(() => app.setPage(AppPage.APP));
 		}
 	}
+
+	function checkESC(e: KeyboardEvent) {
+		if (e.keyCode === 27) {
+			doClose();
+		}
+	}
+
+	useEffect(() => {
+		document.addEventListener('keydown', checkESC);
+		return () => document.removeEventListener('keydown', checkESC);
+	});
 
 	function doLogout() {
 		app.setPage(AppPage.LOGIN);
@@ -131,7 +144,7 @@ export function Settings() {
 							{RenderPage(tab)}
 						</div>
 						<div className={styles.close}>
-							<Icon icon="xRegular" onClick={() => doClose(true)} />
+							<Icon icon="xRegular" onClick={() => doClose()} />
 						</div>
 					</div>
 				</div>

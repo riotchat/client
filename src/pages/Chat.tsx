@@ -118,7 +118,8 @@ const Chat = memo(() => {
 								
 							>
 								{sidebar}
-							</SwipeableDrawer>}
+							</SwipeableDrawer>
+						}
 					</MediaQuery>
 					<div className={styles.main}>
 						{ updateAvailable && <Notification isElement={true} type='update' centerText={true}>
