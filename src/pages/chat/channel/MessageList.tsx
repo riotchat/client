@@ -2,6 +2,7 @@ import React, { Fragment, memo, useState } from 'react';
 import styles from './MessageList.module.scss';
 import moment from 'moment';
 
+import classNames from 'classnames';
 import { Message as RMessage } from 'riotchat.js/dist/internal/Message';
 import useContextMenu from '../../../components/ui/components/ContextMenu';
 import MenuItem from '../../../components/ui/components/contextMenu/MenuItem';
@@ -81,7 +82,7 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 
 	return <Fragment>
 		{
-			days.map(day => <Fragment>
+			days.map((day, i) => <Fragment key={`day-${i}`}>
 				<div className={styles.separator}>
 					<div className={styles.bar}/>
 					<div className={styles.text}>
@@ -89,15 +90,15 @@ const MessageList = memo((props: { messages: RMessage[] }) => {
 					</div>
 					<div className={styles.bar}/>
 				</div>
-				{ day.map(group =>
-					<div className={styles.message}>
+				{ day.map((group, i) =>
+					<div className={styles.message} key={`group-${i}`}>
 						<div className={styles.avatar} style={{ backgroundImage: `url("${group[0].author.avatarURL}")` }}></div>
 							<div className={styles.content}>
 							<div className={styles.header}>
 								<span className={styles.username}>{group[0].author.username}</span>
 								<time> { moment(group[0].createdAt).calendar() }</time>
 							</div>
-							{ group.map(x => <div className={styles.line}
+							{ group.map(x => <div className={classNames(styles.line, { [styles.preload]: !x.real })} key={x.id}
 												onContextMenu={e => onContextMenu(e, x)}>{x.content}</div>) }
 						</div>
 					</div>

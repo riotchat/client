@@ -10,6 +10,7 @@ interface AlertProps extends ModalProps {
 		value: ReactNode[] | ReactNode
 		handler?: () => void
 		close?: boolean
+		disabled?: boolean
 	}[]
 };
 
@@ -18,12 +19,14 @@ export default function Alert(props: AlertProps) {
 	let buttons: ReactNode[] = props.buttons
 		.map(btn => <Button theme={btn.type}
 			onClick={() => {
+				if (btn.disabled) return;
 				if (btn.close && handleClose) {
 					handleClose();
 				} else if (btn.handler) {
 					btn.handler();
 				}
-			}}>
+			}}
+			disabled={btn.disabled}>
 				{btn.value}
 			</Button>);
 

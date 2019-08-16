@@ -91,13 +91,23 @@ const Chat = memo(() => {
 
 	Notify();
 	function onMessage(msg: Message) {
+		if (msg.author.id === Instance.client.user.id
+				|| (
+					msg.channel.id === channel
+					&& window.document.visibilityState === 'visible'
+				))
+			return;
+
 		messageDing.play();
 		Notify(msg.author.username, {
 			body: msg.content,
 			icon: msg.author.avatarURL,
 			silent: true
-		}, () => switchTo(msg.channel instanceof DMChannel ? Page.DM
-				: msg.channel instanceof GroupChannel ? Page.GROUP : Page.GUILD, msg.channel.id));
+		}, () => {
+			switchTo(msg.channel instanceof DMChannel ? Page.DM
+				: msg.channel instanceof GroupChannel ? Page.GROUP : Page.GUILD, msg.channel.id);
+			window.focus();
+		});
 	}
 
 	useEffect(() => Instance.client.on('message', onMessage));
@@ -123,7 +133,7 @@ const Chat = memo(() => {
 	let sidebar = <div className={styles.sidebar}>
 		<Browser />
 		<div className={styles.conversation}>
-			{ page ? <HomeSidebar /> : <GuildSidebar /> }
+			{ page & 0x1 ? <GuildSidebar /> : <HomeSidebar /> }
 			<Profile />
 		</div>
 	</div>;

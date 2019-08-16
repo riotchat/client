@@ -4,14 +4,14 @@ import classNames from 'classnames';
 
 import { ChannelContext, channelContext } from '../Channel';
 import { Icon, Icons } from '../../../components/ui/elements/Icon';
-import { DMChannel, GroupChannel } from 'riotchat.js/dist/internal/Channel';
+import { DMChannel, GroupChannel, GuildChannel } from 'riotchat.js/dist/internal/Channel';
 import { ChatContext } from '../../Chat';
 
 export default function Header() {
 	let chat = useContext(ChatContext);
 	let { channel, sidebar, setSidebar } = useContext(ChannelContext) as channelContext;
 
-	let title, icon: Icons, description;
+	let title, icon: Icons = 'xRegular', description;
 	if (channel instanceof DMChannel) {
 		title = channel.recipient.username;
 		icon = 'atRegular';
@@ -19,9 +19,10 @@ export default function Header() {
 		title = channel.group.displayTitle;
 		icon = 'groupSolid';
 		description = channel.description;
-	} else {
-		title = 'TODO';
+	} else if (channel instanceof GuildChannel) {
+		title = channel.name;
 		icon = 'chatSolid';
+		description = channel.description;
 	}
 
 	return (
@@ -39,7 +40,7 @@ export default function Header() {
 			</div>
 			<div className={styles.menu}>
                 <Icon className={styles.icon} icon="bellSolid" />
-				{ channel instanceof GroupChannel && <Icon className={styles.icon} icon="groupSolid" onClick={() => setSidebar(!sidebar)} /> }
+				{ channel instanceof GroupChannel || channel instanceof GuildChannel && <Icon className={styles.icon} icon="groupSolid" onClick={() => setSidebar(!sidebar)} /> }
                 <Icon className={styles.feedback} icon="megaphoneSolid" />
 			</div>
 		</div>

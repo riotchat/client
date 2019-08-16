@@ -57,7 +57,10 @@
 		}
 
 		.line {
-			padding: 0 2px;
+			&.preload {
+				color: gray;
+			}
+
 			@media only screen and (max-width: 900px) {
 				&:active {
 					transition: background-color .2s; 

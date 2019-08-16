@@ -16,8 +16,10 @@ export default function Load(props: { waitForClient: boolean }) {
 
 			Instance.client.once('connected', () => {
 				app.setPage(Page.APP);
+			});
 
-				// call app.propogate() on any changes
+			Instance.client.once('error', () => {
+				app.setPage(Page.LOGIN);
 			});
 		}
 	}, [props.waitForClient, bound, app]);

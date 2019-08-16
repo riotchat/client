@@ -13,12 +13,21 @@ interface FriendProps {
 export default function Friend(props: FriendProps) {
 	let user = props.user;
 
-	function onRemove() {}
-	function onAccept() {}
-	function onDecline() {}
-	function onCancel() {}
+	function onRemove() {
+		user.removeFriend();
+	}
 
-	throw new Error('test');
+	function onAccept() {
+		user.addFriend();
+	}
+
+	function onDecline() {
+		user.removeFriend();
+	}
+
+	function onCancel() {
+		user.removeFriend();
+	}
 
 	return (
 		<div className={styles.friend} onClick={props.onClick}>
